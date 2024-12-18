@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --primary: #0a2a3d;
+  --primary-950: #0a2a3d;
+  --primary-900: #15384d;
+  --primary-800: #0c7f86;
+  --primary-700: #0c939d;
+  --primary-600: #457592;
+  --primary-500: #5384a4;
+  --primary-400: #6c97b5;
+  --primary-300: #83aac6;
+  --primary-200: #80dce2;
+  --primary-100: #bfddf1;
+  --primary-50: #e0f7f8;
+
+  --secondary: #0a2a3d;
+  --secondary-950: #0a2a3d;
+  --secondary-900: #15384d;
+  --secondary-800: #284e65;
+  --secondary-700: #36617b;
+  --secondary-600: #457592;
+  --secondary-500: #5384a4;
+  --secondary-400: #6c97b5;
+  --secondary-300: #83aac6;
+  --secondary-200: #a2c4dc;
+  --secondary-100: #b1eaed;
+  --secondary-50: #def2ff;
+
+  --zinc: #09090b;
+  --zinc-950: #09090b;
+  --zinc-900: #18181b;
+  --zinc-800: #27272a;
+  --zinc-700: #3f3f46;
+  --zinc-600: #52525b;
+  --zinc-500: #71717a;
+  --zinc-400: #a1a1aa;
+  --zinc-300: #d4d4d8;
+  --zinc-200: #e4e4e7;
+  --zinc-100: #f4f4f5;
+  --zinc-50: #fafafa;
+
+  --black-1: #00000080;
+  --black-2: #101010b2;
+}
+@font-face {
+  font-family: Dana-FaNum;
+  src: url("./fonts/DanaFaNum-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Dana-FaNum;
+  src: url("./fonts/DanaFaNum-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Dana-FaNum;
+  src: url("./fonts/DanaFaNum-Bold.ttf");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+html,
+body,
+a,
+button {
+  font-family: Dana-FaNum !important ;
+}
+body {
+  position: relative;
+}
+.swiper-pagination-first {
+  margin-top: 1.8rem;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+.swiper-pagination-first .swiper-pagination-bullet-active {
+  background-color: var(--zinc-500) !important;
+}
