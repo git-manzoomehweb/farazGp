@@ -75,12 +75,49 @@ button {
 body {
   position: relative;
 }
-.swiper-pagination-first {
+.swiper-pagination-first,
+.swiper-pagination-first-mob {
   margin-top: 1.8rem;
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
 }
-.swiper-pagination-first .swiper-pagination-bullet-active {
+.swiper-pagination-first .swiper-pagination-bullet-active,
+.swiper-pagination-first-mob .swiper-pagination-bullet-active {
   background-color: var(--zinc-500) !important;
+}
+  p#question {
+  position: relative;
+  padding-right: 22px;
+  width: 75%;
+}
+p#question::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background-color: var(--primary-800);
+  border-radius: 3px;
+  right: 0rem;
+  bottom: 5.5px;
+}
+@media (min-width: 1024px) {
+  nav{
+    display: none;
+  }
+  p#question {
+  position: relative;
+  padding-right: 22px;
+  width: 100%;
+}
+p#question::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background-color: var(--primary-800);
+  border-radius: 3px;
+  right: 0rem;
+  bottom: -8.5px;
+}
 }

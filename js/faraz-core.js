@@ -18,11 +18,11 @@ var swiper = new Swiper(".first-swiper", {
   centeredSlides: false,
   spaceBetween: 30,
   grabCursor: true,
-     autoplay: {
-       delay: 2500,
-       disableOnInteraction: false,
-     },
-     loop: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  loop: true,
   pagination: {
     el: ".swiper-pagination-first",
     clickable: true,
@@ -45,4 +45,56 @@ var swiper = new Swiper(".first-swiper", {
       spaceBetween: 20,
     },
   },
+});
+var swiper = new Swiper(".first-swiper-mob", {
+ 
+  slidesPerView: 1,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 10,
+  grabCursor: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination-first-mob",
+    clickable: true,
+  },
+
+  breakpoints: {
+    640: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    1024: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+  },
+});
+// ____________________________________common questions______________________________________
+// ____________________________________common questions______________________________________
+// ____________________________________common questions______________________________________
+
+const questionBox = document.querySelectorAll(
+  ".common-questions .parent-box .box-container"
+);
+
+questionBox.forEach((item) => {
+  item.addEventListener("click", () => {
+    const answer = item.querySelector("#answer");
+    if (answer.classList.contains("hidden")) {
+      answer.classList.remove("hidden");
+      item.querySelector("span").classList.add("-rotate-180");
+    } else {
+      answer.classList.add("hidden");
+      item.querySelector("span").classList.remove("-rotate-180");
+    }
+  });
 });
