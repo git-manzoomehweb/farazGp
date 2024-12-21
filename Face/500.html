@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+   <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover"
+    />
+    <title>
+      [##cms.seo.title|(شرکت خدمات مسافرت هوایی و گردشگری فراز گشت)##]
+    </title>
+    <meta
+      name="description"
+      content="[##cms.seo.description|(شرکت خدمات مسافرت هوایی و گردشگری  فراز گشت)##]"
+    />
+    <basis
+      core="dbsource"
+      source="hosting"
+      name="tag"
+      urlid="[##cms.seo.urlid##]"
+    >
+      <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+      <face filter="key = 'canonical'">
+        <link rel="canonical" href="@value" />
+      </face>
+      <face>
+        <meta property="@key" content="@value" />
+      </face>
+    </basis>
+    <basis core="call" file="pwa.inc" />
+    <basis core="call" file="style.inc" />
+  </head>
+  <body class="relative">
+        
+  <basis core="call" file="header.inc" />
+    <main class="w-full z-10 flex-flex-col gap-0">
+      <section
+        class="overflow-hidden object-cover relative h-[80px] lg:h-[185px] w-full"
+      >
+        <span
+          class="z-10 w-full h-full absolute top-0 bg-gradient-to-b from-special-1"
+        ></span>
+        <img loading="lazy"
+          class="!w-full z-0 lg:block hidden"
+          src="[##cms.cms.cdn##]/images/search-bg.jpg"
+          alt="search"
+        />
+        <img loading="lazy"
+          class="!w-full z-0 lg:hidden block"
+          src="[##cms.cms.cdn##]/images/bg-search-mobile.jpg"
+          alt="search"
+        />
+      </section>
+      <section
+        class="w-full flex flex-col px-6 items-center justify-center my-48 gap-6"
+      >
+        <img loading="lazy" width="261" height="181" src="[##cms.cms.cdn##]/images/500.png" alt="500" />
+        <p class="text-base text-zinc-900 text-center">
+          اتباط با سرور با مشکل مواجه شد لطفا در زمان دیگر امتحان کنید
+        </p>
+        <a
+          class="px-6 py-4 hover:bg-primary-200 hover:text-primary-800 text-center bg-primary-700 rounded text-white"
+          href="/"
+          >بازگشت به صفحه اصلی</a
+        >
+      </section>
+    </main>
+       
+  <basis core="call" file="footer.inc" />
+  </body>
+</html>

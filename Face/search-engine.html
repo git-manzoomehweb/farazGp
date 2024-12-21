@@ -1,0 +1,1996 @@
+<div class="flex w-full flex-col shadow-md rounded-3xl h-fit gap-3">
+  <div class="r-flight bg-white rounded p-2 relative" id="r-flight">
+  <form
+    action="/Tem3_Oneway_Search.bc"
+    method="get"
+    data-form="flight"
+    data-flightType="1"
+    id="flightSearch"
+    onsubmit="form_search_isSubmited(this,event)"
+    class="flex flex-col relative lg:flex-row gap-2 lg:gap-1 xl:gap-2 items-center form-search  frm formflight clear-both"
+  >
+   <div class="absolute gap-3 flex lg:top-[-90px]  right-0 pt-[4px]">
+  <div class="z-30">
+      <div
+        class="float-left bg-white shadow rounded px-3 flight-items cursor-pointer "
+        onclick="show_flighttype(this)"
+      >
+        <div class="h-[44px] text-base">
+          <div
+            class="cursor-pointer justify-between w-full lg:w-fit py-3  items-center gap-3  flex"
+          >
+            <span class="Flighttype-text float-right leading-[44px]"
+              >یک طرفه</span
+            >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M20.4139 8.2501L11.9999 16.6641L3.58594 8.2501L4.99994 6.8361L11.9999 13.8361L18.9999 6.8361L20.4139 8.2501Z"
+                fill="#18181B"
+              />
+            </svg>
+          </div>
+        </div>
+        <ul
+          class="show-flighttype mt-2 flex shadow-md gap-3 flex-col  w-full clear-both border-t border-zinc-100 border-solid hidden"
+        >
+          <li
+            id="direct"
+            class="r-btn mt-2 active-r-btn leading-6 text-right cursor-pointer text-base  hover:text-zinc-900 text-zinc-500 "
+            onclick="document.getElementById('flightSearch').action='/Tem3_Oneway_Search.bc';"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm  hover:text-zinc-900"
+              for="direct-input"
+              >یک طرفه</label
+            >
+            <div class="bullet"></div>
+          </li>
+          <li
+            id="return"
+            class="r-btn text-right leading-6 cursor-pointer text-base  hover:text-zinc-900 text-zinc-500 "
+            onclick="document.getElementById('flightSearch').action='/Tem3_Roundtrip_Search.bc';"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm  hover:text-zinc-900"
+              for="return-input"
+              >رفت و برگشت</label
+            >
+            <div class="bullet"></div>
+          </li>
+          <li
+            id="multi"
+            class="r-btn text-right leading-6 cursor-pointer text-base  hover:text-zinc-900 text-zinc-500 "
+            onclick="showMultiCity(this)"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm  hover:text-zinc-900"
+              for="multi-input"
+              >چند مسیره</label
+            >
+            <div class="bullet"></div>
+          </li>
+          <div class="clr"></div>
+        </ul>
+      </div>
+    </div>
+    <div class="z-10">
+      <div
+        class="float-left flightclass-box px-3 cursor-pointer rounded shadow bg-white"
+        onclick="show_flightclass(this)"
+      >
+        <div class="h-[44px] text-base">
+          <div
+            class="cursor-pointer justify-between w-full lg:w-fit py-3  items-center gap-3 text-secondary-500 rounded flex"
+          >
+            <span class="FlightClass-text float-right leading-[44px]"
+              >اکونومی</span
+            >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4139 8.2501L11.9999 16.6641L3.58594 8.2501L4.99994 6.8361L11.9999 13.8361L18.9999 6.8361L20.4139 8.2501Z" fill="#18181B"></path>
+ </svg>
+          </div>
+          <input
+            type="hidden"
+            name="FlightClass"
+            value="Economy"
+            class="FlightClass-value"
+            id="FlightClass1"
+          />
+        </div>
+        <ul
+          class="show-flightclass mt-2 FlightClass flex shadow-md gap-3 flex-col  w-full clear-both border-t border-zinc-100 border-solid hidden"
+        >
+          <li
+            class="leading-6 mt-2 text-right cursor-pointer  hover:text-zinc-900 text-base text-zinc-500 "
+            data-value="Economy"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm  hover:text-zinc-900"
+              >اکونومی</label
+            >
+          </li>
+          <li
+            class="leading-6 cursor-pointer text-base  hover:text-zinc-900 text-zinc-500 "
+            data-value="BusinessClass"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm  hover:text-zinc-900"
+              >بیزینس</label
+            >
+          </li>
+          <li
+            class="leading-6 cursor-pointer text-base text-zinc-500  hover:text-zinc-900"
+            data-value="FirstClass"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm  hover:text-zinc-900"
+              >فرست</label
+            >
+          </li>
+          <div class="clr"></div>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <input type="hidden" name="persiancurrent" class="persiancurrent" value />
+    <input type="hidden" value="0" name="select-age" class="select-age-value" aria-label="select-age">
+    <div
+      class="gap-2 city departure-city relative flex items-center w-[22%] px-3 h-[65px]  border-r border-primary-700"
+    >
+      <div
+        class="flex input-group inner-city inner-container flex-col gap-1 w-10/12"
+      >
+        <div
+          onclick="empty_value(this)"
+          class="click-content flex flex-col gap-1 w-full h-full"
+        >
+          <label for="departure1"  class="cursor-pointer">مبدا:</label>
+          <input
+            id="departure1"
+            class="FCD1 departure truncate text-value !bg-transparent lg:text-sm xl:text-base cursor-pointer !h-4 placeholder:!text-secondary-400 !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+            type="text"
+            placeholder="کشور مبدا را انتخاب کنید"
+            required=""
+            aria-label="departure"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+        <input
+          value="1203548"
+          class="co-id FCDid1 from"
+          type="hidden"
+          name="from"
+          aria-label="co-id"
+        />
+        <div
+          class="absolute shadow-md bg-white hidden rounded searchList   overflow-hidden  w-full h-[200px] z-10 lg:h-[276px] right-0 top-[83px] lg:top-[100px]"
+        >
+          <div
+            class="h-full clear-both flex flex-col gap-2 overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px]
+            [&::-webkit-scrollbar-thumb]:bg-primary-900"
+          >
+            <div class="flex gap-2 items-center h-4">
+              <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M2.34448 8.92686C2.53948 8.22986 2.96548 7.69686 3.57448 7.38386C4.75048 6.77886 6.15148 7.17686 6.70048 7.37486C7.78648 7.76686 8.83648 8.22786 9.93048 8.66986C11.1535 7.53786 12.3855 6.45586 13.5325 5.45586C14.3535 4.73786 15.1985 4.47586 16.0485 4.67886C16.5085 4.78386 16.9415 4.94886 17.3605 5.10986C17.5565 5.18486 17.7545 5.25986 17.9595 5.33086C18.1555 5.39886 18.3135 5.54386 18.3985 5.73186C18.4835 5.92086 18.4875 6.13486 18.4075 6.32586L16.3385 11.3449C17.0555 11.6459 17.9365 12.0209 18.7655 12.3729L20.0005 12.8959C20.1235 12.5989 20.2565 12.2789 20.3065 12.1569C20.4625 11.7729 20.9015 11.5889 21.2835 11.7459C21.6675 11.9019 21.8515 12.3399 21.6955 12.7229C21.6045 12.9449 21.2455 13.8109 21.1515 14.0339C21.1345 14.0739 21.1175 14.1129 21.1005 14.1519C21.0975 14.1579 21.0955 14.1639 21.0925 14.1699C21.0845 14.1899 21.0755 14.2079 21.0665 14.2269C20.1755 16.1649 18.6985 17.1939 16.9115 17.1939C16.2365 17.1939 15.5165 17.0459 14.7665 16.7459C11.2135 15.3169 7.65048 13.8209 4.50048 12.4989C3.14248 11.9179 1.88748 10.5519 2.34448 8.92686Z"
+                  fill="#880C25"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4.9569 20.6299H19.0459C19.4599 20.6299 19.7959 20.9659 19.7959 21.3799C19.7959 21.7939 19.4599 22.1299 19.0459 22.1299H4.9569C4.5429 22.1299 4.2069 21.7939 4.2069 21.3799C4.2069 20.9659 4.5429 20.6299 4.9569 20.6299Z"
+                  fill="#880C25"
+                />
+              </svg>
+              <input
+                type="text"
+                aria-label="cities"
+                placeholder="مبدا"
+                oninput="city_search(this)"
+                data-type="1"
+                class="country form-search-input w-[70%] font-danaregular !bg-transparent placeholder:text-zinc-900 !h-4 focus:!border-0 border-0 px-3 outline-none focus:outline-none rounded-2xl text-right float-right"
+                autocomplete="off"
+                value=""
+              />
+            </div>
+            <span
+              class="mini-loading absolute hidden top-6 left-4"
+              aria-label="spinner"
+            >
+              <i class="fas fa-spinner fa-spin not-italic"></i>
+            </span>
+            <div class="countryFlight"></div>
+            <div class="flex flex-col gap-2 ul-list">
+              <div
+                class="w-full flex justify-center gap-2 border-b border-solid border-secondary-300 pb-2"
+              >
+                <button
+                  type="button"
+                  class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                >
+                  داخلی
+                </button>
+                <button
+                  type="button"
+                  class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                >
+                  خارجی
+                </button>
+              </div>
+              <div class="grid grid-cols-2 w-full lg:text-sm xl:text-base">
+                <ul
+                  class="flex lg:text-sm xl:text-base flex-col gap-2 border-l border-solid border-secondary-300"
+                >
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1203548"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    تهران
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1211083"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    مشهد
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1270505"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    ایلام
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1211087"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    اهواز
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1203561"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    رشت
+                  </li>
+                </ul>
+                <ul class="flex lg:text-sm xl:text-base flex-col gap-2 pr-2">
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1177676"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    استانبول
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1173505"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    دبی
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1182289"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    مسقط
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1189731"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    تفلیس
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1198686"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    دوحه
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span
+      class=" xl:w-12 right-[95.5%] cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 rotate-90 lg:rotate-0 inset-0 top-16 lg:top-3  z-10 absolute rounded-full flex items-center justify-center bg-secondary-400"
+      data-index="0"
+      onclick="ExchangeRoute(this)"
+    >
+      <svg
+        width="24"
+        height="19"
+        viewBox="0 0 24 19"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18.6885 3.99063H9.33021V6.66042H18.6885V10.6511L24 5.33958L18.6885 0V3.99063ZM0 13.3208L5.33958 18.6604V14.6698H14.6698V12H5.33958V8.00937L0 13.3208Z"
+          fill="#FAFAFA"
+        />
+      </svg>
+    </span>
+    </div>
+    
+    <div
+      class="gap-2 city destination-city mt-3 lg:mr-2 xl:mr-5 lg:mt-0 relative flex items-center  w-[23%] h-[65px]   rounded-3xl px-4 py-[14px]"
+    >
+      <svg
+        width="24"
+        height="25"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M3.23772 15.3444C3.51772 14.4694 4.34372 13.6384 5.45172 13.1204C6.48172 12.6434 7.55072 12.2244 8.65572 11.7504C8.72072 10.1344 8.82372 8.52836 8.92972 6.92036C9.00372 5.82136 9.42072 5.03336 10.1657 4.58136C10.5837 4.32536 11.0257 4.12836 11.4547 3.93636C11.6307 3.85836 11.8087 3.77836 11.9887 3.69336C12.1737 3.60536 12.3867 3.59736 12.5797 3.67136C12.7707 3.74436 12.9237 3.89336 13.0027 4.08336L15.0907 9.10536C15.6787 8.86536 16.3807 8.58236 17.0727 8.30336C17.6787 8.05936 18.2777 7.81736 18.7907 7.60936L18.4787 6.85436C18.3227 6.47036 18.5067 6.03236 18.8897 5.87636C19.2717 5.71936 19.7117 5.90336 19.8677 6.28736L20.4097 7.60136C21.5507 10.4454 20.5777 12.8524 17.8037 14.0404C14.8467 15.3064 11.5797 16.6624 7.51972 18.3054C7.02372 18.5074 6.46672 18.6254 5.91572 18.6254C4.94172 18.6254 3.99172 18.2544 3.46172 17.3084C3.10572 16.6774 3.02772 15.9974 3.23772 15.3444Z"
+          fill="#880C25"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M4.64012 21.6211H18.7661C19.1801 21.6211 19.5161 21.9571 19.5161 22.3711C19.5161 22.7851 19.1801 23.1211 18.7661 23.1211H4.64012C4.22612 23.1211 3.89012 22.7851 3.89012 22.3711C3.89012 21.9571 4.22612 21.6211 4.64012 21.6211Z"
+          fill="#880C25"
+        />
+      </svg>
+      <div
+        class="flex input-group inner-city inner-container flex-col gap-1 w-[85%]"
+      >
+        <div
+          onclick="empty_value(this)"
+          class="click-content flex flex-col gap-1"
+        >
+          <label for="destination1"  class="cursor-pointer">مقصد:</label>
+          <input
+            id="destination1"
+            class="FCD2 truncate destination text-value lg:text-sm xl:text-base !bg-transparent !h-4 cursor-pointer placeholder:!text-secondary-400 !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+            type="text"
+            placeholder="کشور مقصد را انتخاب کنید"
+            required=""
+            autocomplete="off"
+            value=""
+            aria-label="Destination"
+          />
+        </div>
+        <input
+          value="1178542"
+          class="co-id FCDid2 to"
+          type="hidden"
+          name="to"
+          aria-label="co-id"
+        />
+        <div
+          class="absolute shadow-md bg-white hidden rounded searchList   overflow-hidden  w-full h-[200px] z-10  lg:h-[276px] right-0 top-[83px] lg:top-[100px]"
+        >
+          <div
+            class="h-full flex flex-col gap-2 overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px]
+            [&::-webkit-scrollbar-thumb]:bg-primary-900"
+          >
+            <div class="flex lg:text-sm xl:text-base gap-2 items-center h-4">
+              <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.23772 15.3444C3.51772 14.4694 4.34372 13.6384 5.45172 13.1204C6.48172 12.6434 7.55072 12.2244 8.65572 11.7504C8.72072 10.1344 8.82372 8.52836 8.92972 6.92036C9.00372 5.82136 9.42072 5.03336 10.1657 4.58136C10.5837 4.32536 11.0257 4.12836 11.4547 3.93636C11.6307 3.85836 11.8087 3.77836 11.9887 3.69336C12.1737 3.60536 12.3867 3.59736 12.5797 3.67136C12.7707 3.74436 12.9237 3.89336 13.0027 4.08336L15.0907 9.10536C15.6787 8.86536 16.3807 8.58236 17.0727 8.30336C17.6787 8.05936 18.2777 7.81736 18.7907 7.60936L18.4787 6.85436C18.3227 6.47036 18.5067 6.03236 18.8897 5.87636C19.2717 5.71936 19.7117 5.90336 19.8677 6.28736L20.4097 7.60136C21.5507 10.4454 20.5777 12.8524 17.8037 14.0404C14.8467 15.3064 11.5797 16.6624 7.51972 18.3054C7.02372 18.5074 6.46672 18.6254 5.91572 18.6254C4.94172 18.6254 3.99172 18.2544 3.46172 17.3084C3.10572 16.6774 3.02772 15.9974 3.23772 15.3444Z"
+                  fill="#880C25"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4.64012 21.6211H18.7661C19.1801 21.6211 19.5161 21.9571 19.5161 22.3711C19.5161 22.7851 19.1801 23.1211 18.7661 23.1211H4.64012C4.22612 23.1211 3.89012 22.7851 3.89012 22.3711C3.89012 21.9571 4.22612 21.6211 4.64012 21.6211Z"
+                  fill="#880C25"
+                />
+              </svg>
+              <input
+                type="text"
+                aria-label="cities"
+                placeholder="مقصد"
+                oninput="city_search(this)"
+                data-type="1"
+                class="country lg:text-sm xl:text-base form-search-input w-[70%] font-danaregular !bg-transparent placeholder:text-zinc-900 !h-4 focus:!border-0 border-0 px-3 outline-none focus:outline-none rounded-2xl text-right float-right"
+                autocomplete="off"
+                value=""
+              />
+            </div>
+            <span
+              class="mini-loading absolute hidden top-6 left-4"
+              aria-label="spinner"
+            >
+              <i class="fas fa-spinner fa-spin not-italic"></i>
+            </span>
+            <div class="countryFlight"></div>
+            <div class="flex flex-col gap-2 lg:text-sm xl:text-base ul-list">
+              <div
+                class="w-full flex justify-center gap-2 border-b border-solid border-secondary-300 pb-2"
+              >
+                <button
+                  type="button"
+                  class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                >
+                  داخلی
+                </button>
+                <button
+                  type="button"
+                  class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                >
+                  خارجی
+                </button>
+              </div>
+              <div class="grid grid-cols-2 lg:text-sm xl:text-base w-full">
+                <ul
+                  class="flex flex-col lg:text-sm xl:text-base gap-2 border-l border-solid border-secondary-300"
+                >
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1203548"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    تهران
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1211083"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    مشهد
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1270505"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    ایلام
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1211087"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    اهواز
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1203561"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    رشت
+                  </li>
+                </ul>
+                <ul class="flex flex-col lg:text-sm xl:text-base gap-2 pr-2">
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1177676"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    استانبول
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1173505"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    دبی
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1182289"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    مسقط
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1189731"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    تفلیس
+                  </li>
+                  <li
+                    onclick="SelectPlace(this)"
+                    data-id="1198686"
+                    class="hover:text-primary-900 cursor-pointer"
+                  >
+                    دوحه
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex w-[28%] ml-2 flex-col lg:flex-row Basis_Date_Box gap-2">
+      <div
+        class="w-[50%] city date-city  flex items-center gap-2 h-[65px]   rounded-3xl px-4 py-[14px]"
+      >
+        <svg
+          width="22"
+          height="24"
+          viewBox="0 0 22 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.4607 2.70539e-06C15.9796 -0.00119377 16.3899 0.394608 16.3911 0.922343L16.3923 1.82189C19.7591 2.08096 21.9831 4.33343 21.9867 7.7877L22 17.8986C22.0048 21.6647 19.595 23.982 15.7322 23.988L6.29675 24C2.45813 24.0048 0.0181172 21.6324 0.0132901 17.8555L8.10042e-06 7.86326C-0.00481079 4.38621 2.14076 2.13973 5.50755 1.83629L5.50634 0.936736C5.50514 0.409 5.90336 0.0119995 6.43432 0.0119995C6.96529 0.0108002 7.36351 0.406602 7.36471 0.934337L7.36592 1.77392L14.5339 1.76432L14.5327 0.924742C14.5315 0.397006 14.9297 0.00120491 15.4607 2.70539e-06ZM15.953 17.0303H15.941C15.3859 17.0435 14.9406 17.5004 14.9527 18.0522C14.9539 18.6039 15.4016 19.0585 15.9567 19.0704C16.5226 19.0692 16.9812 18.6123 16.98 18.0486C16.98 17.4848 16.5202 17.0303 15.953 17.0303ZM6.00955 17.0315C5.45445 17.0555 5.02003 17.5124 5.02123 18.0642C5.04658 18.6159 5.50514 19.0477 6.06024 19.0225C6.60447 18.9985 7.03769 18.5415 7.01235 17.9898C7.00028 17.4501 6.55258 17.0303 6.00955 17.0315ZM10.9813 17.0255C10.4262 17.0507 9.99298 17.5064 9.99298 18.0582C10.0183 18.6099 10.4769 19.0405 11.032 19.0165C11.575 18.9913 12.0094 18.5355 11.9841 17.9826C11.972 17.4441 11.5243 17.0243 10.9813 17.0255ZM6.00352 12.7136C5.44842 12.7376 5.0152 13.1946 5.01641 13.7463C5.04054 14.298 5.50031 14.7298 6.05541 14.7046C6.59844 14.6806 7.03166 14.2237 7.00631 13.672C6.99425 13.1322 6.54775 12.7124 6.00352 12.7136ZM10.9765 12.6717C10.4214 12.6956 9.98695 13.1526 9.98815 13.7043C10.0123 14.2561 10.4721 14.6866 11.0272 14.6627C11.5702 14.6375 12.0034 14.1817 11.9793 13.63C11.966 13.0902 11.5195 12.6705 10.9765 12.6717ZM15.9482 12.6776C15.3931 12.6896 14.9587 13.1334 14.9599 13.6851V13.6983C14.972 14.2501 15.4305 14.6687 15.9868 14.6567C16.5299 14.6435 16.9631 14.1865 16.951 13.6348C16.9257 13.107 16.49 12.6765 15.9482 12.6776ZM14.5363 3.6114L7.36833 3.62099L7.36954 4.5913C7.36954 5.10825 6.97253 5.51604 6.44156 5.51604C5.9106 5.51724 5.51117 5.11064 5.51117 4.5937L5.50996 3.67017C3.15683 3.90165 1.85477 5.25937 1.85838 7.86087L1.85959 8.23388L20.1295 8.20989V7.7901C20.0777 5.21139 18.7599 3.85847 16.3947 3.65697L16.3959 4.58051C16.3959 5.09625 15.9868 5.50525 15.4679 5.50525C14.937 5.50645 14.5375 5.09865 14.5375 4.58291L14.5363 3.6114Z"
+            fill="#880C25"
+          />
+        </svg>
+
+        <div class="flex inner-city inner-container flex-col gap-1 w-[70%] h-full">
+          <label for="fromdate1" class=" cursor-pointer">تاریخ رفت :</label>
+          <input
+            type="text"
+            class="Basis_Date start_date sp-start !bg-transparent placeholder:!text-secondary-400 lg:text-sm xl:text-base !text-secondary-400 !h-4 cursor-pointer focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+            onclick="Basis_Calendar(this,'[##cms.cms.date##]')"
+            data-lang="fa"
+            data-active="0"
+            data-cache="0"
+            readonly=""
+            name="fdate"
+            id="fromdate1"
+            required=""
+            aria-label="تاریخ رفت"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="w-[50%] city date-city return-date-city disabled-date  flex items-center gap-2 h-[65px]   rounded-3xl px-4 py-[14px]"
+      >
+        <svg
+          width="22"
+          height="24"
+          viewBox="0 0 22 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.4607 2.70539e-06C15.9796 -0.00119377 16.3899 0.394608 16.3911 0.922343L16.3923 1.82189C19.7591 2.08096 21.9831 4.33343 21.9867 7.7877L22 17.8986C22.0048 21.6647 19.595 23.982 15.7322 23.988L6.29675 24C2.45813 24.0048 0.0181172 21.6324 0.0132901 17.8555L8.10042e-06 7.86326C-0.00481079 4.38621 2.14076 2.13973 5.50755 1.83629L5.50634 0.936736C5.50514 0.409 5.90336 0.0119995 6.43432 0.0119995C6.96529 0.0108002 7.36351 0.406602 7.36471 0.934337L7.36592 1.77392L14.5339 1.76432L14.5327 0.924742C14.5315 0.397006 14.9297 0.00120491 15.4607 2.70539e-06ZM15.953 17.0303H15.941C15.3859 17.0435 14.9406 17.5004 14.9527 18.0522C14.9539 18.6039 15.4016 19.0585 15.9567 19.0704C16.5226 19.0692 16.9812 18.6123 16.98 18.0486C16.98 17.4848 16.5202 17.0303 15.953 17.0303ZM6.00955 17.0315C5.45445 17.0555 5.02003 17.5124 5.02123 18.0642C5.04658 18.6159 5.50514 19.0477 6.06024 19.0225C6.60447 18.9985 7.03769 18.5415 7.01235 17.9898C7.00028 17.4501 6.55258 17.0303 6.00955 17.0315ZM10.9813 17.0255C10.4262 17.0507 9.99298 17.5064 9.99298 18.0582C10.0183 18.6099 10.4769 19.0405 11.032 19.0165C11.575 18.9913 12.0094 18.5355 11.9841 17.9826C11.972 17.4441 11.5243 17.0243 10.9813 17.0255ZM6.00352 12.7136C5.44842 12.7376 5.0152 13.1946 5.01641 13.7463C5.04054 14.298 5.50031 14.7298 6.05541 14.7046C6.59844 14.6806 7.03166 14.2237 7.00631 13.672C6.99425 13.1322 6.54775 12.7124 6.00352 12.7136ZM10.9765 12.6717C10.4214 12.6956 9.98695 13.1526 9.98815 13.7043C10.0123 14.2561 10.4721 14.6866 11.0272 14.6627C11.5702 14.6375 12.0034 14.1817 11.9793 13.63C11.966 13.0902 11.5195 12.6705 10.9765 12.6717ZM15.9482 12.6776C15.3931 12.6896 14.9587 13.1334 14.9599 13.6851V13.6983C14.972 14.2501 15.4305 14.6687 15.9868 14.6567C16.5299 14.6435 16.9631 14.1865 16.951 13.6348C16.9257 13.107 16.49 12.6765 15.9482 12.6776ZM14.5363 3.6114L7.36833 3.62099L7.36954 4.5913C7.36954 5.10825 6.97253 5.51604 6.44156 5.51604C5.9106 5.51724 5.51117 5.11064 5.51117 4.5937L5.50996 3.67017C3.15683 3.90165 1.85477 5.25937 1.85838 7.86087L1.85959 8.23388L20.1295 8.20989V7.7901C20.0777 5.21139 18.7599 3.85847 16.3947 3.65697L16.3959 4.58051C16.3959 5.09625 15.9868 5.50525 15.4679 5.50525C14.937 5.50645 14.5375 5.09865 14.5375 4.58291L14.5363 3.6114Z"
+            fill="#880C25"
+          />
+        </svg>
+
+        <div
+          class="flex inner-city inner-container flex-col gap-1 w-[70%]  h-full lg:w-8/12"
+        >
+          <label for="inp2-flight" class="  whitespace-nowrap cursor-pointer">تاریخ برگشت:</label>
+          <input
+            type="text"
+            class="Basis_Date end_date end_date_filled Noactive-date sp-end !bg-transparent lg:text-sm xl:text-base placeholder:!text-secondary-400 !text-secondary-400 !h-4 cursor-pointer focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+            aria-label="تاریخ برگشت"
+            value=""
+            onclick="Basis_Calendar(this,'[##cms.cms.date##]')"
+            data-lang="fa"
+            data-active="0"
+            data-cache="0"
+            readonly=""
+            name="tdate"
+            required=""
+            disabled
+            id="inp2-flight"
+          />
+        </div>
+      </div>
+    </div>
+
+
+
+    <div
+      class="w-[16%] city pass-box lg:text-sm xl:text-base  relative dropdown-container flex items-center gap-1 h-[65px]   rounded-3xl px-3 py-[14px]"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M12.4004 14.5156C7.42141 14.5156 5.19141 17.2696 5.19141 19.9996C5.19141 20.1986 5.27041 20.3896 5.41141 20.5306C5.55141 20.6706 5.74241 20.7496 5.94141 20.7496L18.8594 20.7316C19.2734 20.7306 19.6084 20.3946 19.6084 19.9816C19.6084 17.2606 17.3794 14.5156 12.4004 14.5156Z"
+          fill="#880C25"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M12.4004 13.001C15.0884 13.001 17.2754 10.813 17.2754 8.125C17.2754 5.437 15.0884 3.25 12.4004 3.25C9.71239 3.25 7.52539 5.437 7.52539 8.125C7.52539 10.813 9.71239 13.001 12.4004 13.001Z"
+          fill="#880C25"
+        />
+      </svg>
+      <div class="flex flex-col gap-1 lg:text-sm xl:text-base input-group w-[70%]">
+        <div
+          class="flex-col relative flex gap-1 w-full inner-city inner-container"
+        >
+          <label for="passenger1"   class="cursor-pointer">مسافر:</label>
+          <input
+            type="text"
+            id="passenger1"
+            class="!bg-transparent hotel-inputF hotel-input !h-4 z-10 cursor-pointer !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+            aria-label="تعداد مسافران"
+            placeholder=""
+            readonly
+          />
+          <div class="absolute flex gap-1 top-[60%]">
+            <span
+              class="passenger-counts whitespace-nowrap !text-secondary-400 count-adult leading-6"
+            ><span class="count">1</span>
+              بزرگسال
+              
+            </span>
+            <span class="!text-secondary-400">/</span>
+            <span
+              class="passenger-counts whitespace-nowrap !text-secondary-400 count-child leading-6"
+            ><span class="count">0</span>
+              کودک
+           
+            </span>
+          </div>
+          <div
+            class="HotelPassengers absolute shadow-md bg-secondary-100 hidden rounded-xl z-10   overflow-hidden  w-full lg:w-[227px] xl:w-[197px] h-[253px] lg:top-[85px] lg:-right-[45px]"
+          >
+            <div
+              class="w-full h-full overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px]
+ [&::-webkit-scrollbar-thumb]:bg-primary-900 flex gap-6 flex-col"
+            >
+              <div
+                class="flex w-full gap-2 pb-2 border-b border-solid border-secondary-300"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.4004 14.5156C7.42141 14.5156 5.19141 17.2696 5.19141 19.9996C5.19141 20.1986 5.27041 20.3896 5.41141 20.5306C5.55141 20.6706 5.74241 20.7496 5.94141 20.7496L18.8594 20.7316C19.2734 20.7306 19.6084 20.3946 19.6084 19.9816C19.6084 17.2606 17.3794 14.5156 12.4004 14.5156Z"
+                    fill="#880C25"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.4004 13.001C15.0884 13.001 17.2754 10.813 17.2754 8.125C17.2754 5.437 15.0884 3.25 12.4004 3.25C9.71239 3.25 7.52539 5.437 7.52539 8.125C7.52539 10.813 9.71239 13.001 12.4004 13.001Z"
+                    fill="#880C25"
+                  />
+                </svg>
+                مسافران
+              </div>
+              <div class="countRoom">
+                <div class="contentRooms contentRoom">
+                  <div
+                    class="itemlable2 clear-both w-full mb-4 text-zinc-900 float-right relative"
+                  >
+                    <label
+                      for="textbox-adultcount1"
+                      class="float-right text-sm leading-12 mb-1"
+                      ><span>بزرگسال</span></label
+                    >
+                    <ul
+                      class="button-click float-left w-full h-[30px] leading-12"
+                    >
+                      <li
+                        class="float-right cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900"
+                      >
+                        <div
+                          class="button secondary h-full leading-[30px] cursor-pointer"
+                        ><span class="hide cursor-pointer">+</span></div>
+                      </li>
+                      <li
+                        class="float-left cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900"
+                      >
+                        <div
+                          class="button secondary h-full leading-[30px] cursor-pointer"
+                        ><span class="hide cursor-pointer">-</span></div>
+                      </li>
+                    </ul>
+                    <input
+                      id="textbox-adultcount1"
+                      type="text"
+                      class="cat_textbox adultcount adult adult-count w-[35px] mt-2 h-[30px] !bg-transparent leading-[30px] absolute left-0 right-0 top-[25px] m-auto text-center"
+                      name="adult"
+                      maxlength="4000"
+                      value="1"
+                    />
+                  </div>
+                  <div
+                    class="itemlable2 clear-both w-full mb-4 text-zinc-900 float-right relative"
+                  >
+                    <label
+                      for="textbox-childcount1"
+                      class="float-right text-sm leading-12 mb-1"
+                      ><span>کودک</span></label
+                    >
+                    <input
+                      type="hidden"
+                      value="0"
+                      class="childcountinput"
+                      id="textbox-childcount1"
+                      name="child"
+                      aria-label="childcount"
+                    />
+                    <ul
+                      class="button-click-child float-left w-full h-[30px] leading-[30px]"
+                    >
+                      <li
+                        class="float-right cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900"
+                      >
+                        <div
+                          class="button secondary h-full cursor-pointer leading-[30px]"
+                        ><span class="hide cursor-pointer">+</span></div>
+                      </li>
+                      <li
+                        class="float-left cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900"
+                      >
+                        <div
+                          class="button secondary h-full cursor-pointer leading-[30px]"
+                        ><span class="hide cursor-pointer">-</span></div>
+                      </li>
+                    </ul>
+                    <input
+                      type="text"
+                      aria-label="chcount"
+                      class="cat_textbox chcount child-count w-[35px] mt-2 h-[30px] !bg-transparent leading-[30px] absolute left-0 right-0 top-[25px] m-auto text-center"
+                      name="chcount"
+                      maxlength="4000"
+                      value="0"
+                    />
+                  </div>
+                  <div
+                    class="childDropdowns section-select-age clear-both"
+                  ></div>
+                </div>
+              </div>
+              <div
+                class="close-hotel-psg hidden clear-both text-center text-primary cursor-pointer w-full font-bold text-sm h-[47px] leading-[45px] float-right border border-solid border-primary px-1 rounded-[7px] hover:bg-primary hover:text-white"
+              >
+                تایید اطلاعات
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-[76px]">
+      <button
+        class="inset-0 w-full lg:w-[76px] h-[65px] search-engin-submit flex items-center justify-center rounded-3xl bg-primary-900"
+        type="submit"
+      >
+        <img
+          width="40"
+          height="40"
+          src="[##cms.cms.cdn##]/images/reserve-submit.png"
+          alt="submit"
+          loading="lazy"
+        />
+      </button>
+    </div>
+  </form>
+
+  <form
+    id="multi-flight-form"
+    method="post"
+    action="/Tem3_Multicity_Search.bc"
+    data-form="" 
+    onsubmit="formMulticity_search_isSubmited(this,event)"
+    class="hidden w-full frm formflight 
+    form-search multicity-form flex 
+    flex-col relative gap-4 items-center"
+  >
+  <div class="absolute gap-3 flex lg:-top-[90px] pt-4 left-0">
+  <input
+      type="hidden"
+      name="persiancurrent"
+      class="persiancurrent"
+      value
+    /><input
+      type="hidden"
+      name="select-age"
+      class="select-age-value"
+      value="0"
+    />
+    <div class="z-10">
+      <div
+        class="float-left flightclass-box cursor-pointer rounded-2xl"
+        onclick="show_flightclass(this)"
+      >
+        <div class="h-[44px] text-base">
+          <div
+            class="cursor-pointer justify-between w-full lg:w-fit py-3 lg:py-2 px-4 items-center gap-3 text-secondary-500 border border-solid border-secondary-500 rounded-3xl flex"
+          >
+            <span class="FlightClass-text float-right leading-[44px]"
+              >اکونومی</span
+            >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M20.4139 8.2501L11.9999 16.6641L3.58594 8.2501L4.99994 6.8361L11.9999 13.8361L18.9999 6.8361L20.4139 8.2501Z"
+                fill="#774729"
+              />
+            </svg>
+          </div>
+          <input
+            type="hidden"
+            name="FlightClass"
+            value="Economy"
+            class="FlightClass-value"
+            id="FlightClass1"
+          />
+        </div>
+        <ul
+          class="show-flightclass mt-2 FlightClass flex shadow-md gap-6 flex-col p-2 bg-secondary-100 rounded-lg w-full clear-both border-t border-zinc-100 border-solid hidden"
+        >
+          <li
+            class="leading-6 mt-2 text-right cursor-pointer text-base text-zinc-900 hover:text-primary"
+            data-value="Economy"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm group-hover:text-primary"
+              >اکونومی</label
+            >
+          </li>
+          <li
+            class="leading-6 cursor-pointer text-base text-zinc-900 hover:text-primary"
+            data-value="BusinessClass"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm group-hover:text-primary"
+              >بیزینس</label
+            >
+          </li>
+          <li
+            class="leading-6 cursor-pointer text-base text-zinc-900 hover:text-primary"
+            data-value="FirstClass"
+          >
+            <label
+              class="leading-8 cursor-pointer text-sm group-hover:text-primary"
+              >فرست</label
+            >
+          </li>
+          <div class="clr"></div>
+        </ul>
+      </div>
+    </div>
+  </div>
+    
+    <div class="route-container flex flex-col gap-2 w-full">
+      <div
+        class="route-content clear-both flex flex-col gap-2 w-full"
+        data-index="1"
+      >
+        <div class="multi-route-tlt text-base text-zinc-900">مقصد اول</div>
+        <div class="flex lg:flex-row flex-col w-full gap-2">
+          <div
+            class="first-part Wrapper-DesDep relative w-[70%] flex lg:flex-row flex-col gap-4"
+          >
+            <div
+              class="city relative w-full fromcity_container first-rout-city px-4 lg:px-2 xl:px-4 py-[14px]   rounded-3xl gap-2"
+            >
+              <div class="inner-city w-full">
+                <div
+                  onclick="empty_value(this)"
+                  class="click-content w-full h-full"
+                >
+                  <div class="flex gap-2 items-center">
+                    <svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M2.34448 8.92686C2.53948 8.22986 2.96548 7.69686 3.57448 7.38386C4.75048 6.77886 6.15148 7.17686 6.70048 7.37486C7.78648 7.76686 8.83648 8.22786 9.93048 8.66986C11.1535 7.53786 12.3855 6.45586 13.5325 5.45586C14.3535 4.73786 15.1985 4.47586 16.0485 4.67886C16.5085 4.78386 16.9415 4.94886 17.3605 5.10986C17.5565 5.18486 17.7545 5.25986 17.9595 5.33086C18.1555 5.39886 18.3135 5.54386 18.3985 5.73186C18.4835 5.92086 18.4875 6.13486 18.4075 6.32586L16.3385 11.3449C17.0555 11.6459 17.9365 12.0209 18.7655 12.3729L20.0005 12.8959C20.1235 12.5989 20.2565 12.2789 20.3065 12.1569C20.4625 11.7729 20.9015 11.5889 21.2835 11.7459C21.6675 11.9019 21.8515 12.3399 21.6955 12.7229C21.6045 12.9449 21.2455 13.8109 21.1515 14.0339C21.1345 14.0739 21.1175 14.1129 21.1005 14.1519C21.0975 14.1579 21.0955 14.1639 21.0925 14.1699C21.0845 14.1899 21.0755 14.2079 21.0665 14.2269C20.1755 16.1649 18.6985 17.1939 16.9115 17.1939C16.2365 17.1939 15.5165 17.0459 14.7665 16.7459C11.2135 15.3169 7.65048 13.8209 4.50048 12.4989C3.14248 11.9179 1.88748 10.5519 2.34448 8.92686Z"
+                        fill="#880C25"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.9569 20.6299H19.0459C19.4599 20.6299 19.7959 20.9659 19.7959 21.3799C19.7959 21.7939 19.4599 22.1299 19.0459 22.1299H4.9569C4.5429 22.1299 4.2069 21.7939 4.2069 21.3799C4.2069 20.9659 4.5429 20.6299 4.9569 20.6299Z"
+                        fill="#880C25"
+                      ></path>
+                    </svg>
+                    <div class="flex flex-col">
+                      <label for="departure1-3"   class="cursor-pointer">مبدا</label>
+                      <input
+                        id="departure1-3"
+                        type="text"
+                        class="FCD1 truncate text-value lg:text-sm xl:text-base fromcity-text !bg-transparent cursor-pointer !h-4 placeholder:!text-secondary-400 !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                        placeholder="کشور مبدا را انتخاب کنید"
+                        required=""
+                        aria-label="مبدا"
+                        autocomplete="off"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <input
+                  value="1203548"
+                  class="co-id FCDid1 fromcity"
+                  type="hidden"
+                  name="from"
+                  aria-label="co-id"
+                />
+                <div
+                  class="absolute lg:text-sm xl:text-base shadow-md bg-secondary-100 hidden rounded-xl searchList   overflow-hidden  w-full h-[200px] z-20 xl:w-[417px] lg:w-[205px] lg:h-[276px] right-0 top-[76px] lg:top-[85px]"
+                >
+                  <div
+                    class="h-full clear-both flex flex-col gap-2 overflow-y-auto  p-5 [&::-webkit-scrollbar]:[width:10px]
+ [&::-webkit-scrollbar-thumb]:bg-primary-900"
+                  >
+                    <div class="flex gap-2 items-center h-4">
+                      <svg
+                        width="24"
+                        height="25"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M2.34448 8.92686C2.53948 8.22986 2.96548 7.69686 3.57448 7.38386C4.75048 6.77886 6.15148 7.17686 6.70048 7.37486C7.78648 7.76686 8.83648 8.22786 9.93048 8.66986C11.1535 7.53786 12.3855 6.45586 13.5325 5.45586C14.3535 4.73786 15.1985 4.47586 16.0485 4.67886C16.5085 4.78386 16.9415 4.94886 17.3605 5.10986C17.5565 5.18486 17.7545 5.25986 17.9595 5.33086C18.1555 5.39886 18.3135 5.54386 18.3985 5.73186C18.4835 5.92086 18.4875 6.13486 18.4075 6.32586L16.3385 11.3449C17.0555 11.6459 17.9365 12.0209 18.7655 12.3729L20.0005 12.8959C20.1235 12.5989 20.2565 12.2789 20.3065 12.1569C20.4625 11.7729 20.9015 11.5889 21.2835 11.7459C21.6675 11.9019 21.8515 12.3399 21.6955 12.7229C21.6045 12.9449 21.2455 13.8109 21.1515 14.0339C21.1345 14.0739 21.1175 14.1129 21.1005 14.1519C21.0975 14.1579 21.0955 14.1639 21.0925 14.1699C21.0845 14.1899 21.0755 14.2079 21.0665 14.2269C20.1755 16.1649 18.6985 17.1939 16.9115 17.1939C16.2365 17.1939 15.5165 17.0459 14.7665 16.7459C11.2135 15.3169 7.65048 13.8209 4.50048 12.4989C3.14248 11.9179 1.88748 10.5519 2.34448 8.92686Z"
+                          fill="#880C25"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M4.9569 20.6299H19.0459C19.4599 20.6299 19.7959 20.9659 19.7959 21.3799C19.7959 21.7939 19.4599 22.1299 19.0459 22.1299H4.9569C4.5429 22.1299 4.2069 21.7939 4.2069 21.3799C4.2069 20.9659 4.5429 20.6299 4.9569 20.6299Z"
+                          fill="#880C25"
+                        />
+                      </svg>
+                      <input
+                        type="text"
+                        aria-label="cities"
+                        placeholder="مبدا"
+                        oninput="city_search(this)"
+                        data-type="1"
+                        class="country lg:text-sm xl:text-base form-search-input w-[70%] font-danaregular !bg-transparent placeholder:text-zinc-900 !h-4 focus:!border-0 border-0 px-3 outline-none focus:outline-none rounded-2xl text-right float-right"
+                        autocomplete="off"
+                        value=""
+                      />
+                    </div>
+                    <span
+                      class="mini-loading absolute hidden top-6 left-4"
+                      aria-label="spinner"
+                    >
+                      <i class="fas fa-spinner fa-spin not-italic"></i>
+                    </span>
+                    <div class="countryFlight"></div>
+                    <div class="flex flex-col lg:text-sm xl:text-base gap-2 ul-list">
+                      <div
+                        class="w-full flex justify-center gap-2 border-b border-solid border-secondary-300 pb-2"
+                      >
+                        <button
+                          type="button"
+                          class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                        >
+                          داخلی
+                        </button>
+                        <button
+                          type="button"
+                          class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                        >
+                          خارجی
+                        </button>
+                      </div>
+                      <div class="grid grid-cols-2 lg:text-sm xl:text-base w-full">
+                        <ul
+                          class="flex flex-col gap-2 border-l border-solid border-secondary-300"
+                        >
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1203548"
+                            class="hover:text-primary-900 lg:text-sm xl:text-base cursor-pointer"
+                          >
+                            تهران
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1211083"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            مشهد
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1270505"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            ایلام
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1211087"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            اهواز
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1203561"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            رشت
+                          </li>
+                        </ul>
+                        <ul class="flex flex-col gap-2 pr-2 lg:text-sm xl:text-base">
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1177676"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            استانبول
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1173505"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            دبی
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1182289"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            مسقط
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1189731"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            تفلیس
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1198686"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            دوحه
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="xl:w-12 cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 rotate-90 lg:rotate-0 inset-0 top-16  lg:top-3 right-[95.5%] z-10 absolute rounded-full flex items-center justify-center bg-secondary-400" data-index="0" onclick="ExchangeRoute(this)">
+              <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.6885 3.99063H9.33021V6.66042H18.6885V10.6511L24 5.33958L18.6885 0V3.99063ZM0 13.3208L5.33958 18.6604V14.6698H14.6698V12H5.33958V8.00937L0 13.3208Z" fill="#FAFAFA"></path>
+              </svg>
+              </span>
+            </div>
+            <div
+              class="city relative w-full tocity_container second-rout-city px-4 lg:px-2 xl:px-4 py-[14px]   rounded-3xl gap-2"
+            >
+              <div class="inner-city w-full h-full">
+                <div
+                  onclick="empty_value(this)"
+                  class="click-content w-full h-full"
+                >
+                  <div class="flex gap-2 items-center">
+                    <svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M3.23772 15.3444C3.51772 14.4694 4.34372 13.6384 5.45172 13.1204C6.48172 12.6434 7.55072 12.2244 8.65572 11.7504C8.72072 10.1344 8.82372 8.52836 8.92972 6.92036C9.00372 5.82136 9.42072 5.03336 10.1657 4.58136C10.5837 4.32536 11.0257 4.12836 11.4547 3.93636C11.6307 3.85836 11.8087 3.77836 11.9887 3.69336C12.1737 3.60536 12.3867 3.59736 12.5797 3.67136C12.7707 3.74436 12.9237 3.89336 13.0027 4.08336L15.0907 9.10536C15.6787 8.86536 16.3807 8.58236 17.0727 8.30336C17.6787 8.05936 18.2777 7.81736 18.7907 7.60936L18.4787 6.85436C18.3227 6.47036 18.5067 6.03236 18.8897 5.87636C19.2717 5.71936 19.7117 5.90336 19.8677 6.28736L20.4097 7.60136C21.5507 10.4454 20.5777 12.8524 17.8037 14.0404C14.8467 15.3064 11.5797 16.6624 7.51972 18.3054C7.02372 18.5074 6.46672 18.6254 5.91572 18.6254C4.94172 18.6254 3.99172 18.2544 3.46172 17.3084C3.10572 16.6774 3.02772 15.9974 3.23772 15.3444Z"
+                        fill="#880C25"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.64012 21.6211H18.7661C19.1801 21.6211 19.5161 21.9571 19.5161 22.3711C19.5161 22.7851 19.1801 23.1211 18.7661 23.1211H4.64012C4.22612 23.1211 3.89012 22.7851 3.89012 22.3711C3.89012 21.9571 4.22612 21.6211 4.64012 21.6211Z"
+                        fill="#880C25"
+                      ></path>
+                    </svg>
+                    <div class="flex flex-col">
+                      <label for="destination1-3"   class="cursor-pointer">مقصد </label>
+                      <input
+                        id="destination1-3"
+                        type="text"
+                        class="FCD2 truncate text-value tocity-text lg:text-sm xl:text-base !bg-transparent cursor-pointer !h-4 placeholder:!text-secondary-400 !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                        required=""
+                        autocomplete="off"
+                        value=""
+                        aria-label="مقصد"
+                        placeholder="کشور مقصد را انتخاب کنید"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    value="1177676"
+                    class="co-id FCDid2 tocity"
+                    type="hidden"
+                    name="to"
+                    aria-label="co-id"
+                  />
+                  <div
+                    class="absolute lg:text-sm xl:text-base shadow-md bg-secondary-100 hidden rounded-xl searchList   overflow-hidden w-full h-[200px] z-20 xl:w-[417px] lg:w-[205px] lg:h-[276px] right-0 top-[76px] lg:top-[85px]"
+                  >
+                    <div
+                      class="h-full flex flex-col gap-2 overflow-y-auto  p-5 [&::-webkit-scrollbar]:[width:10px]
+ [&::-webkit-scrollbar-thumb]:bg-primary-900"
+                    >
+                      <div class="flex gap-2 items-center h-4">
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M3.23772 15.3444C3.51772 14.4694 4.34372 13.6384 5.45172 13.1204C6.48172 12.6434 7.55072 12.2244 8.65572 11.7504C8.72072 10.1344 8.82372 8.52836 8.92972 6.92036C9.00372 5.82136 9.42072 5.03336 10.1657 4.58136C10.5837 4.32536 11.0257 4.12836 11.4547 3.93636C11.6307 3.85836 11.8087 3.77836 11.9887 3.69336C12.1737 3.60536 12.3867 3.59736 12.5797 3.67136C12.7707 3.74436 12.9237 3.89336 13.0027 4.08336L15.0907 9.10536C15.6787 8.86536 16.3807 8.58236 17.0727 8.30336C17.6787 8.05936 18.2777 7.81736 18.7907 7.60936L18.4787 6.85436C18.3227 6.47036 18.5067 6.03236 18.8897 5.87636C19.2717 5.71936 19.7117 5.90336 19.8677 6.28736L20.4097 7.60136C21.5507 10.4454 20.5777 12.8524 17.8037 14.0404C14.8467 15.3064 11.5797 16.6624 7.51972 18.3054C7.02372 18.5074 6.46672 18.6254 5.91572 18.6254C4.94172 18.6254 3.99172 18.2544 3.46172 17.3084C3.10572 16.6774 3.02772 15.9974 3.23772 15.3444Z"
+                            fill="#880C25"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M4.64012 21.6211H18.7661C19.1801 21.6211 19.5161 21.9571 19.5161 22.3711C19.5161 22.7851 19.1801 23.1211 18.7661 23.1211H4.64012C4.22612 23.1211 3.89012 22.7851 3.89012 22.3711C3.89012 21.9571 4.22612 21.6211 4.64012 21.6211Z"
+                            fill="#880C25"
+                          />
+                        </svg>
+                        <input
+                          type="text"
+                          aria-label="cities"
+                          placeholder="مقصد"
+                          oninput="city_search(this)"
+                          data-type="1"
+                          class="country form-search-input lg:text-sm xl:text-base w-[70%] font-danaregular !bg-transparent placeholder:text-zinc-900 !h-4 focus:!border-0 border-0 px-3 outline-none focus:outline-none rounded-2xl text-right float-right"
+                          autocomplete="off"
+                          value=""
+                        />
+                      </div>
+                      <span
+                        class="mini-loading absolute hidden top-6 left-4"
+                        aria-label="spinner"
+                      >
+                        <i class="fas fa-spinner fa-spin not-italic"></i>
+                      </span>
+                      <div class="countryFlight"></div>
+                      <div class="flex flex-col gap-2 ul-list">
+                        <div
+                          class="w-full lg:text-sm xl:text-base flex justify-center gap-2 border-b border-solid border-secondary-300 pb-2"
+                        >
+                          <button
+                            type="button"
+                            class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                          >
+                            داخلی
+                          </button>
+                          <button
+                            type="button"
+                            class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                          >
+                            خارجی
+                          </button>
+                        </div>
+                        <div class="grid grid-cols-2 w-full">
+                          <ul
+                            class="flex lg:text-sm xl:text-base flex-col gap-2 border-l border-solid border-secondary-300"
+                          >
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1203548"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              تهران
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1211083"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              مشهد
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1270505"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              ایلام
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1211087"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              اهواز
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1203561"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              رشت
+                            </li>
+                          </ul>
+                          <ul class="flex flex-col gap-2 pr-2 lg:text-sm xl:text-base">
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1177676"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              استانبول
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1173505"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              دبی
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1182289"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              مسقط
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1189731"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              تفلیس
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1198686"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              دوحه
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          
+
+          <div class=" Basis_Date_Box gap-2 w-[30%]">
+            <div class="flex flex-col frm-other date lg:flex-row" id="Fdate">
+              <div
+              class=" city date-city w-full flex items-center gap-2   rounded-3xl px-4 py-[14px]"
+            >
+              <svg
+                width="22"
+                height="24"
+                viewBox="0 0 22 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.4607 2.70539e-06C15.9796 -0.00119377 16.3899 0.394608 16.3911 0.922343L16.3923 1.82189C19.7591 2.08096 21.9831 4.33343 21.9867 7.7877L22 17.8986C22.0048 21.6647 19.595 23.982 15.7322 23.988L6.29675 24C2.45813 24.0048 0.0181172 21.6324 0.0132901 17.8555L8.10042e-06 7.86326C-0.00481079 4.38621 2.14076 2.13973 5.50755 1.83629L5.50634 0.936736C5.50514 0.409 5.90336 0.0119995 6.43432 0.0119995C6.96529 0.0108002 7.36351 0.406602 7.36471 0.934337L7.36592 1.77392L14.5339 1.76432L14.5327 0.924742C14.5315 0.397006 14.9297 0.00120491 15.4607 2.70539e-06ZM15.953 17.0303H15.941C15.3859 17.0435 14.9406 17.5004 14.9527 18.0522C14.9539 18.6039 15.4016 19.0585 15.9567 19.0704C16.5226 19.0692 16.9812 18.6123 16.98 18.0486C16.98 17.4848 16.5202 17.0303 15.953 17.0303ZM6.00955 17.0315C5.45445 17.0555 5.02003 17.5124 5.02123 18.0642C5.04658 18.6159 5.50514 19.0477 6.06024 19.0225C6.60447 18.9985 7.03769 18.5415 7.01235 17.9898C7.00028 17.4501 6.55258 17.0303 6.00955 17.0315ZM10.9813 17.0255C10.4262 17.0507 9.99298 17.5064 9.99298 18.0582C10.0183 18.6099 10.4769 19.0405 11.032 19.0165C11.575 18.9913 12.0094 18.5355 11.9841 17.9826C11.972 17.4441 11.5243 17.0243 10.9813 17.0255ZM6.00352 12.7136C5.44842 12.7376 5.0152 13.1946 5.01641 13.7463C5.04054 14.298 5.50031 14.7298 6.05541 14.7046C6.59844 14.6806 7.03166 14.2237 7.00631 13.672C6.99425 13.1322 6.54775 12.7124 6.00352 12.7136ZM10.9765 12.6717C10.4214 12.6956 9.98695 13.1526 9.98815 13.7043C10.0123 14.2561 10.4721 14.6866 11.0272 14.6627C11.5702 14.6375 12.0034 14.1817 11.9793 13.63C11.966 13.0902 11.5195 12.6705 10.9765 12.6717ZM15.9482 12.6776C15.3931 12.6896 14.9587 13.1334 14.9599 13.6851V13.6983C14.972 14.2501 15.4305 14.6687 15.9868 14.6567C16.5299 14.6435 16.9631 14.1865 16.951 13.6348C16.9257 13.107 16.49 12.6765 15.9482 12.6776ZM14.5363 3.6114L7.36833 3.62099L7.36954 4.5913C7.36954 5.10825 6.97253 5.51604 6.44156 5.51604C5.9106 5.51724 5.51117 5.11064 5.51117 4.5937L5.50996 3.67017C3.15683 3.90165 1.85477 5.25937 1.85838 7.86087L1.85959 8.23388L20.1295 8.20989V7.7901C20.0777 5.21139 18.7599 3.85847 16.3947 3.65697L16.3959 4.58051C16.3959 5.09625 15.9868 5.50525 15.4679 5.50525C14.937 5.50645 14.5375 5.09865 14.5375 4.58291L14.5363 3.6114Z"
+                  fill="#880C25"
+                />
+              </svg>
+              <div class="flex inner-city inner-container flex-col gap-1 w-[70%]  h-full">
+                <label for="fromdate1-3"   class="cursor-pointer">تاریخ رفت :</label>
+                <input
+                id="fromdate1-3"
+                  type="text"
+                  class="Basis_Date start_date sp-start first cal lg:text-sm xl:text-base  !bg-transparent placeholder:!text-secondary-400 !text-secondary-400 !h-4 cursor-pointer focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                  onclick="Basis_Calendar(this,'[##cms.cms.date##]')"
+                  data-lang="fa"  
+                  data-active="0" 
+                  data-cache="0" 
+                  readonly="" 
+                  placeholder=""  
+                  aria-label ="تاریخ رفت" 
+                  value=""
+                /><input value="" class="mstring_date mstring_fdate" type="hidden" name="mstring_fdate" aria-label="mstring_fdate"/>
+              </div>
+            </div>
+            <div
+              class="w-full hidden city date-city return-date-city flex items-center gap-2   rounded-3xl px-4 py-[14px]"
+            >
+              <svg
+                width="22"
+                height="24"
+                viewBox="0 0 22 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.4607 2.70539e-06C15.9796 -0.00119377 16.3899 0.394608 16.3911 0.922343L16.3923 1.82189C19.7591 2.08096 21.9831 4.33343 21.9867 7.7877L22 17.8986C22.0048 21.6647 19.595 23.982 15.7322 23.988L6.29675 24C2.45813 24.0048 0.0181172 21.6324 0.0132901 17.8555L8.10042e-06 7.86326C-0.00481079 4.38621 2.14076 2.13973 5.50755 1.83629L5.50634 0.936736C5.50514 0.409 5.90336 0.0119995 6.43432 0.0119995C6.96529 0.0108002 7.36351 0.406602 7.36471 0.934337L7.36592 1.77392L14.5339 1.76432L14.5327 0.924742C14.5315 0.397006 14.9297 0.00120491 15.4607 2.70539e-06ZM15.953 17.0303H15.941C15.3859 17.0435 14.9406 17.5004 14.9527 18.0522C14.9539 18.6039 15.4016 19.0585 15.9567 19.0704C16.5226 19.0692 16.9812 18.6123 16.98 18.0486C16.98 17.4848 16.5202 17.0303 15.953 17.0303ZM6.00955 17.0315C5.45445 17.0555 5.02003 17.5124 5.02123 18.0642C5.04658 18.6159 5.50514 19.0477 6.06024 19.0225C6.60447 18.9985 7.03769 18.5415 7.01235 17.9898C7.00028 17.4501 6.55258 17.0303 6.00955 17.0315ZM10.9813 17.0255C10.4262 17.0507 9.99298 17.5064 9.99298 18.0582C10.0183 18.6099 10.4769 19.0405 11.032 19.0165C11.575 18.9913 12.0094 18.5355 11.9841 17.9826C11.972 17.4441 11.5243 17.0243 10.9813 17.0255ZM6.00352 12.7136C5.44842 12.7376 5.0152 13.1946 5.01641 13.7463C5.04054 14.298 5.50031 14.7298 6.05541 14.7046C6.59844 14.6806 7.03166 14.2237 7.00631 13.672C6.99425 13.1322 6.54775 12.7124 6.00352 12.7136ZM10.9765 12.6717C10.4214 12.6956 9.98695 13.1526 9.98815 13.7043C10.0123 14.2561 10.4721 14.6866 11.0272 14.6627C11.5702 14.6375 12.0034 14.1817 11.9793 13.63C11.966 13.0902 11.5195 12.6705 10.9765 12.6717ZM15.9482 12.6776C15.3931 12.6896 14.9587 13.1334 14.9599 13.6851V13.6983C14.972 14.2501 15.4305 14.6687 15.9868 14.6567C16.5299 14.6435 16.9631 14.1865 16.951 13.6348C16.9257 13.107 16.49 12.6765 15.9482 12.6776ZM14.5363 3.6114L7.36833 3.62099L7.36954 4.5913C7.36954 5.10825 6.97253 5.51604 6.44156 5.51604C5.9106 5.51724 5.51117 5.11064 5.51117 4.5937L5.50996 3.67017C3.15683 3.90165 1.85477 5.25937 1.85838 7.86087L1.85959 8.23388L20.1295 8.20989V7.7901C20.0777 5.21139 18.7599 3.85847 16.3947 3.65697L16.3959 4.58051C16.3959 5.09625 15.9868 5.50525 15.4679 5.50525C14.937 5.50645 14.5375 5.09865 14.5375 4.58291L14.5363 3.6114Z"
+                  fill="#880C25"
+                />
+              </svg>
+      
+              <div
+                class="flex inner-cityflex-col gap-1 w-[70%] lg:w-8/12"
+              >
+                <label for="inp2-multi1"   class="cursor-pointer">تاریخ برگشت:</label>
+                <input
+                  type="text"
+                  class="Basis_Date lg:text-sm xl:text-base end_date sp-end end_date_filled Noactive-date !bg-transparent placeholder:!text-secondary-400 !text-secondary-400 !h-4 cursor-pointer focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                  aria-label="تاریخ برگشت"
+                  value=""
+                  onclick="Basis_Calendar(this,'[##cms.cms.date##]')"
+                  data-lang="fa"
+                  data-active="0"
+                  data-cache="0"
+                  readonly=""
+                  name="tdate"
+                  required=""
+                  disabled
+                  id="inp2-multi1"
+                />
+                <input value="" class="mstring_date mstring_tdate" type="hidden" name="mstring_tdate" aria-label="mstring_tdate">
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="route-content clear-both flex flex-col gap-2 w-full"
+        data-index="2"
+      >
+        <div class="multi-route-tlt text-base text-zinc-900">مقصد دوم</div>
+        <div class="flex lg:flex-row flex-col w-full gap-2">
+          <div
+            class="first-part Wrapper-DesDep relative w-[70%] flex lg:flex-row flex-col gap-4"
+          >
+            <div
+              class="city relative w-full fromcity_container first-rout-city px-4 lg:px-2 xl:px-4 py-[14px]   rounded-3xl gap-2"
+            >
+              <div class="inner-city w-full">
+                <div
+                  onclick="empty_value(this)"
+                  class="click-content w-full h-full"
+                >
+                  <div class="flex gap-2 items-center">
+                    <svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M2.34448 8.92686C2.53948 8.22986 2.96548 7.69686 3.57448 7.38386C4.75048 6.77886 6.15148 7.17686 6.70048 7.37486C7.78648 7.76686 8.83648 8.22786 9.93048 8.66986C11.1535 7.53786 12.3855 6.45586 13.5325 5.45586C14.3535 4.73786 15.1985 4.47586 16.0485 4.67886C16.5085 4.78386 16.9415 4.94886 17.3605 5.10986C17.5565 5.18486 17.7545 5.25986 17.9595 5.33086C18.1555 5.39886 18.3135 5.54386 18.3985 5.73186C18.4835 5.92086 18.4875 6.13486 18.4075 6.32586L16.3385 11.3449C17.0555 11.6459 17.9365 12.0209 18.7655 12.3729L20.0005 12.8959C20.1235 12.5989 20.2565 12.2789 20.3065 12.1569C20.4625 11.7729 20.9015 11.5889 21.2835 11.7459C21.6675 11.9019 21.8515 12.3399 21.6955 12.7229C21.6045 12.9449 21.2455 13.8109 21.1515 14.0339C21.1345 14.0739 21.1175 14.1129 21.1005 14.1519C21.0975 14.1579 21.0955 14.1639 21.0925 14.1699C21.0845 14.1899 21.0755 14.2079 21.0665 14.2269C20.1755 16.1649 18.6985 17.1939 16.9115 17.1939C16.2365 17.1939 15.5165 17.0459 14.7665 16.7459C11.2135 15.3169 7.65048 13.8209 4.50048 12.4989C3.14248 11.9179 1.88748 10.5519 2.34448 8.92686Z"
+                        fill="#880C25"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.9569 20.6299H19.0459C19.4599 20.6299 19.7959 20.9659 19.7959 21.3799C19.7959 21.7939 19.4599 22.1299 19.0459 22.1299H4.9569C4.5429 22.1299 4.2069 21.7939 4.2069 21.3799C4.2069 20.9659 4.5429 20.6299 4.9569 20.6299Z"
+                        fill="#880C25"
+                      ></path>
+                    </svg>
+                    <div class="flex flex-col">
+                      <label for="departure1-2-3"   class="cursor-pointer">مبدا</label>
+                      <input
+                        id="departure1-2-3"
+                        type="text"
+                        class="FCD1 truncate lg:text-sm xl:text-base text-value fromcity-text !bg-transparent cursor-pointer !h-4 placeholder:!text-secondary-400 !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                        placeholder="کشور مبدا را انتخاب کنید"
+                        required=""
+                        aria-label="مبدا"
+                        autocomplete="off"
+                        value=""
+                      />
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <input value="1203548" class="co-id FCDid1 fromcity" type="hidden" name="from" aria-label="co-id"/>
+                <div
+                  class="absolute lg:text-sm xl:text-base shadow-md bg-secondary-100 hidden rounded-xl searchList   overflow-hidden  w-full h-[200px] z-10 xl:w-[417px] lg:w-[205px] lg:h-[276px] right-0 top-[76px] lg:top-[85px]"
+                >
+                  <div
+                    class="h-full clear-both flex flex-col gap-2 overflow-y-auto  p-5 [&::-webkit-scrollbar]:[width:10px]
+ [&::-webkit-scrollbar-thumb]:bg-primary-900"
+                  >
+                    <div class="flex gap-2 items-center h-4">
+                      <svg
+                        width="24"
+                        height="25"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M2.34448 8.92686C2.53948 8.22986 2.96548 7.69686 3.57448 7.38386C4.75048 6.77886 6.15148 7.17686 6.70048 7.37486C7.78648 7.76686 8.83648 8.22786 9.93048 8.66986C11.1535 7.53786 12.3855 6.45586 13.5325 5.45586C14.3535 4.73786 15.1985 4.47586 16.0485 4.67886C16.5085 4.78386 16.9415 4.94886 17.3605 5.10986C17.5565 5.18486 17.7545 5.25986 17.9595 5.33086C18.1555 5.39886 18.3135 5.54386 18.3985 5.73186C18.4835 5.92086 18.4875 6.13486 18.4075 6.32586L16.3385 11.3449C17.0555 11.6459 17.9365 12.0209 18.7655 12.3729L20.0005 12.8959C20.1235 12.5989 20.2565 12.2789 20.3065 12.1569C20.4625 11.7729 20.9015 11.5889 21.2835 11.7459C21.6675 11.9019 21.8515 12.3399 21.6955 12.7229C21.6045 12.9449 21.2455 13.8109 21.1515 14.0339C21.1345 14.0739 21.1175 14.1129 21.1005 14.1519C21.0975 14.1579 21.0955 14.1639 21.0925 14.1699C21.0845 14.1899 21.0755 14.2079 21.0665 14.2269C20.1755 16.1649 18.6985 17.1939 16.9115 17.1939C16.2365 17.1939 15.5165 17.0459 14.7665 16.7459C11.2135 15.3169 7.65048 13.8209 4.50048 12.4989C3.14248 11.9179 1.88748 10.5519 2.34448 8.92686Z"
+                          fill="#880C25"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M4.9569 20.6299H19.0459C19.4599 20.6299 19.7959 20.9659 19.7959 21.3799C19.7959 21.7939 19.4599 22.1299 19.0459 22.1299H4.9569C4.5429 22.1299 4.2069 21.7939 4.2069 21.3799C4.2069 20.9659 4.5429 20.6299 4.9569 20.6299Z"
+                          fill="#880C25"
+                        />
+                      </svg>
+                      <input
+                        type="text"
+                        aria-label="cities"
+                        placeholder="مبدا"
+                        oninput="city_search(this)"
+                        data-type="1"
+                        class="country lg:text-sm xl:text-base form-search-input w-[70%] font-danaregular !bg-transparent placeholder:text-zinc-900 !h-4 focus:!border-0 border-0 px-3 outline-none focus:outline-none rounded-2xl text-right float-right"
+                        autocomplete="off"
+                        value=""
+                      />
+                    </div>
+                    <span
+                      class="mini-loading absolute hidden top-6 left-4"
+                      aria-label="spinner"
+                    >
+                      <i class="fas fa-spinner fa-spin not-italic"></i>
+                    </span>
+                    <div class="countryFlight"></div>
+                    <div class="flex flex-col gap-2 ul-list">
+                      <div
+                        class="w-full lg:text-sm xl:text-base flex justify-center gap-2 border-b border-solid border-secondary-300 pb-2"
+                      >
+                        <button
+                          type="button"
+                          class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                        >
+                          داخلی
+                        </button>
+                        <button
+                          type="button"
+                          class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                        >
+                          خارجی
+                        </button>
+                      </div>
+                      <div class="grid grid-cols-2 lg:text-sm xl:text-base w-full">
+                        <ul
+                          class="flex flex-col gap-2 lg:text-sm xl:text-base border-l border-solid border-secondary-300"
+                        >
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1203548"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            تهران
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1211083"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            مشهد
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1270505"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            ایلام
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1211087"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            اهواز
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1203561"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            رشت
+                          </li>
+                        </ul>
+                        <ul class="flex flex-col lg:text-sm xl:text-base gap-2 pr-2">
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1177676"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            استانبول
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1173505"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            دبی
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1182289"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            مسقط
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1189731"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            تفلیس
+                          </li>
+                          <li
+                            onclick="SelectPlace(this)"
+                            data-id="1198686"
+                            class="hover:text-primary-900 cursor-pointer"
+                          >
+                            دوحه
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="xl:w-12 z-10 cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 rotate-90 lg:rotate-0 inset-0 top-16  lg:top-3 right-[95.5%]  absolute rounded-full flex items-center justify-center bg-secondary-400" data-index="0" onclick="ExchangeRoute(this)">
+              <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.6885 3.99063H9.33021V6.66042H18.6885V10.6511L24 5.33958L18.6885 0V3.99063ZM0 13.3208L5.33958 18.6604V14.6698H14.6698V12H5.33958V8.00937L0 13.3208Z" fill="#FAFAFA"></path>
+              </svg>
+              </span>
+            </div>
+            <div
+              class="city relative w-full tocity_container second-rout-city px-4 lg:px-2 xl:px-4 py-[14px]   rounded-3xl gap-2"
+            >
+              <div class="inner-city w-full h-full">
+                <div
+                  onclick="empty_value(this)"
+                  class="click-content w-full h-full"
+                >
+                  <div class="flex gap-2 items-center">
+                    <svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M3.23772 15.3444C3.51772 14.4694 4.34372 13.6384 5.45172 13.1204C6.48172 12.6434 7.55072 12.2244 8.65572 11.7504C8.72072 10.1344 8.82372 8.52836 8.92972 6.92036C9.00372 5.82136 9.42072 5.03336 10.1657 4.58136C10.5837 4.32536 11.0257 4.12836 11.4547 3.93636C11.6307 3.85836 11.8087 3.77836 11.9887 3.69336C12.1737 3.60536 12.3867 3.59736 12.5797 3.67136C12.7707 3.74436 12.9237 3.89336 13.0027 4.08336L15.0907 9.10536C15.6787 8.86536 16.3807 8.58236 17.0727 8.30336C17.6787 8.05936 18.2777 7.81736 18.7907 7.60936L18.4787 6.85436C18.3227 6.47036 18.5067 6.03236 18.8897 5.87636C19.2717 5.71936 19.7117 5.90336 19.8677 6.28736L20.4097 7.60136C21.5507 10.4454 20.5777 12.8524 17.8037 14.0404C14.8467 15.3064 11.5797 16.6624 7.51972 18.3054C7.02372 18.5074 6.46672 18.6254 5.91572 18.6254C4.94172 18.6254 3.99172 18.2544 3.46172 17.3084C3.10572 16.6774 3.02772 15.9974 3.23772 15.3444Z"
+                        fill="#880C25"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.64012 21.6211H18.7661C19.1801 21.6211 19.5161 21.9571 19.5161 22.3711C19.5161 22.7851 19.1801 23.1211 18.7661 23.1211H4.64012C4.22612 23.1211 3.89012 22.7851 3.89012 22.3711C3.89012 21.9571 4.22612 21.6211 4.64012 21.6211Z"
+                        fill="#880C25"
+                      ></path>
+                    </svg>
+                    <div class="flex flex-col">
+                      <label for="destination1-2-3"   class="cursor-pointer">مقصد </label>
+                      <input
+                        id="destination1-2-3"
+                        type="text"
+                        class="FCD2 truncate text-value tocity-text !bg-transparent cursor-pointer !h-4 placeholder:!text-secondary-400 !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                        required=""
+                        autocomplete="off"
+                        value=""
+                        aria-label="مقصد"
+                        placeholder="کشور مقصد را انتخاب کنید"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    value="1177676"
+                    class="co-id FCDid2 tocity"
+                    type="hidden"
+                    name="to"
+                    aria-label="co-id"
+                  />
+                  <div
+                    class="absolute shadow-md bg-secondary-100 hidden rounded-xl searchList   overflow-hidden  w-full h-[200px] z-10 xl:w-[417px] lg:w-[205px] lg:h-[276px] right-0 top-[76px] lg:top-[85px]"
+                  >
+                    <div
+                      class="h-full flex flex-col gap-2 overflow-y-auto  p-5 [&::-webkit-scrollbar]:[width:10px]
+ [&::-webkit-scrollbar-thumb]:bg-primary-900"
+                    >
+                      <div class="flex gap-2 items-center h-4">
+                        <svg
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M3.23772 15.3444C3.51772 14.4694 4.34372 13.6384 5.45172 13.1204C6.48172 12.6434 7.55072 12.2244 8.65572 11.7504C8.72072 10.1344 8.82372 8.52836 8.92972 6.92036C9.00372 5.82136 9.42072 5.03336 10.1657 4.58136C10.5837 4.32536 11.0257 4.12836 11.4547 3.93636C11.6307 3.85836 11.8087 3.77836 11.9887 3.69336C12.1737 3.60536 12.3867 3.59736 12.5797 3.67136C12.7707 3.74436 12.9237 3.89336 13.0027 4.08336L15.0907 9.10536C15.6787 8.86536 16.3807 8.58236 17.0727 8.30336C17.6787 8.05936 18.2777 7.81736 18.7907 7.60936L18.4787 6.85436C18.3227 6.47036 18.5067 6.03236 18.8897 5.87636C19.2717 5.71936 19.7117 5.90336 19.8677 6.28736L20.4097 7.60136C21.5507 10.4454 20.5777 12.8524 17.8037 14.0404C14.8467 15.3064 11.5797 16.6624 7.51972 18.3054C7.02372 18.5074 6.46672 18.6254 5.91572 18.6254C4.94172 18.6254 3.99172 18.2544 3.46172 17.3084C3.10572 16.6774 3.02772 15.9974 3.23772 15.3444Z"
+                            fill="#880C25"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M4.64012 21.6211H18.7661C19.1801 21.6211 19.5161 21.9571 19.5161 22.3711C19.5161 22.7851 19.1801 23.1211 18.7661 23.1211H4.64012C4.22612 23.1211 3.89012 22.7851 3.89012 22.3711C3.89012 21.9571 4.22612 21.6211 4.64012 21.6211Z"
+                            fill="#880C25"
+                          />
+                        </svg>
+                        <input
+                          type="text"
+                          aria-label="cities"
+                          placeholder="مقصد"
+                          oninput="city_search(this)"
+                          data-type="1"
+                          class="country form-search-input w-[70%] font-danaregular !bg-transparent placeholder:text-zinc-900 !h-4 focus:!border-0 border-0 px-3 outline-none focus:outline-none rounded-2xl text-right float-right"
+                          autocomplete="off"
+                          value=""
+                        />
+                      </div>
+                      <span
+                        class="mini-loading absolute hidden top-6 left-4"
+                        aria-label="spinner"
+                      >
+                        <i class="fas fa-spinner fa-spin not-italic"></i>
+                      </span>
+                      <div class="countryFlight"></div>
+                      <div class="flex flex-col gap-2 ul-list">
+                        <div
+                          class="w-full flex justify-center gap-2 border-b border-solid border-secondary-300 pb-2"
+                        >
+                          <button
+                            type="button"
+                            class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                          >
+                            داخلی
+                          </button>
+                          <button
+                            type="button"
+                            class="inset-0 cursor-default bg-white w-full py-1 rounded"
+                          >
+                            خارجی
+                          </button>
+                        </div>
+                        <div class="grid grid-cols-2 w-full">
+                          <ul
+                            class="flex flex-col gap-2 border-l border-solid border-secondary-300"
+                          >
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1203548"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              تهران
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1211083"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              مشهد
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1270505"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              ایلام
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1211087"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              اهواز
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1203561"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              رشت
+                            </li>
+                          </ul>
+                          <ul class="flex flex-col gap-2 pr-2">
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1177676"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              استانبول
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1173505"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              دبی
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1182289"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              مسقط
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1189731"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              تفلیس
+                            </li>
+                            <li
+                              onclick="SelectPlace(this)"
+                              data-id="1198686"
+                              class="hover:text-primary-900 cursor-pointer"
+                            >
+                              دوحه
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          
+
+
+
+          <div class=" Basis_Date_Box gap-2 w-[30%]">
+            <div class="flex flex-col frm-other date lg:flex-row" id="Fdate">
+              <div
+              class=" city date-city w-full flex items-center gap-2   rounded-3xl px-4 py-[14px]"
+            >
+              <svg
+                width="22"
+                height="24"
+                viewBox="0 0 22 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.4607 2.70539e-06C15.9796 -0.00119377 16.3899 0.394608 16.3911 0.922343L16.3923 1.82189C19.7591 2.08096 21.9831 4.33343 21.9867 7.7877L22 17.8986C22.0048 21.6647 19.595 23.982 15.7322 23.988L6.29675 24C2.45813 24.0048 0.0181172 21.6324 0.0132901 17.8555L8.10042e-06 7.86326C-0.00481079 4.38621 2.14076 2.13973 5.50755 1.83629L5.50634 0.936736C5.50514 0.409 5.90336 0.0119995 6.43432 0.0119995C6.96529 0.0108002 7.36351 0.406602 7.36471 0.934337L7.36592 1.77392L14.5339 1.76432L14.5327 0.924742C14.5315 0.397006 14.9297 0.00120491 15.4607 2.70539e-06ZM15.953 17.0303H15.941C15.3859 17.0435 14.9406 17.5004 14.9527 18.0522C14.9539 18.6039 15.4016 19.0585 15.9567 19.0704C16.5226 19.0692 16.9812 18.6123 16.98 18.0486C16.98 17.4848 16.5202 17.0303 15.953 17.0303ZM6.00955 17.0315C5.45445 17.0555 5.02003 17.5124 5.02123 18.0642C5.04658 18.6159 5.50514 19.0477 6.06024 19.0225C6.60447 18.9985 7.03769 18.5415 7.01235 17.9898C7.00028 17.4501 6.55258 17.0303 6.00955 17.0315ZM10.9813 17.0255C10.4262 17.0507 9.99298 17.5064 9.99298 18.0582C10.0183 18.6099 10.4769 19.0405 11.032 19.0165C11.575 18.9913 12.0094 18.5355 11.9841 17.9826C11.972 17.4441 11.5243 17.0243 10.9813 17.0255ZM6.00352 12.7136C5.44842 12.7376 5.0152 13.1946 5.01641 13.7463C5.04054 14.298 5.50031 14.7298 6.05541 14.7046C6.59844 14.6806 7.03166 14.2237 7.00631 13.672C6.99425 13.1322 6.54775 12.7124 6.00352 12.7136ZM10.9765 12.6717C10.4214 12.6956 9.98695 13.1526 9.98815 13.7043C10.0123 14.2561 10.4721 14.6866 11.0272 14.6627C11.5702 14.6375 12.0034 14.1817 11.9793 13.63C11.966 13.0902 11.5195 12.6705 10.9765 12.6717ZM15.9482 12.6776C15.3931 12.6896 14.9587 13.1334 14.9599 13.6851V13.6983C14.972 14.2501 15.4305 14.6687 15.9868 14.6567C16.5299 14.6435 16.9631 14.1865 16.951 13.6348C16.9257 13.107 16.49 12.6765 15.9482 12.6776ZM14.5363 3.6114L7.36833 3.62099L7.36954 4.5913C7.36954 5.10825 6.97253 5.51604 6.44156 5.51604C5.9106 5.51724 5.51117 5.11064 5.51117 4.5937L5.50996 3.67017C3.15683 3.90165 1.85477 5.25937 1.85838 7.86087L1.85959 8.23388L20.1295 8.20989V7.7901C20.0777 5.21139 18.7599 3.85847 16.3947 3.65697L16.3959 4.58051C16.3959 5.09625 15.9868 5.50525 15.4679 5.50525C14.937 5.50645 14.5375 5.09865 14.5375 4.58291L14.5363 3.6114Z"
+                  fill="#880C25"
+                />
+              </svg>
+              <div class="flex inner-city flex-col gap-1 w-[70%]">
+                <label for="fromdate1-2-3"   class="cursor-pointer">تاریخ رفت :</label>
+                <input
+                id="fromdate1-2-3"
+                name="fdate"
+                  type="text"
+                  class="Basis_Date lg:text-sm xl:text-base start_date sp-start first cal  !bg-transparent placeholder:!text-secondary-400 !text-secondary-400 !h-4 cursor-pointer focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                  onclick="Basis_Calendar(this,'[##cms.cms.date##]')"
+                  data-lang="fa"  
+                  data-active="0" 
+                  data-cache="0" 
+                  readonly="" 
+                  placeholder=""  
+                  aria-label ="تاریخ رفت" 
+                  value=""
+                />
+                <input value="" class="mstring_date mstring_fdate" type="hidden" name="mstring_fdate" aria-label="mstring_fdate"/>
+              </div>
+            </div>
+            <div
+              class="w-full hidden city date-city return-date-city flex items-center gap-2   rounded-3xl px-4 py-[14px]"
+            >
+              <svg
+                width="22"
+                height="24"
+                viewBox="0 0 22 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.4607 2.70539e-06C15.9796 -0.00119377 16.3899 0.394608 16.3911 0.922343L16.3923 1.82189C19.7591 2.08096 21.9831 4.33343 21.9867 7.7877L22 17.8986C22.0048 21.6647 19.595 23.982 15.7322 23.988L6.29675 24C2.45813 24.0048 0.0181172 21.6324 0.0132901 17.8555L8.10042e-06 7.86326C-0.00481079 4.38621 2.14076 2.13973 5.50755 1.83629L5.50634 0.936736C5.50514 0.409 5.90336 0.0119995 6.43432 0.0119995C6.96529 0.0108002 7.36351 0.406602 7.36471 0.934337L7.36592 1.77392L14.5339 1.76432L14.5327 0.924742C14.5315 0.397006 14.9297 0.00120491 15.4607 2.70539e-06ZM15.953 17.0303H15.941C15.3859 17.0435 14.9406 17.5004 14.9527 18.0522C14.9539 18.6039 15.4016 19.0585 15.9567 19.0704C16.5226 19.0692 16.9812 18.6123 16.98 18.0486C16.98 17.4848 16.5202 17.0303 15.953 17.0303ZM6.00955 17.0315C5.45445 17.0555 5.02003 17.5124 5.02123 18.0642C5.04658 18.6159 5.50514 19.0477 6.06024 19.0225C6.60447 18.9985 7.03769 18.5415 7.01235 17.9898C7.00028 17.4501 6.55258 17.0303 6.00955 17.0315ZM10.9813 17.0255C10.4262 17.0507 9.99298 17.5064 9.99298 18.0582C10.0183 18.6099 10.4769 19.0405 11.032 19.0165C11.575 18.9913 12.0094 18.5355 11.9841 17.9826C11.972 17.4441 11.5243 17.0243 10.9813 17.0255ZM6.00352 12.7136C5.44842 12.7376 5.0152 13.1946 5.01641 13.7463C5.04054 14.298 5.50031 14.7298 6.05541 14.7046C6.59844 14.6806 7.03166 14.2237 7.00631 13.672C6.99425 13.1322 6.54775 12.7124 6.00352 12.7136ZM10.9765 12.6717C10.4214 12.6956 9.98695 13.1526 9.98815 13.7043C10.0123 14.2561 10.4721 14.6866 11.0272 14.6627C11.5702 14.6375 12.0034 14.1817 11.9793 13.63C11.966 13.0902 11.5195 12.6705 10.9765 12.6717ZM15.9482 12.6776C15.3931 12.6896 14.9587 13.1334 14.9599 13.6851V13.6983C14.972 14.2501 15.4305 14.6687 15.9868 14.6567C16.5299 14.6435 16.9631 14.1865 16.951 13.6348C16.9257 13.107 16.49 12.6765 15.9482 12.6776ZM14.5363 3.6114L7.36833 3.62099L7.36954 4.5913C7.36954 5.10825 6.97253 5.51604 6.44156 5.51604C5.9106 5.51724 5.51117 5.11064 5.51117 4.5937L5.50996 3.67017C3.15683 3.90165 1.85477 5.25937 1.85838 7.86087L1.85959 8.23388L20.1295 8.20989V7.7901C20.0777 5.21139 18.7599 3.85847 16.3947 3.65697L16.3959 4.58051C16.3959 5.09625 15.9868 5.50525 15.4679 5.50525C14.937 5.50645 14.5375 5.09865 14.5375 4.58291L14.5363 3.6114Z"
+                  fill="#880C25"
+                />
+              </svg>
+      
+              <div
+                class="flex inner-city inner-container flex-col gap-1 w-[70%]  h-full lg:w-8/12"
+              >
+                <label for="inp2-flight"   class="cursor-pointer">تاریخ برگشت:</label>
+                <input
+                  type="text"
+                  class="Basis_Date end_date lg:text-sm xl:text-base sp-end end_date_filled Noactive-date !bg-transparent placeholder:!text-secondary-400 !text-secondary-400 !h-4 cursor-pointer focus:!border-0 border-0 px-3 outline-none focus:outline-none"
+                  aria-label="تاریخ برگشت"
+                  value=""
+                  onclick="Basis_Calendar(this,'[##cms.cms.date##]')"
+                  data-lang="fa"
+                  data-active="0"
+                  data-cache="0"
+                  readonly=""
+                  name="tdate"
+                  required=""
+                  disabled
+                  id="inp2-flight"
+                />
+                <input value="" class="mstring_date mstring_tdate" type="hidden" name="mstring_tdate" aria-label="mstring_tdate">
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex w-full lg:text-sm xl:text-base items-center lg:flex-row flex-col gap-2 justify-between">
+<div class="flex gap-2 lg:flex-row items-center flex-col">
+  <div class="w-[40%] lg:text-sm xl:text-base city pass-box  relative dropdown-container flex items-center gap-1 h-[65px]   rounded-3xl px-3 py-[14px]">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4004 14.5156C7.42141 14.5156 5.19141 17.2696 5.19141 19.9996C5.19141 20.1986 5.27041 20.3896 5.41141 20.5306C5.55141 20.6706 5.74241 20.7496 5.94141 20.7496L18.8594 20.7316C19.2734 20.7306 19.6084 20.3946 19.6084 19.9816C19.6084 17.2606 17.3794 14.5156 12.4004 14.5156Z" fill="#880C25"></path>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4004 13.001C15.0884 13.001 17.2754 10.813 17.2754 8.125C17.2754 5.437 15.0884 3.25 12.4004 3.25C9.71239 3.25 7.52539 5.437 7.52539 8.125C7.52539 10.813 9.71239 13.001 12.4004 13.001Z" fill="#880C25"></path>
+    </svg>
+    <div class="flex flex-col gap-1 input-group w-[70%]">
+    <div class="flex-col relative flex gap-1 w-full inner-city inner-container">
+    <label for="passenger1"   class="cursor-pointer">مسافر:</label>
+    <input type="text" id="passenger1" class="!bg-transparent hotel-inputF hotel-input !h-4 z-10 cursor-pointer !text-secondary-400 focus:!border-0 border-0 px-3 outline-none focus:outline-none" aria-label="تعداد مسافران" placeholder="" readonly="">
+    <div class="absolute flex gap-1 top-[60%]">
+    <span class="passenger-counts whitespace-nowrap !text-secondary-400 count-adult leading-6">
+    <span class="count">1</span>
+      بزرگسال
+    
+    </span>
+    <span class=" !text-secondary-400">/</span>
+    <span class="passenger-counts whitespace-nowrap !text-secondary-400 count-child leading-6">
+   <span class="count">0</span>
+      کودک
+    
+    </span>
+    </div>
+    <div class="HotelPassengers lg:text-sm xl:text-base absolute shadow-md bg-secondary-100 hidden rounded-xl z-10   overflow-hidden  w-full lg:w-[227px] xl:w-[197px] h-[253px] lg:top-[85px] lg:-right-[45px]">
+    <div class="w-full h-full overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px]
+ [&::-webkit-scrollbar-thumb]:bg-primary-900 flex gap-6 flex-col">
+    <div class="flex w-full gap-2 pb-2 border-b border-solid border-secondary-300">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4004 14.5156C7.42141 14.5156 5.19141 17.2696 5.19141 19.9996C5.19141 20.1986 5.27041 20.3896 5.41141 20.5306C5.55141 20.6706 5.74241 20.7496 5.94141 20.7496L18.8594 20.7316C19.2734 20.7306 19.6084 20.3946 19.6084 19.9816C19.6084 17.2606 17.3794 14.5156 12.4004 14.5156Z" fill="#880C25"></path>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4004 13.001C15.0884 13.001 17.2754 10.813 17.2754 8.125C17.2754 5.437 15.0884 3.25 12.4004 3.25C9.71239 3.25 7.52539 5.437 7.52539 8.125C7.52539 10.813 9.71239 13.001 12.4004 13.001Z" fill="#880C25"></path>
+    </svg>
+    مسافران
+    </div>
+    <div class="countRoom">
+    <div class="contentRooms contentRoom">
+    <div class="itemlable2 lg:text-sm xl:text-base clear-both w-full mb-4 text-zinc-900 float-right relative">
+    <label for="textbox-adultcount1" class="float-right text-sm leading-12 mb-1"><span>بزرگسال</span></label>
+    <ul class="button-click lg:text-sm xl:text-base float-left w-full h-[30px] leading-12">
+    <li class="float-right cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900">
+    <div class="button secondary h-full leading-[30px] cursor-pointer"><span class="hide cursor-pointer">+</span></div>
+    </li>
+    <li class="float-left cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900">
+    <div class="button secondary h-full leading-[30px] cursor-pointer"><span class="hide cursor-pointer">-</span></div>
+    </li>
+    </ul>
+    <input id="textbox-adultcount1" type="text" class="cat_textbox adultcount adult adult-count w-[35px] mt-2 h-[30px] !bg-transparent leading-[30px] absolute left-0 right-0 top-[25px] m-auto text-center" name="adult" maxlength="4000" value="1">
+    </div>
+    <div class="itemlable2 lg:text-sm xl:text-base clear-both w-full mb-4 text-zinc-900 float-right relative">
+    <label for="textbox-childcount1" class="float-right text-sm leading-12 mb-1"><span>کودک</span></label>
+    <input type="hidden" value="0" class="childcountinput" id="textbox-childcount1" name="child" aria-label="childcount">
+    <ul class="button-click-child float-left w-full h-[30px] leading-[30px]">
+    <li class="float-right cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900">
+    <div class="button secondary h-full cursor-pointer leading-[30px]"><span class="hide cursor-pointer">+</span></div>
+    </li>
+    <li class="float-left cursor-pointer inset-0 text-3xl w-7 h-7   text-zinc-900 !flex rounded-full !items-center !justify-center bg-white border border-secondary-300 hover:text-primary-900">
+    <div class="button secondary h-full cursor-pointer leading-[30px]"><span class="hide cursor-pointer">-</span></div>
+    </li>
+    </ul>
+    <input type="text" aria-label="chcount" class="cat_textbox chcount child-count w-[35px] mt-2 h-[30px] !bg-transparent leading-[30px] absolute left-0 right-0 top-[25px] m-auto text-center" name="chcount" maxlength="4000" value="0">
+    </div>
+    <div class="childDropdowns section-select-age clear-both"></div>
+    </div>
+    </div>
+    <div class="close-hotel-psg hidden clear-both text-center text-primary cursor-pointer w-full font-bold text-sm h-[47px] leading-[45px] float-right border border-solid border-primary px-1 rounded-[7px] hover:bg-primary hover:text-white">
+    تایید اطلاعات
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  <div >
+    <button class="route-plus-btn search-flight text-base !bg-transparent border border-secondary-500 rounded-3xl p-3 !text-secondary-400" type="button" onclick="addMulticityRoute(this)"><span>افزودن مقصد جدید</span></button>
+  </div>
+  <p class="alert-text warning clear-both text-red-600 text-base text-right dir-rtl"></p>
+</div>
+<button type="submit" class="search-flight w-full lg:w-[76px] h-[65px] search-engin-submit flex items-center justify-center rounded-3xl bg-primary-900">
+  <img
+  width="40"
+  height="40"
+  src="[##cms.cms.cdn##]/images/reserve-submit.png"
+  alt="submit"
+  loading="lazy"
+/>
+</button>
+    </div>
+
+  </form>
+</div>
+
+</div>
+<basis core="call" file="Client_MultiLang_CalendarFa.inc" />
+<script defer src="/js/faraz-search.js"></script>
+<link
+  href="https://cdn.basiscore.net/basisfly.com/css/reservation_search_history.css"
+  type="text/css"
+  rel="stylesheet"
+/>
+<script
+  src="https://cdn.basiscore.net/basisfly.com/js/reservation_search_history.js"
+  type="text/javascript"
+></script>
+<script src="https://cdn.basiscore.net/basisfly.com/js/reservation_multiLang_js_calendar.js"></script>

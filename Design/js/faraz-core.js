@@ -47,7 +47,6 @@ var swiper = new Swiper(".first-swiper", {
   },
 });
 var swiper = new Swiper(".first-swiper-mob", {
- 
   slidesPerView: 1,
   speed: 400,
   centeredSlides: false,
@@ -78,6 +77,30 @@ var swiper = new Swiper(".first-swiper-mob", {
     },
   },
 });
+var swiper = new Swiper(".swiper-about-desktop", {
+  slidesPerView: 5,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 30,
+  grabCursor: true,
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false,
+  },
+  loop: false,
+});
+var swiper = new Swiper(".swiper-about-mob", {
+  slidesPerView: 1.2,
+  speed: 400,
+  centeredSlides: false,
+  spaceBetween: 10,
+  grabCursor: true,
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false,
+  },
+  loop: false,
+});
 // ____________________________________common questions______________________________________
 // ____________________________________common questions______________________________________
 // ____________________________________common questions______________________________________
@@ -91,8 +114,18 @@ questionBox.forEach((item) => {
     const answer = item.querySelector("#answer");
     if (answer.classList.contains("hidden")) {
       answer.classList.remove("hidden");
+
       item.querySelector("span").classList.add("-rotate-180");
     } else {
+      answer.classList.add("hidden");
+      item.querySelector("span").classList.remove("-rotate-180");
+    }
+  });
+});
+document.body.addEventListener("click", (e) => {
+  questionBox.forEach((item) => {
+    if (!item.contains(e.target)) {
+      const answer = item.querySelector("#answer");
       answer.classList.add("hidden");
       item.querySelector("span").classList.remove("-rotate-180");
     }

@@ -43,6 +43,8 @@
 
   --black-1: #00000080;
   --black-2: #101010b2;
+  --black-3: #1010105d;
+  --black-4: #00000000;
 }
 @font-face {
   font-family: Dana-FaNum;
@@ -86,7 +88,7 @@ body {
 .swiper-pagination-first-mob .swiper-pagination-bullet-active {
   background-color: var(--zinc-500) !important;
 }
-  p#question {
+p#question {
   position: relative;
   padding-right: 22px;
   width: 75%;
@@ -101,23 +103,24 @@ p#question::before {
   right: 0rem;
   bottom: 5.5px;
 }
+
 @media (min-width: 1024px) {
-  nav{
+  nav {
     display: none;
   }
   p#question {
-  position: relative;
-  padding-right: 22px;
-  width: 100%;
-}
-p#question::before {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 40px;
-  background-color: var(--primary-800);
-  border-radius: 3px;
-  right: 0rem;
-  bottom: -8.5px;
-}
+    position: relative;
+    padding-right: 22px;
+    width: 100%;
+  }
+  p#question::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background-color: var(--primary-800);
+    border-radius: 3px;
+    right: 0rem;
+    bottom: -8.5px;
+  }
 }

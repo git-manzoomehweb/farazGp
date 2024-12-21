@@ -45,6 +45,8 @@ module.exports = {
         special: {
           1: "var(--black-1)",
           2: "var(--black-2)",
+          3: "var(--black-3)",
+          4: "var(--black-4)",
         },
       },
       fontFamily: {
