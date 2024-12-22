@@ -522,10 +522,17 @@ function change_pass_count(t) {
 var destroyChildDropdownRoom = function (t, e) {
   t.find("div.createChildDropdown").get(e).remove();
 };
-$(".button-click .button").on("click", function () {
+
+// console.log($(".button-click .button"));
+// $(".button-click .button").on("click", function () {
+$(".button-click").on("click", ".button", function () {
+  // console.log("clicked plusssssssssss");
   var t = $(this),
     e = parseInt(t.closest("ul").next().val()),
     i = "+" == t.text() ? e + 1 : e > 0 ? e - 1 : 0;
+
+  // console.log(t.text());
+
   i >= 10 ||
     i < 1 ||
     (t.closest("ul").next().val(i),
@@ -675,7 +682,8 @@ function openNextCal(t) {
   }
 }
 
-$(".button-click-child .button").on("click", function () {
+// $(".button-click-child .button").on("click", function () {
+$(".button-click-child").on("click", ".button", function () {
   var t = $(this),
     e = parseInt(t.closest("ul").next().val()),
     i = "+" == t.text() ? e + 1 : e > 0 ? e - 1 : 0,
@@ -853,7 +861,7 @@ function addMulticityRoute(t) {
       }),
       i.insertAdjacentHTML(
         "beforeend",
-        '<div class="route-minus-btn text-primary-900  bottom-[77px] flex items-center cursor-pointer text-sm" onclick="deleteMulticityRoute(this)">حذف <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#880C25" class="inline-block w-5 h-5">\n  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />\n</svg>\n</div>'
+        '<div class="route-minus-btn text-primary-900  left-[14px] top-[18px] absolute flex items-center cursor-pointer text-sm" onclick="deleteMulticityRoute(this)"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.81295 6.50009L12.7277 1.58528C13.0908 1.22221 13.0908 0.635366 12.7277 0.2723C12.3646 -0.0907666 11.7778 -0.0907666 11.4148 0.2723L6.5 5.18711L1.58525 0.2723C1.22219 -0.0907666 0.635353 -0.0907666 0.272294 0.2723C-0.0907647 0.635366 -0.0907647 1.22221 0.272294 1.58528L5.18704 6.50009L0.272294 11.415C-0.0907647 11.778 -0.0907647 12.3649 0.272294 12.7279C0.453359 12.909 0.691065 13 0.928771 13C1.16648 13 1.40418 12.909 1.58525 12.7279L6.5 7.81317L11.4148 12.7279C11.5958 12.909 11.8335 13 12.0712 13C12.3089 13 12.5466 12.909 12.7277 12.7279C13.0908 12.3649 13.0908 11.778 12.7277 11.415L7.81295 6.50009Z" fill="#F87171"/>\n</svg>\n</div>'
       ),
       i.querySelector(".gregorian_date") &&
         i.querySelector(".gregorian_date").remove(),
@@ -1005,9 +1013,5 @@ document.body.addEventListener("click", (e) => {
   });
 });
 
-const departurCity = document.querySelectorAll(".departure-city ");
-departurCity.forEach((item) => {
-  item.addEventListener("click", () => {
-    item.querySelector(".searchList ").style.display = "block";
-  });
-});
+// It's a test comment
+// console.log("hi");
