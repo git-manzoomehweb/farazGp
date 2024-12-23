@@ -47,7 +47,8 @@ var swiper = new Swiper(".first-swiper", {
   },
 });
 var swiper = new Swiper(".first-swiper-mob", {
-  slidesPerView: 1,
+  direction:"vertical",
+  slidesPerView: 4,
   speed: 400,
   centeredSlides: false,
   spaceBetween: 10,

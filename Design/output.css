@@ -851,6 +851,14 @@ video {
   height: 100%;
 }
 
+.h-\[\] {
+  height: ;
+}
+
+.h-\[400px\] {
+  height: 400px;
+}
+
 .\!w-\[57px\] {
   width: 57px !important;
 }

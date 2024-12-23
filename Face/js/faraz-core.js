@@ -50,8 +50,9 @@ var swiper1 = new Swiper(".first-swiper", {
     },
   },
 });
-var swiper2 = new Swiper(".first-swiper-mob", {
-  slidesPerView: 1,
+var swiper = new Swiper(".first-swiper-mob", {
+  direction:"vertical",
+  slidesPerView: 4,
   speed: 400,
   centeredSlides: false,
   spaceBetween: 10,
@@ -209,4 +210,70 @@ async function loadSearchEngine(url, sectionload) {
     // console.error('مشکلی رخ داده است لطفا صبور باشید.', error);
   }
 }
+
+
+// ______________________________flight card________________________________________________
+// ______________________________flight card________________________________________________
+// ______________________________flight card________________________________________________
+
+const flightCard=document.querySelectorAll(".flight-card")
+flightCard.forEach((card)=>{
+  card.addEventListener("click",()=>{
+    const departureCity=card.querySelector(".departureCity").innerText
+    const destinationCity=card.querySelector(".destinationCity").innerText
+
+    document.querySelector("#r-flight #flightSearch .FCD1").value=departureCity
+    //  console.log(document.querySelector("#r-flight #flightSearch .FCDid1"));
+    
+  document.querySelector("#r-flight #flightSearch .FCD2").value=destinationCity
+   //  console.log(document.querySelector("#r-flight #flightSearch .FCDid2"));
+
+
+    document.querySelector("#multi-flight-form").classList.add("hidden");
+              document.querySelector("#r-flight").classList.remove("hidden");
+              var searchBox = document.querySelector(".serch-box-container");
+              if(searchBox){
+                window.scrollTo({
+                   top: searchBox.offsetTop,
+                  behavior: "smooth",
+                })
+              }
+  })
+})
+
+
+if (document.querySelector(".soon-card")){
+  const soonCard=document.querySelector(".soon-card")
+soonCard.addEventListener("click",()=>{
+      const departureCity=soonCard.querySelector(".departureCity").innerText
+    const destinationCity=soonCard.querySelector(".destinationCity").innerText
+
+    
+    document.querySelector("#r-flight #flightSearch .FCD1").value=departureCity
+    //  console.log(document.querySelector("#r-flight #flightSearch .FCDid1"));
+    
+  document.querySelector("#r-flight #flightSearch .FCD2").value=destinationCity
+   //  console.log(document.querySelector("#r-flight #flightSearch .FCDid2"));
+
+   
+    document.querySelector("#multi-flight-form").classList.add("hidden");
+              document.querySelector("#r-flight").classList.remove("hidden");
+              var searchBox = document.querySelector(".serch-box-container");
+              if(searchBox){
+                window.scrollTo({
+                   top: searchBox.offsetTop,
+                  behavior: "smooth",
+                })
+              }
+})
+}
+
+
+
+
+
+
+
+
+
 

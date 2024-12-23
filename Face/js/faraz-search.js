@@ -1013,5 +1013,7 @@ document.body.addEventListener("click", (e) => {
   });
 });
 
-// It's a test comment
-// console.log("hi");
+// const searchLists=document.querySelectorAll("#multi-flight-form .searchList ")
+// searchLists.forEach((div)=>{
+//   div.addEventListener()
+// })

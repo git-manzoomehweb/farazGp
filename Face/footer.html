@@ -1,3 +1,13 @@
+<basis
+  core="dbsource"
+  source="basiscore"
+  name="db"
+  mid="5"
+  lid="1"
+  usedforid="[##cms.cms.ownerid##]"
+>
+  <member name="info" type="view"></member>
+</basis>
 <footer
   class="flex mt-7 justify-center items-center flex-col w-full gap-8 relative bg-primary-50"
 >
@@ -10,7 +20,12 @@
     >
       <div class="flex flex-col gap-4 w-full lg:w-[42%]">
         <div class="flex items-center justify-between">
-          <h6 class="text-zinc-900 font-bold text-2xl">فراز گشت</h6>
+          <basis core="view" datamembername="db.info">
+          <face filter="prpID=7994">
+            <h6 class="text-zinc-900 font-bold text-2xl">@text</h6>
+          </face>
+        </basis>
+          
           <a href="/">
             <img loading="lazy"
               width="80"
@@ -20,41 +35,39 @@
             />
           </a>
         </div>
-        <p class="text-zinc-900 font-normal text-sm">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-          استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-          ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
-          کاربردهای متنوع لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-          چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و
-          مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-          نیاز، و کاربردهای متنوعلورمبرای شرایط فعلی
-        </p>
+        <div class="text-zinc-900 font-normal text-sm">
+           <basis core="view" datamembername="db.info">
+          <face filter="prpID=8004">
+            @Answer
+          </face>
+        </basis>
+        </div>
       </div>
       <div
         class="flex flex-col h-full items-start sm:my-3 lg:mt-5 justify-between gap-6 lg:gap-9 w-full lg:w-[10%]"
       >
         <a
-          href=""
+          href="Refund-Guide"
           class="text-sm text-zinc-900 font-normal hover:text-primary-900"
           >راهنمای استرداد</a
         >
         <a
-          href=""
+          href="Shopping-Guide"
           class="text-sm text-zinc-900 font-normal hover:text-primary-900"
           >راهنمای خرید</a
         >
         <a
-          href=""
+          href="https://www.iatatravelcentre.com/world.php"
           class="text-sm text-zinc-900 font-normal hover:text-primary-900"
           >قوانین و مقررات</a
         >
         <a
-          href=""
+          href="Frequently-Asked-Questions"
           class="text-sm text-zinc-900 font-normal hover:text-primary-900"
           >سوالات متداول</a
         >
         <a
-          href=""
+          href="https://sadadpsp.ir/tollpayment/#/tax/departuretax"
           class="text-sm text-zinc-900 font-normal hover:text-primary-900"
           >عوارض خروج از کشور</a
         >
@@ -67,44 +80,54 @@
             src="[##cms.cms.cdn##]/images/address.png"
             alt="address"
           />
-          <p class="text-zinc-900 text-sm font-normal">
-            تهران خیابان بهار شمالی کوچه طبا کوچه سپهر ( این نشانی پیش فرض است )
-          </p>
+          <div class="text-zinc-900 text-sm font-normal">
+            <basis core="view" datamembername="db.info">
+          <face filter="prpID=7999">
+            @Answer
+          </face>
+        </basis>
+          </div>
         </div>
         <div class="flex items-center gap-3">
           <img loading="lazy"
             class="w-[48px] h-[48px]"
             src="[##cms.cms.cdn##]/images/mobile.png"
             alt="mobile"
+            width="48"
+            height="48"
           />
-          <p class="flex gap-2 text-sm font-normal">
+          
+          <basis core="view" datamembername="db.info">
+          <face filter="prpID=8000">
             <a
-              class="text-zinc-900 hover:text-primary-800"
-              href="tel: 0215555555"
+              class="text-zinc-900 font-normal text-sm hover:text-primary-800"
+              href="tel: @Answer"
             >
-              021 5555555</a
+              @Answer</a
             >
-            <span>-</span>
-            <a
-              class="text-zinc-900 hover:text-primary-800"
-              href="tel:021555555555"
-            >
-              021555555555</a
-            >
-          </p>
+          </face>
+        </basis>
+            
+            
         </div>
         <div class="flex items-center gap-3">
           <img loading="lazy"
             class="w-[48px] h-[48px]"
             src="[##cms.cms.cdn##]/images/email.png"
             alt="mobile"
+            width="48" height="48"
           />
 
-          <a
+
+          <basis core="view" datamembername="db.info">
+          <face filter="prpID=8001">
+            <a
             class="text-zinc-900 hover:text-primary-800"
-            href="mailto: 0215555555"
-            >info@supportfarazgasht.com</a
+            href="mailto: @Answer"
+            >@Answer</a
           >
+          </face>
+        </basis>
         </div>
       </div>
     </div>
@@ -118,10 +141,17 @@
           <p class="text-base font-medium ml-4 lg:block hidden">
             ما رو دنبال کنید :
           </p>
-          <a
+
+          <basis core="print" datamembername="db.info">
+            <face  filter="text in('اینستاگرام')">
+            <a 
+             
+            aria-label="@text"
+            href="@answer"
+            href="@answer"
             class="rounded-full hover:shadow-md hover:scale-[1.03] transition-all duration-200 ease-in-out"
-            href=""
-            ><svg
+            >
+            <svg
               width="48"
               height="48"
               viewBox="0 0 48 48"
@@ -143,10 +173,16 @@
               />
             </svg>
           </a>
-          <a
+            </face>
+            <face  filter="text in('توییتر')">
+               <a
             class="rounded-full hover:shadow-md hover:scale-[1.03] transition-all duration-200 ease-in-out"
-            href=""
-            ><svg
+              
+            aria-label="@text"
+            href="@answer"
+            href="@answer"
+            >
+            <svg
               width="48"
               height="48"
               viewBox="0 0 48 48"
@@ -162,10 +198,16 @@
               />
             </svg>
           </a>
-          <a
+            </face>
+            <face  filter="text in('لینکدین')">
+              <a
             class="rounded-full hover:shadow-md hover:scale-[1.03] transition-all duration-200 ease-in-out"
-            href=""
-            ><svg
+            
+            aria-label="@text"
+            href="@answer"
+            href="@answer"
+            >
+            <svg
               width="48"
               height="48"
               viewBox="0 0 48 48"
@@ -181,7 +223,9 @@
               />
             </svg>
           </a>
-          <a
+            </face>
+            <face  filter="text in('تلگرام')">
+            <a
             class="rounded-full hover:shadow-md hover:scale-[1.03] transition-all duration-200 ease-in-out"
             href=""
           >
@@ -201,6 +245,12 @@
               />
             </svg>
           </a>
+            </face>
+          </basis>
+          
+         
+          
+         
         </div>
         <div
           class="flex items-center gap-4 lg:gap-3 justify-between lg:justify-start w-full lg:w-fit"
@@ -212,21 +262,21 @@
               class="!w-full !h-full"
             />
           </a>
-          <a class="!w-[57px] !h-[53px]" href="">
+          <a class="!w-[57px] !h-[53px]" href="https://www.iata.org/">
             <img loading="lazy"
               src="[##cms.cms.cdn##]/images/lata.png"
               alt="lata"
               class="!w-full !h-full"
             />
           </a>
-          <a class="!w-[57px] !h-[53px]" href="">
+          <a class="!w-[57px] !h-[53px]" href="https://www.caa.gov.ir/">
             <img loading="lazy"
               src="[##cms.cms.cdn##]/images/passenger.png"
               alt="passenger"
               class="!w-full !h-full"
             />
           </a>
-          <a class="!w-[57px] !h-[53px]" href="">
+          <a class="!w-[57px] !h-[53px]" href="https://www.caa.gov.ir/">
             <img loading="lazy" src="[##cms.cms.cdn##]/images/ep.png" alt="ep" class="!w-full !h-full" />
           </a>
         </div>
@@ -239,16 +289,16 @@
         >
           <div class="lg:flex items-center gap-1 hidden">
             <p>طراحی سایت آژانس مسافرتی و</p>
-            <a class="hover:!text-primary-700" href=""
+            <a class="hover:!text-primary-700" href="https://www.basisfly.com/"
               >رزرواسیون آنلاین توسط بیسیس فلای</a
             >
           </div>
           <a
             class="lg:hidden block text-center !text-sm !text-zinc-900 hover:!text-primary-700"
-            href=""
+            href="https://www.basisfly.com/"
             >طراحی سایت آژانس مسافرتی و رزرواسیون آنلاین توسط بیسیس فلای</a
           >
-          <a class="w-[68px] h-[17px]" href="">
+          <a class="w-[68px] h-[17px]" href="https://www.basisfly.com/">
             <img loading="lazy"
               src="[##cms.cms.cdn##]/images/basisfly-logo.png"
               alt="basisfly"
@@ -261,7 +311,7 @@
               alt="Trust_logo"
               width="90"
               height="15"
-            /><a class="w-[68px] h-[17px]" href="">
+            /><a class="w-[68px] h-[17px]" href="https://www.basisfly.com/">
               <img loading="lazy"
                 src="[##cms.cms.cdn##]/images/basisfly-logo.png"
                 alt="basisfly"
