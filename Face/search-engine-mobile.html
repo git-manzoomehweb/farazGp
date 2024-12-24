@@ -1,7 +1,7 @@
 <div class="flex w-full flex-col shadow-md rounded-3xl relative h-fit gap-3">
 
   <div class="r-flight relative" id="r-flight">
-      <div class="absolute z-[100] lg:top-[-90px] right-0"><div class="">
+      <div class="absolute z-50 top-[-70px] right-3"><div class="">
           <div
             class="float-left bg-white shadow rounded px-3 flight-items cursor-pointer"
             onclick="show_flighttype(this)"
@@ -81,14 +81,14 @@
       data-flightType="1"
       id="flightSearch"
       onsubmit="form_search_isSubmited(this,event)"
-      class="flex flex-col p-2 bg-white relative rounded lg:flex-row items-center form-search frm formflight clear-both"
+      class="flex flex-col shadow p-2 gap-4 bg-white relative rounded lg:flex-row items-center form-search frm formflight clear-both"
     >
     
-      <div class="absolute gap-3 flex lg:top-[-90px] right-[12%]">
+      <div class="absolute gap-3 flex top-[-70px] right-[10rem]">
         
         <div class="z-10">
           <div
-            class="float-left flightclass-box px-3 cursor-pointer rounded shadow bg-white"
+            class="float-left flightclass-box px-3 cursor-pointer rounded shadow-lg bg-white"
             onclick="show_flightclass(this)"
           >
             <div class="h-[44px] text-base">
@@ -165,10 +165,10 @@
         aria-label="select-age"
       />
       <div
-        class="gap-2 city departure-city relative justify-between flex items-center w-[33%] px-3 h-[65px] border-r border-primary-700"
+        class="gap-2 city departure-city relative justify-between flex items-center w-full px-3 h-[65px] border-r border-primary-700"
       >
         <div
-          class="flex input-group inner-city inner-container flex-col gap-1 w-[83%]"
+          class="flex input-group inner-city inner-container flex-col gap-1 w-full"
         >
           <div
             onclick="empty_value(this)"
@@ -194,7 +194,7 @@
             aria-label="co-id"
           />
           <div
-            class="absolute shadow bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-10 lg:h-[276px] right-0 top-[83px] lg:top-[100px]"
+            class="absolute shadow-lg bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-10 lg:h-[276px] right-0 top-[83px] lg:top-[100px]"
           >
             <div
               class="h-full clear-both flex flex-col overflow-y-auto px-3 py-2 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900"
@@ -318,7 +318,7 @@
           </div>
         </div>
         <span
-          class="xl:w-12 right-[95.5%] cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 rotate-90 lg:rotate-0 inset-0 top-16 lg:top-3 z-10 rounded-lg flex items-center justify-center bg-primary-700"
+          class="xl:w-12 absolute right-[85%] cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 inset-0 top-16 lg:top-3 rounded-lg flex items-center justify-center bg-primary-700"
           data-index="0"
           onclick="ExchangeRoute(this)"
         >
@@ -338,7 +338,7 @@
       </div>
 
       <div
-        class="gap-2 city destination-city relative flex items-center w-[33%] px-3 h-[65px] border-r border-primary-700 py-[14px]"
+        class="gap-2 city destination-city relative flex items-center w-full px-3 h-[65px] border-r border-primary-700 py-[14px]"
       >
         <div
           class="flex input-group inner-city inner-container flex-col gap-1 w-full"
@@ -367,7 +367,7 @@
             aria-label="co-id"
           />
           <div
-            class="absolute shadow bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-10 lg:h-[276px] right-0 top-[83px] lg:top-[100px]"
+            class="absolute shadow-lg bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-10 lg:h-[276px] right-0 top-[83px] lg:top-[100px]"
           >
             <div
               class="h-full clear-both flex flex-col overflow-y-auto px-3 py-2 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900"
@@ -494,9 +494,9 @@
         </div>
       </div>
 
-      <div class="flex w-[21%] flex-col lg:flex-row Basis_Date_Box">
+      <div class="flex w-full gap-4 flex-col lg:flex-row Basis_Date_Box">
         <div
-          class="w-[50%] city date-city flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]"
+          class="w-full city date-city flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]"
         >
           <div
             class="flex inner-city inner-container flex-col justify-evenly gap-1 w-full h-full"
@@ -519,7 +519,7 @@
           </div>
         </div>
         <div
-          class="w-[50%] city date-city return-date-city disabled-date flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]"
+          class="w-full city date-city return-date-city disabled-date flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]"
         >
           <div
             class="flex inner-city inner-container flex-col justify-evenly gap-1 w-full h-full lg:w-8/12"
@@ -547,7 +547,7 @@
       </div>
 
       <div
-        class="w-[17%] city pass-box lg:text-sm xl:text-base relative dropdown-container flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]"
+        class="w-full city pass-box lg:text-sm xl:text-base relative dropdown-container flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]"
       >
         <div
           class="flex flex-col gap-1 lg:text-sm xl:text-base input-group w-full"
@@ -575,7 +575,7 @@
                 ><span class="count">0</span> کودک</span>
             </div>
             <div
-              class="HotelPassengers absolute shadow w-[120%] bg-white hidden rounded z-10 overflow-hidden h-[253px] lg:top-[80px] lg:-right-[45px]"
+              class="HotelPassengers absolute shadow-lg w-full right-0 bg-white hidden rounded z-10 overflow-hidden h-[253px] top-[80px] "
             >
               <div
                 class="w-full h-full overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900 flex gap-2 flex-col"
@@ -666,7 +666,7 @@
       </div>
 
       <button
-        class="bg-primary-700 py-[1.09rem] px-[1.9rem] rounded text-sm text-white hover:bg-primary-950 transition-all duration-200 ease-in-out"
+        class="bg-primary-700 !w-full py-3 px-[1.9rem] rounded text-sm text-white hover:bg-primary-950 transition-all duration-200 ease-in-out"
         type="submit"
       >
         جستجو
@@ -679,7 +679,7 @@
       action="/Tem3_Multicity_Search.bc"
       data-form=""
       onsubmit="formMulticity_search_isSubmited(this,event)"
-      class="hidden w-full bg-zinc-100 rounded frm formflight form-search multicity-form flex flex-col relative gap-4 items-center"
+      class="hidden w-full bg-zinc-100 rounded shadow frm formflight form-search multicity-form flex flex-col relative gap-4 items-center"
     ><input
           type="hidden"
           name="persiancurrent"
@@ -691,10 +691,10 @@
           class="select-age-value"
           value="0"
         />
-     <div class="absolute gap-3 flex lg:top-[-90px] right-[12%]">
+     <div class="absolute gap-3 flex top-[-70px] right-[10rem]">
         <div class="z-10">
           <div
-            class="float-left flightclass-box px-3 cursor-pointer rounded shadow bg-white"
+            class="float-left flightclass-box px-3 cursor-pointer rounded shadow-lg bg-white"
             onclick="show_flightclass(this)"
           >
             <div class="h-[44px] text-base">
@@ -769,14 +769,14 @@
           data-index="1"
         >
           <div class="multi-route-tlt text-base text-zinc-900 px-4 py-3">مقصد اول</div>
-          <div class="flex lg:flex-row flex-col w-full gap-2 bg-white py-2 px-3">
+          <div class="flex lg:flex-row flex-col w-full gap-4 bg-white py-2 px-3">
             <div
-              class="first-part Wrapper-DesDep h-fit relative w-[70%] px-2 flex lg:flex-row flex-col"
+              class="first-part Wrapper-DesDep h-fit gap-4 relative w-full  flex lg:flex-row flex-col"
             >
               <div
                 class="city relative w-full justify-between flex fromcity_container first-rout-city h-fit  px-3 border-r border-primary-700 gap-2"
               >
-                <div class="inner-city  w-[90%]">
+                <div class="inner-city  w-full">
                   <div
                     onclick="empty_value(this)"
                     class="click-content w-full h-full"
@@ -808,7 +808,7 @@
                     aria-label="co-id"
                   />
                   <div
-                    class="absolute z-50 lg:text-sm xl:text-base shadow bg-white hidden rounded searchList overflow-hidden w-full h-[200px]  lg:h-[276px] right-0  top-[70px]"
+                    class="absolute z-50 lg:text-sm xl:text-base shadow-lg bg-white hidden rounded searchList overflow-hidden w-full h-[200px]  lg:h-[276px] right-0  top-[70px]"
                   >
                     <div
                       class="h-full clear-both flex flex-col  overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900"
@@ -930,7 +930,7 @@
                   </div>
                 </div>
                  <span
-          class="xl:w-12 right-[95.5%] cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 rotate-90 lg:rotate-0 inset-0 top-16 lg:top-3 z-10 rounded-lg flex items-center justify-center bg-primary-700"
+          class="absolute right-[85%]  cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 inset-0 top-16 lg:top-3 z-10 rounded-lg flex items-center justify-center bg-primary-700"
           data-index="0"
           onclick="ExchangeRoute(this)"
         >
@@ -982,7 +982,7 @@
                       aria-label="co-id"
                     />
                     <div
-                      class="absolute lg:text-sm xl:text-base shadow bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-50  right-0 top-[70px]"
+                      class="absolute lg:text-sm xl:text-base shadow-lg bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-50  right-0 top-[70px]"
                     >
                       <div
                         class="h-full flex flex-col  overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900"
@@ -1104,7 +1104,7 @@
               </div>
             </div>
 
-            <div class="Basis_Date_Box gap-2 w-[30%]">
+            <div class="Basis_Date_Box gap-2 w-full">
               <div class="flex flex-col frm-other date lg:flex-row" id="Fdate">
                 <div
                   class="city date-city w-full flex items-center gap-2 px-3 h-fit border-r border-primary-700" py-[14px]"
@@ -1191,14 +1191,14 @@
           data-index="2"
         >
           <div class="multi-route-tlt text-base text-zinc-900 px-4 py-2">مقصد دوم</div>
-          <div class="flex lg:flex-row flex-col w-full gap-2 px-4 py-2 bg-white">
+          <div class="flex lg:flex-row flex-col w-full gap-4 px-2 py-2 bg-white">
             <div
-              class="first-part Wrapper-DesDep relative w-[70%] h-fit flex lg:flex-row flex-col"
+              class="first-part Wrapper-DesDep relative w-full gap-4 h-fit flex lg:flex-row flex-col"
             >
               <div
                 class="city relative w-full h-fit px-3 flex justify-between fromcity_container first-rout-city   border-r border-primary-700 py-[14px] gap-2"
               >
-                <div class="inner-city w-[90%]  h-fit">
+                <div class="inner-city w-full  h-fit">
                   <div
                     onclick="empty_value(this)"
                     class="click-content w-full h-full"
@@ -1231,7 +1231,7 @@
                     aria-label="co-id"
                   />
                   <div
-                    class="absolute lg:text-sm xl:text-base shadow z-20 bg-white hidden rounded searchList overflow-hidden w-full h-[200px]  lg:h-[276px] right-0 top-[70px]"
+                    class="absolute lg:text-sm xl:text-base shadow-lg z-20 bg-white hidden rounded searchList overflow-hidden w-full h-[200px]  lg:h-[276px] right-0 top-[70px]"
                   >
                     <div
                       class="h-full clear-both flex flex-col  overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900"
@@ -1351,7 +1351,7 @@
                     </div>
                   </div>
                 </div>
-                <span class="xl:w-12 right-[95.5%] cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12 rotate-90 lg:rotate-0 inset-0 top-16 lg:top-3 z-10 rounded-lg flex items-center justify-center bg-primary-700" data-index="0" onclick="ExchangeRoute(this)">
+                <span class="absolute right-[85%]  cursor-pointer w-12 lg:w-10 lg:h-10 xl:h-12 h-12  inset-0 top-16 lg:top-3 z-10 rounded-lg flex items-center justify-center bg-primary-700" data-index="0" onclick="ExchangeRoute(this)">
  <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
  <path d="M18.6885 3.99063H9.33021V6.66042H18.6885V10.6511L24 5.33958L18.6885 0V3.99063ZM0 13.3208L5.33958 18.6604V14.6698H14.6698V12H5.33958V8.00937L0 13.3208Z" fill="#FAFAFA"></path>
  </svg>
@@ -1390,7 +1390,7 @@
                       aria-label="co-id"
                     />
                     <div
-                      class="absolute shadow bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-10 xl:w-[417px] lg:w-[205px] lg:h-[276px] right-0 top-[70px]"
+                      class="absolute shadow-lg bg-white hidden rounded searchList overflow-hidden w-full h-[200px] z-10 xl:w-[417px] lg:w-[205px] lg:h-[276px] right-0 top-[70px]"
                     >
                       <div
                         class="h-full flex flex-col  overflow-y-auto p-5 [&::-webkit-scrollbar]:[width:10px] [&::-webkit-scrollbar-thumb]:bg-primary-900"
@@ -1510,7 +1510,7 @@
               </div>
             </div>
 
-            <div class="Basis_Date_Box gap-2 w-[30%]">
+            <div class="Basis_Date_Box gap-2 w-full">
               <div class="flex flex-col frm-other date lg:flex-row" id="Fdate">
                 <div
                   class="city date-city w-full flex px-3 h-fit border-r border-primary-700 items-center gap-2  py-[14px]"
@@ -1601,7 +1601,7 @@
         class="flex w-full lg:text-sm xl:text-base flex-col bg-white px-3 py-3 gap-2 justify-between"
       >
         
-          <div class="w-[23%] city pass-box lg:text-sm xl:text-base relative dropdown-container flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]">
+          <div class="w-full city pass-box lg:text-sm xl:text-base relative dropdown-container flex items-center h-[65px] border-r border-primary-700 px-3 py-[14px]">
  <div class="flex flex-col gap-1 lg:text-sm xl:text-base input-group w-full">
  <div class="flex-col relative flex gap-2 w-full inner-city inner-container h-[65px]">
  <label for="passenger1" class="cursor-pointer font-bold">مسافر:</label>
@@ -1611,7 +1611,7 @@
  <span class="text-zinc-600 px-2">-</span>
  <span class="passenger-counts whitespace-nowrap text-zinc-600 count-child leading-6"><span class="count">0</span> کودک</span>
  </div>
- <div class="HotelPassengers absolute shadow bg-white hidden rounded z-10 overflow-hidden w-full h-[253px] top-[70px] lg:-right-[45px]">
+ <div class="HotelPassengers absolute shadow-lg bg-white hidden rounded z-10 overflow-hidden w-full h-[253px] top-[80px] right-0 ">
  <div class="w-full h-full overflow-y-auto p-5 [&amp;::-webkit-scrollbar]:[width:10px] [&amp;::-webkit-scrollbar-thumb]:bg-primary-900 flex gap-2 flex-col">
  <div class="flex w-full gap-2">
  <span class="font-bold">مسافران</span>
@@ -1652,10 +1652,10 @@
           
           
         </div>
-        <div class="flex justify-between items-center w-full">
-          <div class="flex flex-col">
+        <div class="flex flex-col gap-2 items-center w-full">
+          <div class="flex flex-col w-full">
             <button
-              class="route-plus-btn transition-all duration-200 ease-in-out search-flight hover:text-white hover:bg-primary-900 text-base bg-primary-200 rounded p-3 text-primary-900"
+              class="route-plus-btn transition-all duration-200 ease-in-out search-flight hover:text-white hover:bg-primary-900 text-base bg-primary-200 rounded w-full py-2 text-primary-900"
               type="button"
               onclick="addMulticityRoute(this)"
             >
@@ -1665,7 +1665,7 @@
             class="alert-text warning clear-both text-red-600 text-base text-right dir-rtl"
           ></p>
           </div>
-        <button class="bg-primary-700 py-[1.09rem] px-[1.9rem] rounded text-sm text-white hover:bg-primary-950 transition-all duration-200 ease-in-out" type="submit">
+        <button class="bg-primary-700 py-2 w-full rounded text-sm text-white hover:bg-primary-950 transition-all duration-200 ease-in-out" type="submit">
  جستجو
  </button>
         </div>

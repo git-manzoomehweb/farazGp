@@ -16,16 +16,17 @@ navCloser.addEventListener("click", () => {
 // _________________________________swipers_____________________________________
 // _________________________________swipers_____________________________________
 
-var swiper1 = new Swiper(".first-swiper", {
+if(document.querySelector(".first-swiper")){
+  var swiper1 = new Swiper(".first-swiper", {
   slidesPerView: 4,
   speed: 400,
   centeredSlides: false,
   spaceBetween: 30,
   grabCursor: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
+  // autoplay: {
+  //   delay: 2500,
+  //   disableOnInteraction: false,
+  // },
   loop: true,
   pagination: {
     el: ".swiper-pagination-first",
@@ -50,17 +51,19 @@ var swiper1 = new Swiper(".first-swiper", {
     },
   },
 });
-var swiper = new Swiper(".first-swiper-mob", {
+}
+if(document.querySelector(".first-swiper-mob")){
+  var swiper = new Swiper(".first-swiper-mob", {
   direction:"vertical",
   slidesPerView: 4,
   speed: 400,
   centeredSlides: false,
   spaceBetween: 10,
   grabCursor: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
+  // autoplay: {
+  //   delay: 2500,
+  //   disableOnInteraction: false,
+  // },
   loop: true,
   pagination: {
     el: ".swiper-pagination-first-mob",
@@ -82,7 +85,9 @@ var swiper = new Swiper(".first-swiper-mob", {
     },
   },
 });
-var swiper3 = new Swiper(".swiper-about-desktop", {
+}
+if(document.querySelector(".swiper-about-desktop")){
+  var swiper3 = new Swiper(".swiper-about-desktop", {
   slidesPerView: 5,
   speed: 400,
   centeredSlides: false,
@@ -94,7 +99,9 @@ var swiper3 = new Swiper(".swiper-about-desktop", {
   },
   loop: false,
 });
-var swiper4 = new Swiper(".swiper-about-mob", {
+}
+if(document.querySelector(".swiper-about-mob")){
+  var swiper4 = new Swiper(".swiper-about-mob", {
   slidesPerView: 1.2,
   speed: 400,
   centeredSlides: false,
@@ -106,6 +113,7 @@ var swiper4 = new Swiper(".swiper-about-mob", {
   },
   loop: false,
 });
+}
 // ____________________________________common questions______________________________________
 // ____________________________________common questions______________________________________
 // ____________________________________common questions______________________________________
@@ -221,14 +229,37 @@ flightCard.forEach((card)=>{
   card.addEventListener("click",()=>{
     const departureCity=card.querySelector(".departureCity").innerText
     const destinationCity=card.querySelector(".destinationCity").innerText
+    const depId=card.querySelector(".depId").innerText
+    const desId=card.querySelector(".desId").innerText
 
     document.querySelector("#r-flight #flightSearch .FCD1").value=departureCity
-    //  console.log(document.querySelector("#r-flight #flightSearch .FCDid1"));
+    document.querySelector("#r-flight #flightSearch .FCDid1").value=depId
     
   document.querySelector("#r-flight #flightSearch .FCD2").value=destinationCity
-   //  console.log(document.querySelector("#r-flight #flightSearch .FCDid2"));
+   document.querySelector("#r-flight #flightSearch .FCDid2").value=desId
 
 
+
+
+
+
+
+   const flightType=card.querySelector(".flight-type").innerText
+
+  
+  
+   if(flightType.includes("Economy")){
+    document.querySelector("#r-flight .FlightClass-text").innerText="اکونومی"
+    document.querySelector("#r-flight #FlightClass1").value="Economy"
+  }
+  if(flightType.includes("Business")){
+     document.querySelector("#r-flight .FlightClass-text").innerText="بیزینس"
+    document.querySelector("#r-flight #FlightClass1").value="BusinessClass"
+  }
+ if(flightType.includes("ّFirst")){
+     document.querySelector("#r-flight .FlightClass-text").innerText="فرست"
+    document.querySelector("#r-flight #FlightClass1").value="FirstClass"
+  }
     document.querySelector("#multi-flight-form").classList.add("hidden");
               document.querySelector("#r-flight").classList.remove("hidden");
               var searchBox = document.querySelector(".serch-box-container");
@@ -241,19 +272,41 @@ flightCard.forEach((card)=>{
   })
 })
 
+const soonCard=document.querySelector(".soon-card")
+if(soonCard){
 
-if (document.querySelector(".soon-card")){
-  const soonCard=document.querySelector(".soon-card")
 soonCard.addEventListener("click",()=>{
-      const departureCity=soonCard.querySelector(".departureCity").innerText
+    const depId2=soonCard.querySelector(".depId").innerText
+    const desId2=soonCard.querySelector(".desId").innerText
+    const departureCity=soonCard.querySelector(".departureCity").innerText
     const destinationCity=soonCard.querySelector(".destinationCity").innerText
 
     
     document.querySelector("#r-flight #flightSearch .FCD1").value=departureCity
-    //  console.log(document.querySelector("#r-flight #flightSearch .FCDid1"));
+   document.querySelector("#r-flight #flightSearch .FCDid1").value=depId2
     
   document.querySelector("#r-flight #flightSearch .FCD2").value=destinationCity
-   //  console.log(document.querySelector("#r-flight #flightSearch .FCDid2"));
+   document.querySelector("#r-flight #flightSearch .FCDid2").value=desId2
+
+
+
+
+
+   const flightType=soonCard.querySelector(".flight-type").innerText
+  
+   if(flightType.includes("Economy")){
+    document.querySelector("#r-flight .FlightClass-text").innerText="اکونومی"
+    document.querySelector("#r-flight #FlightClass1").value="Economy"
+  }
+  if(flightType.includes("Business")){
+     document.querySelector("#r-flight .FlightClass-text").innerText="بیزینس"
+    document.querySelector("#r-flight #FlightClass1").value="BusinessClass"
+  }
+ if(flightType.includes("ّFirst")){
+     document.querySelector("#r-flight .FlightClass-text").innerText="فرست"
+    document.querySelector("#r-flight #FlightClass1").value="FirstClass"
+  }
+
 
    
     document.querySelector("#multi-flight-form").classList.add("hidden");
@@ -266,6 +319,7 @@ soonCard.addEventListener("click",()=>{
                 })
               }
 })
+
 }
 
 
