@@ -933,11 +933,11 @@ video {
 }
 
 .font-bold {
-.font-bold {
+
   font-weight: normal;
   font-family: DanaFaNum-Bold !important;
 }
-}
+
 
 .font-medium {
   font-weight: 500;
@@ -1037,7 +1037,17 @@ video {
 
 
 
+.login-closed svg {
 
+    background: var(--primary-700) !important;
+    
+}
+.main-login-container input{
+  font-family: DanaFaNum !important;
+}
+.login-btn-content button , button.login-btn{
+  background-color: var(--primary-700) !important;
+}
 @font-face {
   font-display: swap;
 
@@ -1165,7 +1175,10 @@ body {
 .group:hover .group-hover\:\!fill-black {
   fill: #000 !important;
 }
-
+.translate-x-\[50000px\] {
+  --tw-translate-x: 50000px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 @media (min-width: 640px) {
   .sm\:my-3 {
     margin-top: 0.75rem;
@@ -1174,6 +1187,22 @@ body {
 }
 
 @media (min-width: 1024px) {
+    .Login_Informati {
+    padding: 8px 16px;
+    border: 1px solid white;
+    border-radius: 8px;
+  }
+   .Login_Informati:hover{
+    padding: 8px 16px;
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+  .Login_Informati:hover span{
+    color: black !important;
+  }
+  .Login_Informati svg{
+    display: none !important;
+  }
   .lg\:mt-5 {
     margin-top: 1.25rem;
   }

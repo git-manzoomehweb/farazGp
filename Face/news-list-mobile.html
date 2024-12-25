@@ -1,5 +1,46 @@
+<basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+  <member type="list" name="list" request="taglist" preview=""></member>
+</basis>
+
+<basis core="dbsource" source="basiscore" lid="1" mid="1" name="db" catid="[##cms.query.catid##]">
+    <member name="article-list" type="list" link="article.bc" propertyid="7244,7248,3087429"
+        size="673x351" order="ord" postsql="select * from [db.article-list] LIMIT 1" />
+     <member name="article-list2" type="list" link="article.bc" perpage="5" propertyid="7244,7248,3087429"
+        size="379x209" order="ord"  />
+    <member name="paging" type="list" request="paging" count="5" parentname="article-list2"/>
+</basis>
+
+
+<basis core="dbsource" source="basiscore" lid="1" mid="1" name="db" catid="[##cms.query.nid##]">
+    <member name="another-news-list" type="list" link="article.bc" propertyid="7244" perpage="6" size="84x84"
+        order="ord" />
+</basis>
+
+
+<basis core="dbsource" source="basiscore" lid="1" mid="1" name="db" catid="[##cms.query.catid##]">
+    <member name="navigation" type="tree" request="navcatid" parentid="[##cms.query.catid##]" />
+</basis>
+
+<basis
+  core="dbsource"
+  source="basiscore"
+  lid="1"
+  mid="1"
+  name="db"
+  catid="212484"
+>
+  <member
+    name="soon-list"
+    type="list"
+    propertyid=" 3087422 , 3087423 , 3087424 , 3087425 , 7244 ,3087428"
+    typeid="159"
+    order="ord"
+    size="1280x257"
+  />
+</basis>
+
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
      <head>
     <meta charset="UTF-8" />
     <meta
@@ -62,32 +103,63 @@
           alt="cloud"
         />
       </section>
-      <section class="flex z-50 w-full justify-center absolute top-[140px]">
+      <section class="flex z-20 w-full justify-center absolute top-[140px]">
         <div class="w-full flex flex-col gap-8 px-4">
           <div class="w-full flex flex-col gap-3 justify-between items-center">
             <div class="flex flex-col gap-3">
               <div class="w-full">
-                <ul class="flex gap-1 !text-sm">
-                  <li class="text-zinc-600 hover:text-primary-100">
-                    <a href="/">صفحه اصلی</a>
-                  </li>
-                  <li class="text-zinc-600">/</li>
-                  <li class="text-zinc-600 hover:text-primary-100">
-                    <a href="/news-list.html">مجله گردشگری</a>
-                  </li>
-                  <li class="text-zinc-600">/</li>
-                  <li class="text-zinc-900">مجله</li>
-                </ul>
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList" class="flex gap-1 text-sm">
+                   <li class="inline-block text-zinc-600 hover:text-primary-100 " itemprop="itemListElement"
+                                itemscope itemtype="https://schema.org/ListItem">
+                   <a class="text-zinc-600 hover:text-primary-100" itemprop="item" href="/"
+                                    aria-label="home"><span itemprop="name">صفحه اصلی</span>
+                                    <meta itemprop="position" content="1" />
+                    </a>
+                            </li>
+                   <span class="text-zinc-600">/</span>
+                   <basis core="print" datamembername="db.navigation">
+                    <face filter="RowNumber=max(RowNumber) and parentcatid<>211406">
+                      <li class="inline-block text-zinc-900 " itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                          <span itemprop="name">@title</span>
+                           <meta itemprop="position" content="@rownumber" />
+                                    </li>
+                                </face>
+                                <face filter="link is null and parentcatid<>211406">
+                                    <li class="flex gap-1 text-zinc-600" itemprop="itemListElement" itemscope
+                                        itemtype="https://schema.org/ListItem">
+                                        <a class="text-zinc-600 hover:text-primary-100" itemprop="item"
+                                            href="/article-list.bc?catid=@parentcatid" aria-label="@title"><span
+                                                itemprop="name">@title</span>
+                                            <meta itemprop="position" content="@rownumber" />
+                                        </a>
+                                        <span class="text-zinc-600">/</span>
+                                    </li>
+                                </face>
+                                <face filter="parentcatid<>211406">
+                                    <li class="flex gap-1 text-sm text-zinc-600 font-normal" itemprop="itemListElement"
+                                        itemscope itemtype="https://schema.org/ListItem">
+                                        <a class="text-zinc-600 hover:text-primary-100" itemprop="item" href="@link"
+                                            aria-label="@title"><span class="text-zinc-900"
+                                                itemprop="name">@title</span>
+                                            <meta itemprop="position" content="@rownumber" />
+                                        </a>
+                                        <span class="text-zinc-600">/</span>
+                                    </li>
+                                </face>
+                            </basis>
+                        </ul>
               </div>
-              <h2 class="text-zinc-900 text-[30px] font-bold">مجله گردشگری</h2>
+              <h1 class="text-zinc-900 text-[30px] font-bold">مجله گردشگری</h1>
             </div>
-            <form
+            <form action="/search-content.bc" method="get"
               class="bg-white px-4 py-0 rounded-lg flex justify-between w-full"
             >
               <input
                 class="!bg-transparent text-zinc-900 placeholder:text-zinc-900 !border-0 !outline-none focus:!border-0 focus:!outline-none"
                 type="text"
                 placeholder="جستجوی مقاله"
+                name="search-content-name"
               />
               <button class="!bg-transparent border-none" type="submit">
                 <svg
@@ -109,19 +181,15 @@
               </button>
             </form>
           </div>
-          <div
+           <basis core="list" datamembername="db.article-list">
+                    <face filter="RowNumber=1">
+                      <div
             class="w-full rounded-lg bg-zinc-100 h-fit flex flex-col-reverse justify-between overflow-hidden"
           >
             <div class="w-full flex flex-col gap-5 px-6 py-11">
-              <h3 class="font-bold text-base">سفر به روم</h3>
+              <h2 class="font-bold text-base">@title </h2>
               <p class="font-normal text-sm text-zinc-900 line-clamp-5">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
+                @prp_7244
               </p>
               <div class="flex gap-4 items-center">
                 <img loading="lazy"
@@ -129,610 +197,333 @@
                   alt="Calendar"
                   class="w-6 h-6"
                 />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
+                <p class="text-zinc-500 text-sm leading-6">@date</p>
               </div>
               <div class="w-full flex flex-col gap-5 justify-between">
                 <div class="flex items-center gap-3">
-                  <img loading="lazy"
+                  <img 
+                    loading="lazy"
                     class="rounded-full"
                     width="40"
                     height="40"
-                    src="[##cms.cms.cdn##]/images/person.png"
-                    alt="person"
+                    src="@prp_3087429" 
+                    alt="@prp_7248"
                   />
-                  <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
+                  <p class="text-zinc-500 text-sm">نویسنده :  @prp_7248 </p>
                 </div>
                 <a
                   class="bg-primary-700 w-full text-center rounded text-sm text-white px-3 py-4 hover:bg-primary-950 transition-all duration-200 ease-in-out"
-                  href=""
+                  href="@link"
                   >ادامه مطلب</a
                 >
               </div>
             </div>
             <div class="w-full">
               <img loading="lazy"
-                class="w-full h-full object-cover"
-                src="[##cms.cms.cdn##]/images/news-card.jpg"
-                alt="card"
+                class="!w-full  object-cover" src="@00673X00351prp"
+                alt="@title" width="673" height="351"
               />
             </div>
           </div>
+                    </face>
+                    <face filter="RowNumber=1 and link is null">
+                      <div
+            class="w-full rounded-lg bg-zinc-100 h-fit flex flex-col-reverse justify-between overflow-hidden"
+          >
+            <div class="w-full flex flex-col gap-5 px-6 py-11">
+              <h2 class="font-bold text-base">@title </h2>
+              <p class="font-normal text-sm text-zinc-900 line-clamp-5">
+                @prp_7244
+              </p>
+              <div class="flex gap-4 items-center">
+                <img loading="lazy"
+                  src="[##cms.cms.cdn##]/images/Calendar.png"
+                  alt="Calendar"
+                  class="w-6 h-6"
+                />
+                <p class="text-zinc-500 text-sm leading-6">@date</p>
+              </div>
+              <div class="w-full flex flex-col gap-5 justify-between">
+                <div class="flex items-center gap-3">
+                  <img 
+                    loading="lazy"
+                    class="rounded-full"
+                    width="40"
+                    height="40"
+                    src="@prp_3087429" 
+                    alt="@prp_7248"
+                  />
+                  <p class="text-zinc-500 text-sm">نویسنده :  @prp_7248 </p>
+                </div>
+                <a
+                  class="bg-primary-700 w-full text-center rounded text-sm text-white px-3 py-4 hover:bg-primary-950 transition-all duration-200 ease-in-out"
+                  href="/article.bc?id=@id"
+                  >ادامه مطلب</a
+                >
+              </div>
+            </div>
+            <div class="w-full">
+               <img loading="lazy"
+                class="!w-full  object-cover" src="@00673X00351prp"
+                alt="@title" width="673" height="351"
+              />
+            </div>
+          </div>
+                    </face>
+          </basis>
+          
         </div>
       </section>
       <section class="mt-[170px] flex w-full justify-center">
         <div class="w-full px-4 flex flex-col gap-4">
-          <div class="grid grid-cols-1 gap-3">
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-            <article
-              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
-            >
-              <h3 class="font-bold text-base">سفر به روم</h3>
-              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
-                رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ ۲۸۰۰
-                ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این رو، در سفر
-                به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی هزاران ساله،
-                ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در
-                طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از
-                این رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                هزاران ساله، ویرانه‌های وسیع...
-              </p>
-              <div class="flex gap-4 items-center">
-                <img loading="lazy"
-                  src="[##cms.cms.cdn##]/images/Calendar.png"
-                  alt="Calendar"
-                  class="w-6 h-6"
-                />
-                <p class="text-zinc-500 text-sm leading-6">1402/12/12</p>
-              </div>
-              <img loading="lazy"
-                class="rounded"
-                src="[##cms.cms.cdn##]/images/article-news.jpg"
-                alt="article"
-              />
-              <div class="flex items-center gap-3">
-                <img loading="lazy"
-                  class="rounded-full"
-                  width="40"
-                  height="40"
-                  src="[##cms.cms.cdn##]/images/person.png"
-                  alt="person"
-                />
-                <p class="text-zinc-500 text-sm">نویسنده : محسن حیدری</p>
-              </div>
-              <a
-                href=""
-                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
-                >ادامه مطلب</a
-              >
-            </article>
-          </div>
 
-          <div class="flex w-full my-9 justify-center ">
-            <div class="relative w-full h-[339px]">
+          <basis core="list" datamembername="db.article-list2">
+                    <layout>
+                      <div class="grid grid-cols-1 gap-3">
+            @child
+           
+          </div>
+                    </layout>
+                    <face filter="RowNumber<>1 and link is null"><article
+              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
+            >
+              <h3 class="font-bold text-base">@title</h3>
+              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
+                  @prp_7244
+              </p>
+              <div class="flex gap-4 items-center">
+                <img loading="lazy"
+                  src="[##cms.cms.cdn##]/images/Calendar.png"
+                  alt="Calendar"
+                  class="w-6 h-6"
+                />
+                <p class="text-zinc-500 text-sm leading-6">@date</p>
+              </div>
               <img loading="lazy"
-                class="!w-full !h-full object-cover z-0 rounded"
-                src="[##cms.cms.cdn##]/images/soon.jpg"
-                alt="soon"
+                class="rounded !w-full"
+                src="@00379X00209prp" 
+                width="379" height="209"
+                alt="@title"
               />
-              <div
-                class="absolute w-full px-7 h-full top-0 py-6 left-0 z-10 flex flex-col items-center justify-between"
+              <div class="flex items-center gap-3">
+                <img loading="lazy"
+                  class="rounded-full"
+                  width="40" height="40"
+                  src="@prp_3087429" alt="@prp_7248"
+                />
+                <p class="text-zinc-500 text-sm">نویسنده :   @prp_7248</p>
+              </div>
+              <a
+                href="/article.bc?id=@id"
+                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
+                >ادامه مطلب</a
               >
-                <div class="flex flex-col gap-2 w-full">
-                  <h3 class="text-white text-[30px] font-bold">
-                    سریع پروازت رو رزرو کن
-                  </h3>
-                  <p class="line-clamp-2 text-white text-sm font-normal">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
-                    با استفاده از طراحان گرافیک است،
-                  </p>
-                </div>
-                <div
-                  class="flex !text-white h-[93px] items-center justify-between px-4 py-3 bg-special-2 border border-zinc-600 rounded-lg w-full"
+            </article>
+          </face>
+                    <face filter="RowNumber<>1"><article
+              class="flex flex-col px-3 py-4 gap-4 border border-zinc-300 rounded"
+            >
+              <h3 class="font-bold text-base">@title</h3>
+              <p class="font-normal text-sm text-zinc-900 line-clamp-4">
+                  @prp_7244
+              </p>
+              <div class="flex gap-4 items-center">
+                <img loading="lazy"
+                  src="[##cms.cms.cdn##]/images/Calendar.png"
+                  alt="Calendar"
+                  class="w-6 h-6"
+                />
+                <p class="text-zinc-500 text-sm leading-6">@date</p>
+              </div>
+              <img loading="lazy"
+                class="rounded !w-full"
+                src="@00379X00209prp" 
+                width="379" height="209"
+                alt="@title"
+              />
+              <div class="flex items-center gap-3">
+                <img loading="lazy"
+                  class="rounded-full"
+                  width="40" height="40"
+                  src="@prp_3087429" alt="@prp_7248"
+                />
+                <p class="text-zinc-500 text-sm">نویسنده :   @prp_7248</p>
+              </div>
+              <a
+                href="@link"
+                class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
+                >ادامه مطلب</a
+              >
+            </article></face>
+          </basis>
+          
+
+
+
+
+
+  <div class="w-full flex gap-4 justify-center items-center">
+            <basis core="print" datamembername="db.paging">
+              <face filter="(@sta='pre')">
+                <a
+                  class="bg-primary-700 hover:bg-primary-900  w-14 h-14 flex justify-center items-center rounded-full"
+                  href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
+                  aria-label="angle-left"
                 >
-                  <div class="flex flex-col gap-1">
-                    <p>تهران</p>
-                    <p class="uppercase">THR</p>
-                  </div>
-                  <div
-                    class="pt-3 translate-y-[10px] border-t border-dashed border-white w-[96%] mx-5 text-center"
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    اکونومی
-                  </div>
-                  <div class="flex flex-col gap-1">
-                    <p>دبی</p>
-                    <p class="uppercase">MHD</p>
-                  </div>
-                </div>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.9139 11.7501L8.49994 20.1641L7.08594 18.7501L14.0859 11.7501L7.08594 4.7501L8.49994 3.3361L16.9139 11.7501Z"
+                      fill="#F6E8EC"
+                    />
+                  </svg>
+                </a>
+              </face>
+            </basis>
+
+            <basis core="print" datamembername="db.paging">
+              <face filter="(@page=[##cms.query.pagenum|(1)##])">
+                <a
+                  class="bg-primary-700 hover:bg-primary-900 text-white w-14 h-14 flex justify-center items-center rounded-full"
+                 href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
+                >
+                  @page
+                </a>
+              </face>
+              <face
+                filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no')"
+              >
+                <a
+               href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
+                  class="bg-primary-700 hover:bg-primary-900 text-white w-14 h-14 flex justify-center items-center rounded-full"
+                >
+                  @page
+                </a>
+              </face>
+            </basis>
+
+            <basis core="print" datamembername="db.paging">
+              <face filter="(@sta='nex')">
+                <a
+                  href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
+                  aria-label="angle-right"
+                  class="bg-primary-700 hover:bg-primary-900 rotate-180 w-14 h-14 flex justify-center items-center rounded-full"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.9139 11.7501L8.49994 20.1641L7.08594 18.7501L14.0859 11.7501L7.08594 4.7501L8.49994 3.3361L16.9139 11.7501Z"
+                      fill="#F6E8EC"
+                    />
+                  </svg>
+                </a>
+              </face>
+            </basis>
+          </div>
+
+
+
+
+<basis core="list" datamembername="db.soon-list">
+  <face> <div class="flex w-full my-9 justify-center">
+            <div class="relative w-full h-[339px]">
+          <img loading="lazy"
+            class="!w-full !h-full object-cover z-0 rounded"
+            src="@01280X00257prp"
+            alt="@title"
+            width="1280"
+            height="257"
+          />
+          <div
+            class="absolute w-full px-7 h-full top-0 py-6 left-0 z-10 flex flex-col items-center justify-between"
+          >
+            <div class="flex flex-col gap-2 w-full">
+              <h4 class="text-white text-[30px] font-bold">
+                سریع پروازت رو رزرو کن
+              </h4>
+              <div class="line-clamp-2 text-white text-sm font-normal">
+                 @prp_7244
+              </div>
+            </div>
+            <div onclick="soonFunc()"
+              class="flex !text-white soon-card2 h-[93px] items-center justify-between px-4 py-3 bg-special-2 border border-zinc-600 rounded-lg w-full"
+            >
+              <div class="flex flex-col gap-1">
+                <p class="departureCity uppercase">@prp_3087425</p>
+                <p class="uppercase hidden depId">@prp_3087423</p>
+              </div>
+              <div
+                class="pt-3 translate-y-[10px] flight-type border-t border-dashed border-white w-[96%] mx-5 text-center"
+              >
+                @prp_3087428
+              </div>
+              <div class="flex flex-col gap-1">
+            <p class="destinationCity uppercase ">@prp_3087424</p>
+                <p class="uppercase hidden desId">@prp_3087422</p>
               </div>
             </div>
           </div>
+        </div>
+          </div></face>
+</basis>
+         
 
-          <div class="w-full flex flex-col gap-5">
-            <p class="font-bold text-zinc-900 text-[24px] leading-8 text-right">
-              دیگر اخبار
-            </p>
-            <div class="grid grid-cols-1 w-full gap-y-4 gap-x-2">
-              <a
-                class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
-                href=""
-              >
-                <img loading="lazy"
-                  class="rounded"
-                  src="[##cms.cms.cdn##]/images/another-news.jpg"
-                  alt="another"
-                />
-                <div class="flex flex-col gap-2 pl-4">
-                  <h3 class="font-bold text-base">سفر به روم</h3>
-                  <p
-                    class="font-normal transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2"
-                  >
-                    رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ
-                    ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این
-                    رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                    هزاران ساله، ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ
-                    و مذهب بود و در طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر
-                    جهان گذاشته است. از این رو، در سفر به رم شاهد کاخ‌های حیرت‌
-                    انگیز، کلیساهای قدیمی هزاران ساله، ویرانه‌های وسیع...
-                  </p>
-                </div>
-              </a>
-              <a
-                class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
-                href=""
-              >
-                <img loading="lazy"
-                  class="rounded"
-                  src="[##cms.cms.cdn##]/images/another-news.jpg"
-                  alt="another"
-                />
-                <div class="flex flex-col gap-2 pl-4">
-                  <h3 class="font-bold text-base">سفر به روم</h3>
-                  <p
-                    class="font-normal transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2"
-                  >
-                    رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ
-                    ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این
-                    رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                    هزاران ساله، ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ
-                    و مذهب بود و در طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر
-                    جهان گذاشته است. از این رو، در سفر به رم شاهد کاخ‌های حیرت‌
-                    انگیز، کلیساهای قدیمی هزاران ساله، ویرانه‌های وسیع...
-                  </p>
-                </div>
-              </a>
-              <a
-                class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
-                href=""
-              >
-                <img loading="lazy"
-                  class="rounded"
-                  src="[##cms.cms.cdn##]/images/another-news.jpg"
-                  alt="another"
-                />
-                <div class="flex flex-col gap-2 pl-4">
-                  <h3 class="font-bold text-base">سفر به روم</h3>
-                  <p
-                    class="font-normal transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2"
-                  >
-                    رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ
-                    ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این
-                    رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                    هزاران ساله، ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ
-                    و مذهب بود و در طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر
-                    جهان گذاشته است. از این رو، در سفر به رم شاهد کاخ‌های حیرت‌
-                    انگیز، کلیساهای قدیمی هزاران ساله، ویرانه‌های وسیع...
-                  </p>
-                </div>
-              </a>
-              <a
-                class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
-                href=""
-              >
-                <img loading="lazy"
-                  class="rounded"
-                  src="[##cms.cms.cdn##]/images/another-news.jpg"
-                  alt="another"
-                />
-                <div class="flex flex-col gap-2 pl-4">
-                  <h3 class="font-bold text-base">سفر به روم</h3>
-                  <p
-                    class="font-normal transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2"
-                  >
-                    رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ
-                    ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این
-                    رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                    هزاران ساله، ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ
-                    و مذهب بود و در طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر
-                    جهان گذاشته است. از این رو، در سفر به رم شاهد کاخ‌های حیرت‌
-                    انگیز، کلیساهای قدیمی هزاران ساله، ویرانه‌های وسیع...
-                  </p>
-                </div>
-              </a>
-              <a
-                class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
-                href=""
-              >
-                <img loading="lazy"
-                  class="rounded"
-                  src="[##cms.cms.cdn##]/images/another-news.jpg"
-                  alt="another"
-                />
-                <div class="flex flex-col gap-2 pl-4">
-                  <h3 class="font-bold text-base">سفر به روم</h3>
-                  <p
-                    class="font-normal transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2"
-                  >
-                    رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ
-                    ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این
-                    رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                    هزاران ساله، ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ
-                    و مذهب بود و در طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر
-                    جهان گذاشته است. از این رو، در سفر به رم شاهد کاخ‌های حیرت‌
-                    انگیز، کلیساهای قدیمی هزاران ساله، ویرانه‌های وسیع...
-                  </p>
-                </div>
-              </a>
-              <a
-                class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
-                href=""
-              >
-                <img loading="lazy"
-                  class="rounded"
-                  src="[##cms.cms.cdn##]/images/another-news.jpg"
-                  alt="another"
-                />
-                <div class="flex flex-col gap-2 pl-4">
-                  <h3 class="font-bold text-base">سفر به روم</h3>
-                  <p
-                    class="font-normal transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2"
-                  >
-                    رم هزاران سال مرکز قدرت، فرهنگ و مذهب بود و در طول تاریخ
-                    ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر جهان گذاشته است. از این
-                    رو، در سفر به رم شاهد کاخ‌های حیرت‌ انگیز، کلیساهای قدیمی
-                    هزاران ساله، ویرانه‌های وسیع رم هزاران سال مرکز قدرت، فرهنگ
-                    و مذهب بود و در طول تاریخ ۲۸۰۰ ساله خود تاثیر بسیار عمیقی بر
-                    جهان گذاشته است. از این رو، در سفر به رم شاهد کاخ‌های حیرت‌
-                    انگیز، کلیساهای قدیمی هزاران ساله، ویرانه‌های وسیع...
-                  </p>
-                </div>
-              </a>
-            </div>
-          </div>
+
+
+         <basis core="list" datamembername="db.another-news-list">
+                    <layout>
+                        <div class="w-full flex flex-col gap-5">
+                            <h5 class="font-bold text-zinc-900 text-[24px] leading-8 text-right">
+                                دیگر اخبار
+                            </h5>
+                            <div class="grid grid-cols-1 w-full gap-y-4 gap-x-2">
+                                @child
+                            </div>
+                        </div>
+                    </layout>
+                    <face >
+                        <a class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
+                            href="@link">
+                            <img loading="lazy" class="rounded !h-full" src="@00084X00084prp"  width="84" height="84"
+                                alt="@title" />
+                            <div class="flex flex-col gap-2 pl-4">
+                                <h6 class="font-bold text-base line-clamp-1">@title</h6>
+                                <p
+                                    class="font-normal  transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2">
+                                  @prp_7244
+                                </p>
+                            </div>
+                        </a>
+                    </face>
+                    <face filter=" link is null">
+                        <a class="p-1 rounded group transition-all duration-200 ease-in-out hover:bg-primary-800 hover:!text-white border border-zinc-300 flex gap-4"
+                            href="/article.bc?id=@id">
+                            <img loading="lazy" class="rounded !h-full" src="@00084X00084prp"  width="84" height="84"
+                                alt="@title" />
+                            <div class="flex flex-col gap-2 pl-4">
+                                <h6 class="font-bold text-base line-clamp-1">@title</h6>
+                                <p
+                                    class="font-normal  transition-all duration-200 ease-in-out group-hover:text-white text-sm text-zinc-900 line-clamp-2">
+                                  @prp_7244
+                                </p>
+                            </div>
+                        </a>
+                    </face>
+                </basis>
         </div>
       </section>
     </main>

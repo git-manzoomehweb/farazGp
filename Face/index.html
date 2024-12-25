@@ -48,7 +48,7 @@
   />
 </basis>
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover">
@@ -98,6 +98,7 @@
   
   </head>
   <body class="relative"  onload="loadContentHomaPage()">
+   
     <basis core="call" file="header.inc" />
     <main class="w-full z-10 flex-flex-col gap-0">
       <section
@@ -130,7 +131,7 @@
           src="[##cms.cms.cdn##]/images/cloud.png"
           alt="cloud"
         />
-        <div style="margin-top: -234px" class="search-box-container w-full z-50 flex justify-center">
+        <div  class="search-box-container mt-[-234px] w-full z-50 flex justify-center">
           <div
             class="z-50 w-full lg:w-[950px] xl:w-[1200px] 2xl:w-[1280px]"
             id="search-box"
@@ -155,7 +156,7 @@
           </div>
         </div>
       </section>
-
+ <h1 class="hidden">فراز گشت</h1>
        <basis core="list" datamembername="db.flight-list">
         <layout>
           <section class="z-30 flex w-full justify-center mt-[5rem]">
@@ -491,7 +492,7 @@
         >
         <basis core="print" datamembername="db.faq">
           <face  filter="prpID=7243">
-            <h2 class="text-zinc-900 text-[30px] font-bold">@Answer</h2>
+            <h3 class="text-zinc-900 text-[30px] font-bold">@Answer</h3>
           </face>
         </basis>
           

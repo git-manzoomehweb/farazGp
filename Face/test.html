@@ -1,1 +1,141 @@
-const soonCard = document.querySelector(".soonCard");
+<basis core="dbsource" source="basiscore" mid="1" name="db" lid="1" catid="[##cms.query.catid|(0)##]">
+    <member name="services" type="list" link="article-service.bc" typeid="159"
+        propertyid="177574,177575,177576,177577,177578,177579,177580,3087398,3087399,3087400,3087401,3087402,3087403,3087404,3087405"
+        order="ord" perpage="9" typeid="159" size="397x265"/>
+</basis>
+<body class="index dir-rtl ">
+    <basis core="list" datamembername="db.services">
+        <layout>@child </layout><else-layout>
+            <h2 class="notfound-item-list">جستجوی شما یافت نشد</h2>
+        </else-layout>
+        <face filter="link is null and [00397X00265prp] is null">
+            <div class="service-col">
+                <article class="service-card"><a href="article-service.bc?id=@id">
+                        <figure><img loading="lazy" src="[##cms.cms.cdn##]/images/noimage-service.jpg"
+                                width="397" height="265" alt="@title">
+                            <figcaption><svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.0006 13.225C11.4796 13.225 10.2416 11.987 10.2416 10.466C10.2416 8.945 11.4796 7.707 13.0006 7.707C14.5216 7.707 15.7586 8.945 15.7586 10.466C15.7586 11.987 14.5216 13.225 13.0006 13.225ZM13.0006 2.5C8.57561 2.5 4.97461 6.101 4.97461 10.527C4.97461 16.163 11.5666 21.5 13.0006 21.5C14.4346 21.5 21.0266 16.163 21.0266 10.527C21.0266 6.101 17.4256 2.5 13.0006 2.5Z"
+                                        fill="#FE4A56" />
+                                </svg><span>@prp_3087400 </span></figcaption>
+                        </figure>
+                        <header class="service-card-info">
+                            <h2>@title</h2>
+                            <div class="service-card-info-detail">
+                                <div class="half-sec"><span class="title-info-service">زمان اجرای
+                                        برنامه:</span><span class="detail-info-service">@prp_3087398</span>
+                                </div>
+                                <div class="half-sec"><span class="title-info-service">شروع
+                                        قیمت:</span><span class="detail-info-service">@prp_3087399</span>
+                                </div>
+                            </div>
+                        </header>
+                        <footer class="show-service"><span>مشاهده جزئیات </span><svg width="49" height="48"
+                                viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.7929 23.2929C14.4024 23.6834 14.4024 24.3166 14.7929 24.7071L21.1569 31.0711C21.5474 31.4616 22.1805 31.4616 22.5711 31.0711C22.9616 30.6805 22.9616 30.0474 22.5711 29.6569L16.9142 24L22.5711 18.3431C22.9616 17.9526 22.9616 17.3195 22.5711 16.9289C22.1805 16.5384 21.5474 16.5384 21.1569 16.9289L14.7929 23.2929ZM33.5 23L15.5 23L15.5 25L33.5 25L33.5 23Z"
+                                    fill="white" />
+                            </svg></footer>
+                    </a></article>
+            </div>
+        </face>
+        <face filter="[00397X00265prp] is null">
+            <div class="service-col">
+                <article class="service-card"><a href="@link">
+                        <figure><img loading="lazy" src="[##cms.cms.cdn##]/images/noimage-service.jpg"
+                                width="397" height="265" alt="@title">
+                            <figcaption><svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.0006 13.225C11.4796 13.225 10.2416 11.987 10.2416 10.466C10.2416 8.945 11.4796 7.707 13.0006 7.707C14.5216 7.707 15.7586 8.945 15.7586 10.466C15.7586 11.987 14.5216 13.225 13.0006 13.225ZM13.0006 2.5C8.57561 2.5 4.97461 6.101 4.97461 10.527C4.97461 16.163 11.5666 21.5 13.0006 21.5C14.4346 21.5 21.0266 16.163 21.0266 10.527C21.0266 6.101 17.4256 2.5 13.0006 2.5Z"
+                                        fill="#FE4A56" />
+                                </svg><span>@prp_3087400 </span></figcaption>
+                        </figure>
+                        <header class="service-card-info">
+                            <h2>@title</h2>
+                            <div class="service-card-info-detail">
+                                <div class="half-sec"><span class="title-info-service">زمان اجرای
+                                        برنامه:</span><span class="detail-info-service">@prp_3087398</span>
+                                </div>
+                                <div class="half-sec"><span class="title-info-service">شروع
+                                        قیمت:</span><span class="detail-info-service">@prp_3087399</span>
+                                </div>
+                            </div>
+                        </header>
+                        <footer class="show-service"><span>مشاهده جزئیات </span><svg width="49" height="48"
+                                viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.7929 23.2929C14.4024 23.6834 14.4024 24.3166 14.7929 24.7071L21.1569 31.0711C21.5474 31.4616 22.1805 31.4616 22.5711 31.0711C22.9616 30.6805 22.9616 30.0474 22.5711 29.6569L16.9142 24L22.5711 18.3431C22.9616 17.9526 22.9616 17.3195 22.5711 16.9289C22.1805 16.5384 21.5474 16.5384 21.1569 16.9289L14.7929 23.2929ZM33.5 23L15.5 23L15.5 25L33.5 25L33.5 23Z"
+                                    fill="white" />
+                            </svg></footer>
+                    </a></article>
+            </div>
+        </face>
+        <face filter="link is null">
+            <div class="service-col">
+                <article class="service-card"><a href="article-service.bc?id=@id">
+                        <figure><img loading="lazy" src="[##cms.cms.cdn##]/@00397X00265prp" width="397"
+                                height="265" alt="@title">
+                            <figcaption><svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.0006 13.225C11.4796 13.225 10.2416 11.987 10.2416 10.466C10.2416 8.945 11.4796 7.707 13.0006 7.707C14.5216 7.707 15.7586 8.945 15.7586 10.466C15.7586 11.987 14.5216 13.225 13.0006 13.225ZM13.0006 2.5C8.57561 2.5 4.97461 6.101 4.97461 10.527C4.97461 16.163 11.5666 21.5 13.0006 21.5C14.4346 21.5 21.0266 16.163 21.0266 10.527C21.0266 6.101 17.4256 2.5 13.0006 2.5Z"
+                                        fill="#FE4A56" />
+                                </svg><span>@prp_3087400 </span></figcaption>
+                        </figure>
+                        <header class="service-card-info">
+                            <h2>@title</h2>
+                            <div class="service-card-info-detail">
+                                <div class="half-sec"><span class="title-info-service">زمان اجرای
+                                        برنامه:</span><span class="detail-info-service">@prp_3087398</span>
+                                </div>
+                                <div class="half-sec"><span class="title-info-service">شروع
+                                        قیمت:</span><span class="detail-info-service">@prp_3087399</span>
+                                </div>
+                            </div>
+                        </header>
+                        <footer class="show-service"><span>مشاهده جزئیات </span><svg width="49" height="48"
+                                viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.7929 23.2929C14.4024 23.6834 14.4024 24.3166 14.7929 24.7071L21.1569 31.0711C21.5474 31.4616 22.1805 31.4616 22.5711 31.0711C22.9616 30.6805 22.9616 30.0474 22.5711 29.6569L16.9142 24L22.5711 18.3431C22.9616 17.9526 22.9616 17.3195 22.5711 16.9289C22.1805 16.5384 21.5474 16.5384 21.1569 16.9289L14.7929 23.2929ZM33.5 23L15.5 23L15.5 25L33.5 25L33.5 23Z"
+                                    fill="white" />
+                            </svg></footer>
+                    </a></article>
+            </div>
+        </face>
+        <face>
+            <div class="service-col">
+                <article class="service-card"><a href="@link">
+                        <figure><img loading="lazy" src="[##cms.cms.cdn##]/@00397X00265prp" width="397"
+                                height="265" alt="@title">
+                            <figcaption><svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.0006 13.225C11.4796 13.225 10.2416 11.987 10.2416 10.466C10.2416 8.945 11.4796 7.707 13.0006 7.707C14.5216 7.707 15.7586 8.945 15.7586 10.466C15.7586 11.987 14.5216 13.225 13.0006 13.225ZM13.0006 2.5C8.57561 2.5 4.97461 6.101 4.97461 10.527C4.97461 16.163 11.5666 21.5 13.0006 21.5C14.4346 21.5 21.0266 16.163 21.0266 10.527C21.0266 6.101 17.4256 2.5 13.0006 2.5Z"
+                                        fill="#FE4A56" />
+                                </svg><span>@prp_3087400 </span></figcaption>
+                        </figure>
+                        <header class="service-card-info">
+                            <h2>@title</h2>
+                            <div class="service-card-info-detail">
+                                <div class="half-sec"><span class="title-info-service">زمان اجرای
+                                        برنامه:</span><span class="detail-info-service">@prp_3087398</span>
+                                </div>
+                                <div class="half-sec"><span class="title-info-service">شروع
+                                        قیمت:</span><span class="detail-info-service">@prp_3087399</span>
+                                </div>
+                            </div>
+                        </header>
+                        <footer class="show-service"><span>مشاهده جزئیات </span><svg width="49" height="48"
+                                viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.7929 23.2929C14.4024 23.6834 14.4024 24.3166 14.7929 24.7071L21.1569 31.0711C21.5474 31.4616 22.1805 31.4616 22.5711 31.0711C22.9616 30.6805 22.9616 30.0474 22.5711 29.6569L16.9142 24L22.5711 18.3431C22.9616 17.9526 22.9616 17.3195 22.5711 16.9289C22.1805 16.5384 21.5474 16.5384 21.1569 16.9289L14.7929 23.2929ZM33.5 23L15.5 23L15.5 25L33.5 25L33.5 23Z"
+                                    fill="white" />
+                            </svg></footer>
+                    </a></article>
+            </div>
+        </face>
+    </basis>
+</body>
+</html>

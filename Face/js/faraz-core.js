@@ -6,10 +6,12 @@ const hamberBtn = document.querySelector("#hamber-menu"),
   navBar = document.querySelector("nav.menu"),
   navCloser = document.querySelector("#nav-closer");
 hamberBtn.addEventListener("click", () => {
-  navBar.classList.remove("translate-x-[1890px]");
+  navBar.classList.remove("translate-x-[50000px]");
+  
 });
 navCloser.addEventListener("click", () => {
-  navBar.classList.add("translate-x-[1890px]");
+  navBar.classList.add("translate-x-[50000px]");
+    
 });
 
 // _________________________________swipers_____________________________________
@@ -145,6 +147,28 @@ document.body.addEventListener("click", (e) => {
   });
 });
 
+function soonFunc() {
+    const soonCard2 = document.querySelector(".soon-card2");
+
+
+    const depId3 = soonCard2.querySelector(".depId").innerText.trim();
+    const desId3 = soonCard2.querySelector(".desId").innerText.trim();
+    const departureCity2 = soonCard2.querySelector(".departureCity").innerText.trim();
+    const destinationCity2 = soonCard2.querySelector(".destinationCity").innerText.trim();
+    const flightType2 = soonCard2.querySelector(".flight-type").innerText.trim();
+
+  
+    localStorage.setItem("flightData", JSON.stringify({
+        depId3,
+        desId3,
+        departureCity2,
+        destinationCity2,
+        flightType2
+    }));
+
+
+    window.location.href = "/";
+}
 
 // _____________________________________searchEngine______________________________________
 // _____________________________________searchEngine______________________________________
@@ -212,6 +236,45 @@ async function loadSearchEngine(url, sectionload) {
               $(".r-flighthotel").hide();
           }
         }
+       const flightData = JSON.parse(localStorage.getItem("flightData"));
+    if(flightData && window.location.pathname === "/"){
+      localStorage.removeItem("searchHistory_flight");
+    const { depId3, desId3, departureCity2, destinationCity2, flightType2 } = flightData;
+
+
+   
+    document.querySelector("#r-flight #flightSearch .FCD1").value = departureCity2;
+    document.querySelector("#r-flight #flightSearch .FCDid1").value = depId3;
+    document.querySelector("#r-flight #flightSearch .FCD2").value = destinationCity2;
+    document.querySelector("#r-flight #flightSearch .FCDid2").value = desId3;
+
+    
+    if (flightType2.includes("Economy")) {
+        document.querySelector("#r-flight .FlightClass-text").innerText = "اکونومی";
+        document.querySelector("#r-flight #FlightClass1").value = "Economy";
+    }
+    if (flightType2.includes("Business")) {
+        document.querySelector("#r-flight .FlightClass-text").innerText = "بیزینس";
+        document.querySelector("#r-flight #FlightClass1").value = "BusinessClass";
+    }
+    if (flightType2.includes("First")) {
+        document.querySelector("#r-flight .FlightClass-text").innerText = "فرست";
+        document.querySelector("#r-flight #FlightClass1").value = "FirstClass";
+    }
+
+    
+    document.querySelector("#multi-flight-form").classList.add("hidden");
+    document.querySelector("#r-flight").classList.remove("hidden");
+
+   
+    const searchBox = document.querySelector(".serch-box-container");
+    if (searchBox) {
+        window.scrollTo({
+            top: searchBox.offsetTop,
+            behavior: "smooth"
+        });
+    }
+    }
       }
     };
   } catch (error) {
@@ -321,6 +384,22 @@ soonCard.addEventListener("click",()=>{
 })
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
