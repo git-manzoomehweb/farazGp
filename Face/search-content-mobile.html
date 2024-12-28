@@ -11,16 +11,6 @@
   q="[##cms.query.search-content-name##]"
 >
   <member
-    name="article-list"
-    type="list"
-    link="article.bc"
-    propertyid="7244,7248,3087429"
-    size="673x351"
-    order="ord"
-    postsql="select * from [db.article-list] LIMIT 1"
-  />
-
-  <member
     name="article-list2"
     perpage="5"
     type="list"
@@ -28,13 +18,6 @@
     propertyid="7244,7248,3087429"
     size="379x209"
     order="ord"
-  />
-  <member
-    name="paging"
-    type="list"
-    request="paging"
-    count="5"
-    parentname="article-list2"
   />
 </basis>
 
@@ -201,7 +184,94 @@
                 @child
               </div>
             </layout>
-            <face filter="RowNumber<>1">
+             <face filter="[prp_3087429] is null">
+              <article
+                class="flex flex-col bg-white px-3 py-4 gap-4 border border-zinc-300 rounded"
+              >
+                <h3 class="font-bold text-base">@title</h3>
+                <p class="font-normal text-sm text-zinc-900 line-clamp-4">
+                  @prp_7244
+                </p>
+                <div class="flex gap-4 items-center">
+                  <img
+                    loading="lazy"
+                    src="[##cms.cms.cdn##]/images/Calendar.png"
+                    alt="Calendar"
+                    class="w-6 h-6"
+                  />
+                  <p class="text-zinc-500 text-sm leading-6">@date</p>
+                </div>
+                <img
+                  loading="lazy"
+                  class="rounded !w-full"
+                  src="@00379X00209prp"
+                  width="379"
+                  height="209"
+                  alt="@title"
+                />
+                <div class="flex items-center gap-3">
+                  <img
+                    loading="lazy"
+                    class="rounded-full"
+                    width="40"
+                    height="40"
+                    src="[##cms.cms.cdn##]/images/person.png"
+                    alt="@prp_7248"
+                  />
+                  <p class="text-zinc-500 text-sm">نویسنده : @prp_7248</p>
+                </div>
+                <a
+                  href="@link"
+                  class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
+                  >ادامه مطلب</a
+                >
+              </article>
+            </face>
+            <face filter="link is null and [prp_3087429] is null">
+              <article
+                class="flex flex-col px-3 bg-white py-4 gap-4 border border-zinc-300 rounded"
+              >
+                <h3 class="font-bold text-base">@title</h3>
+                <p class="font-normal text-sm text-zinc-900 line-clamp-4">
+                  @prp_7244
+                </p>
+                <div class="flex gap-4 items-center">
+                  <img
+                    loading="lazy"
+                    src="[##cms.cms.cdn##]/images/Calendar.png"
+                    alt="Calendar"
+                    class="w-6 h-6"
+                  />
+                  <p class="text-zinc-500 text-sm leading-6">@date</p>
+                </div>
+                <img
+                  loading="lazy"
+                  class="rounded !w-full"
+                  src="@00379X00209prp"
+                  width="379"
+                  height="209"
+                  alt="@title"
+                />
+                <div class="flex items-center gap-3">
+                  <img
+                    loading="lazy"
+                    class="rounded-full"
+                    width="40"
+                    height="40"
+                    src="[##cms.cms.cdn##]/images/person.png"
+                    alt="@prp_7248"
+                  />
+                  <p class="text-zinc-500 text-sm">نویسنده : @prp_7248</p>
+                </div>
+                <a
+                  href="/article.bc?id=@id"
+                  class="w-full hover:bg-primary-900 transition-all duration-200 ease-in-out py-3 bg-primary-700 text-center text-white rounded"
+                  >ادامه مطلب</a
+                >
+              </article>
+            </face>
+           
+            <face>
               <article
                 class="flex flex-col bg-white px-3 py-4 gap-4 border border-zinc-300 rounded"
               >
@@ -245,7 +315,7 @@
               </article>
             </face>
 
-            <face filter="link is null and RowNumber<>1 ">
+            <face filter="link is null">
               <article
                 class="flex flex-col px-3 bg-white py-4 gap-4 border border-zinc-300 rounded"
               >
@@ -288,80 +358,9 @@
                 >
               </article>
             </face>
+
+            
           </basis>
-
-          <div class="w-full flex gap-4 justify-center items-center">
-            <basis core="print" datamembername="db.paging">
-              <face filter="(@sta='pre')">
-                <a
-                  class="bg-primary-700 hover:bg-primary-900 w-14 h-14 flex justify-center items-center rounded-full"
-                  href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
-                  aria-label="angle-left"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M16.9139 11.7501L8.49994 20.1641L7.08594 18.7501L14.0859 11.7501L7.08594 4.7501L8.49994 3.3361L16.9139 11.7501Z"
-                      fill="#F6E8EC"
-                    />
-                  </svg>
-                </a>
-              </face>
-            </basis>
-
-            <basis core="print" datamembername="db.paging">
-              <face filter="(@page=[##cms.query.pagenum|(1)##])">
-                <a
-                  class="bg-primary-700 hover:bg-primary-900 text-white w-14 h-14 flex justify-center items-center rounded-full"
-                  href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
-                >
-                  @page
-                </a>
-              </face>
-              <face
-                filter="(@page<>[##cms.query.pagenum|(1)##]) and (@page>0) and (@sta='no')"
-              >
-                <a
-                  href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
-                  class="bg-primary-700 hover:bg-primary-900 text-white w-14 h-14 flex justify-center items-center rounded-full"
-                >
-                  @page
-                </a>
-              </face>
-            </basis>
-
-            <basis core="print" datamembername="db.paging">
-              <face filter="(@sta='nex')">
-                <a
-                  href="/[##cms.cms.link_page##]&pagenum=@page&catid=[##cms.query.catid##]"
-                  aria-label="angle-right"
-                  class="bg-primary-700 hover:bg-primary-900 rotate-180 w-14 h-14 flex justify-center items-center rounded-full"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M16.9139 11.7501L8.49994 20.1641L7.08594 18.7501L14.0859 11.7501L7.08594 4.7501L8.49994 3.3361L16.9139 11.7501Z"
-                      fill="#F6E8EC"
-                    />
-                  </svg>
-                </a>
-              </face>
-            </basis>
-          </div>
         </div>
       </section>
     </main>

@@ -28,8 +28,6 @@
   <member name="faq" type="view" />
 </basis>
 
-
-
 <basis
   core="dbsource"
   source="basiscore"
@@ -50,42 +48,63 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
   <head>
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover">
-<!-- Title & Description -->
-<title>آژانس مسافرتی فراز گشت | خرید بلیط هواپیما | تیکت پروازهای داخلی و خارجی<</title>
-<meta name="description" content="آژانس مسافرتی فراز گشت | خرید بلیط هواپیما | تیکت پروازهای داخلی و خارجی<">
-<!-- canonical for Homepage -->
-<link rel="canonical" href="[##cms.request.:scheme##]://[##cms.request.full-url##]" />
-<!-- fill items with Agancy Info -->
-<meta name="og:locale" content="fa_IR">
-<meta property="og:title" content="آژانس مسافرتی فراز گشت">
-<meta property="og:url" content="[##cms.request.:scheme##]://[##cms.request.full-url##]">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="فراز گشت">
-<meta property="og:image" content="[##cms.cms.cdn##]/images/logo.png">
-<meta property="og:image:alt" content="لوگو آژانس فراز گشت">
-<meta property="og:description"
-    content="آژانس مسافرتی فراز گشت مجری تورهای آفری و ارزان قیمت داخلی و خارجی ، هتل های ویژه و لوکس ، پروازهای ارزان و افری می باشد">
-<meta property="og:image:height" content="512">
-<meta property="og:image:width" content="512">
-<meta property="og:image:type" content="image/png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content=" ">
-<meta name="twitter:creator" content="Faraz Gasht Group">
-<meta name="twitter:image" content="[##cms.cms.cdn##]/images/logo.png">
-<meta name="twitter:title" content=" ">
-<meta name="twitter:description" content=" ">
-<meta property="seo:robots" content="index, follow" />
-<!-- samandehi-enamad optional -->
-<meta name="enamad" content="" />
-<meta name="samandehi" content="" />
-<!-- pwa metatags -->
-<basis core="call" file="pwa.inc" />
-<!-- define -->
-<link rel="preload" as="image" imageSrcSet="image address" fetchpriority="high" />
-<!-- common styles for all page -->
-<basis core="call" file="style.inc" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,shrink-to-fit=no,viewport-fit=cover"
+    />
+    <!-- Title & Description -->
+    <title>
+      آژانس مسافرتی فراز گشت | خرید بلیط هواپیما | تیکت پروازهای داخلی و خارجی<
+    </title>
+    <meta
+      name="description"
+      content="آژانس مسافرتی فراز گشت | خرید بلیط هواپیما | تیکت پروازهای داخلی و خارجی<"
+    />
+    <!-- canonical for Homepage -->
+    <link
+      rel="canonical"
+      href="[##cms.request.:scheme##]://[##cms.request.full-url##]"
+    />
+    <!-- fill items with Agancy Info -->
+    <meta name="og:locale" content="fa_IR" />
+    <meta property="og:title" content="آژانس مسافرتی فراز گشت" />
+    <meta
+      property="og:url"
+      content="[##cms.request.:scheme##]://[##cms.request.full-url##]"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="فراز گشت" />
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/logo.png" />
+    <meta property="og:image:alt" content="لوگو آژانس فراز گشت" />
+    <meta
+      property="og:description"
+      content="آژانس مسافرتی فراز گشت مجری تورهای آفری و ارزان قیمت داخلی و خارجی ، هتل های ویژه و لوکس ، پروازهای ارزان و افری می باشد"
+    />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:type" content="image/png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content=" " />
+    <meta name="twitter:creator" content="Faraz Gasht Group" />
+    <meta name="twitter:image" content="[##cms.cms.cdn##]/images/logo.png" />
+    <meta name="twitter:title" content=" " />
+    <meta name="twitter:description" content=" " />
+    <meta property="seo:robots" content="index, follow" />
+    <!-- samandehi-enamad optional -->
+    <meta name="enamad" content="" />
+    <meta name="samandehi" content="" />
+    <!-- pwa metatags -->
+    <basis core="call" file="pwa.inc" />
+    <!-- define -->
+    <link
+      rel="preload"
+      as="image"
+      imagesrcset="image address"
+      fetchpriority="high"
+    />
+    <!-- common styles for all page -->
+    <basis core="call" file="style.inc" />
     <link
       rel="stylesheet"
       href="https://cdn.basiscore.net/basisfly.com/css/swiper-bundle.min.css"
@@ -95,132 +114,97 @@
       type="text/css"
       rel="stylesheet"
     />
-  
   </head>
-  <body class="relative"   onload="loadContentHomaPage()">
-
+  <body class="relative" onload="loadContentHomaPage()">
     <basis core="call" file="header.inc" />
     <main class="w-full z-10 flex-flex-col overflow-hidden gap-0">
       <section
-        class="serch-box-container  object-cover relative h-880 lg:h-[669px] w-full"
+        class="serch-box-container object-cover relative  w-full"
       >
         <span
           class="z-10 w-full h-full absolute top-0 bg-gradient-to-b from-special-1"
         ></span>
-        <img loading="lazy"
-          class="!w-full object-cover z-0 !h-full lg:block hidden"
-          src="[##cms.cms.cdn##]/images/search-bg.jpg"
-          alt="search"
-        />
-        <img loading="lazy"
-          class="!w-full z-0 !h-full lg:hidden block object-cover"
-          src="[##cms.cms.cdn##]/images/bg-search-mobile.jpg"
-          alt="search"
-        />
-        <img loading="lazy"
-          class="absolute z-20 lg:block hidden -bottom-32 object-cover"
-          src="[##cms.cms.cdn##]/images/cloud.png"
-          alt="cloud"
-        />
-        <img loading="lazy"
-          class="absolute z-20 lg:hidden block left-0 w-full -bottom-28 h-[280px]"
-          src="[##cms.cms.cdn##]/images/cloud.png"
-          alt="cloud"
-        />
-        <div class="search-box-container mt-[-684px] w-full z-50 flex justify-center">
-          <div
-            class="z-50 px-4 w-full "
-            id="search-box"
-          >
+        <img src="[##cms.cms.cdn##]/images/search-eng-bg.jpg" alt="search-box" class="!w-full z-0 h-880 object-cover">
+   
+        <div
+          class="search-box-container mt-[-684px] w-full z-50 flex justify-center"
+        >
+          <div class="z-20 px-4 w-full" id="search-box">
             <div class="circles">
-    <div class="circle1"></div>
-    <div class="circle2"></div>
-    <div class="circle3"></div>
-    <div class="circle4"></div>
-    <div class="circle5"></div>
-    <div class="circle6"></div>
-    <div class="circle7"></div>
-    <div class="circle8"></div>
-    <div class="circle9"></div>
-    <div class="circle10"></div>
-    <div class="circle11"></div>
-    <div class="circle12"></div>
-    <div class="circle13"></div>
-    <div class="circle14"></div>
-    <div class="circle15"></div>
-</div>
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+              <div class="circle5"></div>
+              <div class="circle6"></div>
+              <div class="circle7"></div>
+              <div class="circle8"></div>
+              <div class="circle9"></div>
+              <div class="circle10"></div>
+              <div class="circle11"></div>
+              <div class="circle12"></div>
+              <div class="circle13"></div>
+              <div class="circle14"></div>
+              <div class="circle15"></div>
+            </div>
           </div>
         </div>
       </section>
-      
-      
-    <h1 class="hidden">فراز گشت</h1>
+
+      <h1 class="hidden">فراز گشت</h1>
 
       <basis core="list" datamembername="db.flight-list">
         <layout>
-          <section class="z-30 flex w-full justify-center mt-[5rem] px-4">
-        <div
-          class="flex flex-col gap-1 w-full lg:w-[950px] xl:w-[1200px] 2xl:w-[1280px] overflow-hidden"
-        >
-          <h2
-            class="text-zinc-900 text-base font-bold mb-4"
-          >
-            پرواز های پرطرفدار
-          </h2>
-          <div class="first-swiper-mob overflow-hidden h-[400px] flex flex-col w-full">
-            
-            <div class="swiper-wrapper">
-              @child
+          <section class="z-30 flex w-full justify-center mt-14r px-4">
+            <div
+              class="flex flex-col gap-1 w-full lg:w-[950px] xl:w-[1200px] 2xl:w-[1280px] overflow-hidden"
+            >
+              <h2 class="text-zinc-900 text-base font-bold mb-4">
+                پرواز های پرطرفدار
+              </h2>
+              <div
+                class="first-swiper-mob overflow-hidden h-[400px] flex flex-col w-full"
+              >
+                <div class="swiper-wrapper">@child</div>
+                <div class="swiper-pagination-first-mob"></div>
+              </div>
             </div>
-            <div class="swiper-pagination-first-mob"></div>
-          </div>
-        </div>
-      </section>
+          </section>
         </layout>
         <face>
           <div
-                class="swiper-slide object-cover rounded-lg hover:shadow-lg cursor-pointer overflow-hidden border-4 border-zinc-50 hover:border-primary-200 transition-all duration-200 ease-in-out relative"
+            class="swiper-slide object-cover rounded-lg hover:shadow-lg cursor-pointer overflow-hidden border-4 border-zinc-50 hover:border-primary-200 transition-all duration-200 ease-in-out relative"
+          >
+            <div class="w-full h-full flight-card">
+              <img
+                loading="lazy"
+                class="w-full h-full z-0 object-cover"
+                src="@00315X00098prp"
+                width="315"
+                height="98"
+                alt="@title"
+              />
+              <div
+                class="w-full text-white h-full absolute items-center top-0 flex justify-between py-3 px-4"
               >
-                <div class="w-full h-full flight-card" >
-                  <img
-                    loading="lazy"
-                    class="w-full h-full z-0 object-cover"
-                    src="@00315X00098prp"
-                    width="315"
-                    height="98"
-                    alt="@title"
-                  />
-                  <div
-                    class="w-full text-white h-full absolute items-center top-0 flex justify-between py-3 px-4"
-                  >
-                    <div class="flex flex-col gap-1">
-                      <p class="departureCity uppercase">@prp_3087425</p>
-                      <p class="uppercase hidden depId">@prp_3087423</p>
-                    </div>
-                    <div
-                      class="pt-3 translate-y-[10px] flight-type border-t border-dashed border-white w-[96%] mx-5 text-center"
-                    >
-                     @prp_3087428
-                    </div>
-                    <div class="flex flex-col gap-1">
-                      <p class="destinationCity uppercase">@prp_3087424</p>
-                      <p class="uppercase hidden desId">@prp_3087422</p>
-                    </div>
-                  </div>
+                <div class="flex flex-col gap-1">
+                  <p class="departureCity uppercase">@prp_3087425</p>
+                  <p class="uppercase hidden depId">@prp_3087423</p>
+                </div>
+                <div
+                  class="pt-3 translate-y-[10px] flight-type border-t border-dashed border-white w-[96%] mx-5 text-center"
+                >
+                  @prp_3087428
+                </div>
+                <div class="flex flex-col gap-1">
+                  <p class="destinationCity uppercase">@prp_3087424</p>
+                  <p class="uppercase hidden desId">@prp_3087422</p>
                 </div>
               </div>
+            </div>
+          </div>
         </face>
-
-       </basis>
-
-
-
-
-
-
-
-
-
+      </basis>
 
       <section class="w-full flex justify-center my-14 px-4">
         <div class="w-full gap-6 grid-cols-1 grid lg:grid-cols-4">
@@ -254,8 +238,10 @@
               </svg>
             </span>
             <p class="text-primary-700 font-bold text-base">رزرو آنلاین</p>
-            <p class="text-zinc-800 text-sm font-normal  text-center  line-clamp-2">
-               بهترین تجربه ی کاربری را در فراز گشت کسب کنید .
+            <p
+              class="text-zinc-800 text-sm font-normal text-center line-clamp-2"
+            >
+              بهترین تجربه ی کاربری را در فراز گشت کسب کنید .
             </p>
           </div>
 
@@ -279,8 +265,10 @@
               </svg>
             </span>
             <p class="text-primary-700 font-bold text-base">بیمه مسافرتی</p>
-            <p class="text-zinc-800 text-sm font-normal  text-center  line-clamp-2">
-           با بیمه ی مسافرتی فراز گشت بدون اضطراب سفر کنید.
+            <p
+              class="text-zinc-800 text-sm font-normal text-center line-clamp-2"
+            >
+              با بیمه ی مسافرتی فراز گشت بدون اضطراب سفر کنید.
             </p>
           </div>
 
@@ -322,8 +310,11 @@
               </svg>
             </span>
             <p class="text-primary-700 font-bold text-base">کارت مسافرتی</p>
-            <p class="text-zinc-800 text-sm font-normal  text-center  line-clamp-2">
-  سفر سرگرم کننده است و ابزارهای مناسب، می توانند سفر را هیجان انگیز کنند.
+            <p
+              class="text-zinc-800 text-sm font-normal text-center line-clamp-2"
+            >
+              سفر سرگرم کننده است و ابزارهای مناسب، می توانند سفر را هیجان انگیز
+              کنند.
             </p>
           </div>
 
@@ -371,140 +362,130 @@
               </svg>
             </span>
             <p class="text-primary-700 font-bold text-base">ویزای مسافرتی</p>
-            <p class="text-zinc-800 text-sm font-normal  text-center  line-clamp-2">
-             تمامی ویزاهای توریستی تحصیلی و .. را به راحتی آب خوردن با فراز گشت دریافت کنید .
+            <p
+              class="text-zinc-800 text-sm font-normal text-center line-clamp-2"
+            >
+              تمامی ویزاهای توریستی تحصیلی و .. را به راحتی آب خوردن با فراز گشت
+              دریافت کنید .
             </p>
           </div>
         </div>
       </section>
 
-
-
-
-
-
-
-
-       <basis core="list" datamembername="db.soon-list">
+      <basis core="list" datamembername="db.soon-list">
         <face>
-<section class="flex w-full mb-24 justify-center px-5">
-        <div class="relative w-full h-[339px]">
-          <img loading="lazy"
-            class="!w-full !h-full object-cover z-0 rounded"
-            src="@01280X00257prp"
-            alt="@title"
-            width="1280"
-            height="257"
-          />
-          <div
-            class="absolute w-full px-7 h-full top-0 py-6 left-0 z-10 flex flex-col items-center justify-between"
-          >
-            <div class="flex flex-col gap-2 w-full">
-              <h3 class="text-white text-[30px] font-bold">
-                سریع پروازت رو رزرو کن
-              </h3>
-              <div class="line-clamp-2 text-white text-sm font-normal">
-                 @prp_7244
-              </div>
-            </div>
-            <div
-              class="flex !text-white soon-card h-[93px] items-center justify-between px-4 py-3 bg-special-2 border border-zinc-600 rounded-lg w-full"
-            >
-              <div class="flex flex-col gap-1">
-                <p class="departureCity uppercase">@prp_3087425</p>
-                <p class="uppercase hidden depId">@prp_3087423</p>
-              </div>
+          <section class="flex w-full mb-24 justify-center px-5">
+            <div class="relative w-full h-[339px]">
+              <img
+                loading="lazy"
+                class="!w-full !h-full object-cover z-0 rounded"
+                src="@01280X00257prp"
+                alt="@title"
+                width="1280"
+                height="257"
+              />
               <div
-                class="pt-3 translate-y-[10px] flight-type border-t border-dashed border-white w-[96%] mx-5 text-center"
+                class="absolute w-full px-7 h-full top-0 py-6 left-0 z-10 flex flex-col items-center justify-between"
               >
-                @prp_3087428
-              </div>
-              <div class="flex flex-col gap-1">
-            <p class="destinationCity uppercase ">@prp_3087424</p>
-                <p class="uppercase hidden desId">@prp_3087422</p>
+                <div class="flex flex-col gap-2 w-full">
+                  <h3 class="text-white text-[30px] font-bold">
+                    سریع پروازت رو رزرو کن
+                  </h3>
+                  <div class="line-clamp-2 text-white text-sm font-normal">
+                    @prp_7244
+                  </div>
+                </div>
+                <div
+                  class="flex !text-white soon-card h-[93px] items-center justify-between px-4 py-3 bg-special-2 border border-zinc-600 rounded-lg w-full"
+                >
+                  <div class="flex flex-col gap-1">
+                    <p class="departureCity uppercase">@prp_3087425</p>
+                    <p class="uppercase hidden depId">@prp_3087423</p>
+                  </div>
+                  <div
+                    class="pt-3 translate-y-[10px] flight-type border-t border-dashed border-white w-[96%] mx-5 text-center"
+                  >
+                    @prp_3087428
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <p class="destinationCity uppercase">@prp_3087424</p>
+                    <p class="uppercase hidden desId">@prp_3087422</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
         </face>
-       </basis>
-      
+      </basis>
+
       <section class="px-4 relative flex w-full justify-center mb-8">
         <div class="flex flex-col gap-4 w-full common-questions">
+          <basis core="print" datamembername="db.faq">
+            <face filter="prpID=7243">
+              <h3 class="text-zinc-900 text-base font-bold">@Answer</h3>
+            </face>
+          </basis>
+          <basis core="print" datamembername="db.faq">
+            <face filter="prpID=7244">
+              <div class="text-zinc-900 text-base font-normal">@Answer</div>
+            </face>
+          </basis>
 
           <basis core="print" datamembername="db.faq">
-          <face  filter="prpID=7243">
-          <h3 class="text-zinc-900 text-base font-bold">@Answer</h3>
-        </face>
-        </basis>
-         <basis core="print" datamembername="db.faq">
-          <face  filter="prpID=7244">
-            <div class="text-zinc-900 text-base font-normal">
-            @Answer
-            </div>
-          </face>
-        </basis>
-
-
-
-        <basis core="print" datamembername="db.faq">
-          <layout>
-            <div id="q-box-1" class="flex parent-box flex-col gap-0 pt-4 px-3">
-              @child
-            
-
-          
-           
-          </div>
-          </layout>
-          <face  filter="RowNumber<>1 and RowNumber<>2">
+            <layout>
               <div
-              class="flex box-container py-4 border-b border-secondary-100 w-full cursor-pointer flex-col gap-2"
-            >
-              <div class="flex w-full justify-between items-center">
-                <p
-                  id="question"
-                  class="text-base font-bold leading-6 text-primary-800"
-                >
-                   @text
-                </p>
-
-                <span
-                  class="w-12 h-12 flex justify-center items-center border border-primary-800 rounded-full"
-                >
-                  <svg
-                    width="18"
-                    height="11"
-                    viewBox="0 0 18 11"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M17.4141 1.62926L9.00006 10.0432L0.586061 1.62925L2.00006 0.215252L9.00006 7.21525L16.0001 0.215254L17.4141 1.62926Z"
-                      fill="#0C7F86"
-                    />
-                  </svg>
-                </span>
-              </div>
-              <div
-                id="answer"
-                class="text-sm font-normal hidden transition-all duration-300 ease-in-out leading-6 text-zinc-800"
+                id="q-box-1"
+                class="flex parent-box flex-col gap-0 pt-4 px-3"
               >
-          @largetext
-            </div>
-            </div>
-          </face>
-        </basis>
-          
+                @child
+              </div>
+            </layout>
+            <face filter="RowNumber<>1 and RowNumber<>2">
+              <div
+                class="flex box-container py-4 border-b border-secondary-100 w-full cursor-pointer flex-col gap-2"
+              >
+                <div class="flex w-full justify-between items-center">
+                  <p
+                    id="question"
+                    class="text-base font-bold leading-6 text-primary-800"
+                  >
+                    @text
+                  </p>
+
+                  <span
+                    class="w-12 h-12 flex justify-center items-center border border-primary-800 rounded-full"
+                  >
+                    <svg
+                      width="18"
+                      height="11"
+                      viewBox="0 0 18 11"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M17.4141 1.62926L9.00006 10.0432L0.586061 1.62925L2.00006 0.215252L9.00006 7.21525L16.0001 0.215254L17.4141 1.62926Z"
+                        fill="#0C7F86"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                <div
+                  id="answer"
+                  class="text-sm font-normal hidden transition-all duration-300 ease-in-out leading-6 text-zinc-800"
+                >
+                  @largetext
+                </div>
+              </div>
+            </face>
+          </basis>
         </div>
       </section>
     </main>
     <script src="https://cdn.basiscore.net/basisfly.com/js/swiper-bundle.min.js"></script>
     <basis core="call" file="footer.inc" />
-     <script
+    <script
       src="[##cms.cms.cdn##]/_js/jquery/jquery-3.7.1.min.js"
       type="text/javascript"
     ></script>

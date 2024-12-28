@@ -526,7 +526,7 @@ var destroyChildDropdownRoom = function (t, e) {
 // console.log($(".button-click .button"));
 // $(".button-click .button").on("click", function () {
 $(".button-click").on("click", ".button", function () {
-  // console.log("clicked plusssssssssss");
+
   var t = $(this),
     e = parseInt(t.closest("ul").next().val()),
     i = "+" == t.text() ? e + 1 : e > 0 ? e - 1 : 0;
@@ -1013,7 +1013,3 @@ document.body.addEventListener("click", (e) => {
   });
 });
 
-// const searchLists=document.querySelectorAll("#multi-flight-form .searchList ")
-// searchLists.forEach((div)=>{
-//   div.addEventListener()
-// })
